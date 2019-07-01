@@ -50,6 +50,8 @@ int subiu_de_level(int checkpoint){
 int main(void){
     int check ;
     check = qual_level(0);
+    int levelAtual = check;
+    //Se o cara subir de level: check = subiu_de_level(levelAtual);
     
     const int WindoWidth = 1280; // Largura da janela
     const int WindowHeight = 720; // Altura da janela

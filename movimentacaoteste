@@ -1,0 +1,81 @@
+#include <raylib.h>
+
+typedef struct 
+{
+   int raio;
+   int posicaox,posicaoy;      
+}circulo;
+int main(void)
+{
+    const int screenWidth = 1366; //dimenssão da tela de Falcão
+    const int screenHeight = 768;
+
+    InitWindow(screenWidth, screenHeight, "raylib template - ip");
+
+    SetTargetFPS(60);     
+    circulo circulo1;
+    circulo1.raio = 10;    
+    circulo1.posicaox = 400;
+    circulo1.posicaoy =  225;
+    
+    Image Quarto = LoadImage("/Users/ninja/Downloads/jogo/Sprites/Quarto001.png"); //mudar pasta
+    Image Jorgeim = LoadImage("/Users/ninja/Downloads/jogo/Sprites/Jorge01.png");
+    ImageResize (&Jorgeim,108,78);
+    ImageResize (&Quarto,1366,768); //passar o endereço pq ele modifica a imagem original.
+    Texture2D Quartotx = LoadTextureFromImage(Quarto);
+    Texture2D Jorgetx = LoadTextureFromImage(Jorgeim);
+    Rectangle Jorgerec = {0,0,40,77};
+    
+   
+    
+    while (!WindowShouldClose())   
+    {
+         Vector2 Jorgep = {circulo1.posicaox,circulo1.posicaoy};
+         int x = GetMouseX();
+         int y = GetMouseY();
+        if (IsKeyDown(KEY_DOWN))
+        {
+            circulo1.posicaoy += 4; //y cresce para baixo.
+        }
+        else if(IsKeyDown(KEY_UP))
+        {
+            circulo1.posicaoy -= 4;
+        }
+        else if(IsKeyDown(KEY_RIGHT))
+        {
+            circulo1.posicaox +=4;
+        }
+        else if(IsKeyDown(KEY_LEFT))
+        {
+            circulo1.posicaox -=4;
+        }
+        
+        if(circulo1.posicaox+circulo1.raio>1366)
+        {
+            circulo1.posicaox = 1366-circulo1.raio;
+        }
+        else if(circulo1.posicaox-circulo1.raio<0)
+        {
+            circulo1.posicaox=0+circulo1.raio;
+        }
+        else if(circulo1.posicaoy+circulo1.raio>768)
+        {
+            circulo1.posicaoy=768-circulo1.raio;
+        }
+        else if(circulo1.posicaoy-circulo1.raio<0)
+        {
+            circulo1.posicaoy=0+circulo1.raio;
+        }
+        BeginDrawing();
+           ClearBackground(WHITE);
+           DrawTexture(Quartotx,0,0,RAYWHITE);
+           //DrawTexture(circulo1.posicaox,circulo1.posicaoy,RAYWHITE);
+           //DrawTextureRec(Texture2D texture, Rectangle sourceRec, Vector2 position, Color tint); 
+           DrawText(TextFormat("%i %i",x,y),500,450,40,RED);
+           DrawTextureRec(Jorgetx,Jorgerec,Jorgep,RAYWHITE);
+        EndDrawing();
+        //JORGE: 10,10 até 80 170;
+    }
+    CloseWindow();
+    return 0;
+}

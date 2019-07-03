@@ -1,0 +1,132 @@
+#include <raylib.h>
+
+//definindo struct circulo:
+typedef struct 
+{
+   int raio;
+   int posicaox,posicaoy;      
+}circulo;
+
+int main(void)
+{
+    const int screenWidth = 1920; //dimenssão da minha tela
+    const int screenHeight = 1080;
+
+    InitWindow(screenWidth, screenHeight, "raylib template - ip");
+
+    SetTargetFPS(60);    
+    
+    //Teste de movimentação (estou usando o retângulo no resto do código, mas com circulo funciona tbm - menos eficiente)
+    circulo circulo1;
+    circulo1.raio = 10;    
+    circulo1.posicaox = 400;
+    circulo1.posicaoy =  225;
+    
+    //Carregando imagem e transformando em textura:
+    
+    Image Quarto = LoadImage("/jogoip/Quarto002.png"); //diretorio apartir do C: com as \ invertidas (/);
+    Image Jorgeim = LoadImage("/jogoip/Jorge01.png");
+    Image Karolim = LoadImage("/jogoip/Karol01.png");
+    Image Guilhermeim = LoadImage("/jogoip/Guilherme01.png");
+    Image memoriasim = LoadImage("/jogoip/memorias.png");
+    ImageResize (&Jorgeim,144,104); //144,104,(108,78) - Aumentando a imagem original
+    ImageResize (&Karolim,144,104);
+    ImageResize (&Guilhermeim,144,104);
+    ImageResize (&Quarto,1920,1080); //passar o endereço pq ele modifica a imagem original.
+    Texture2D Quartotx = LoadTextureFromImage(Quarto);
+    Texture2D Jorgetx = LoadTextureFromImage(Jorgeim);
+    Texture2D Karoltx = LoadTextureFromImage(Karolim);
+    Texture2D Guilhermetx = LoadTextureFromImage(Guilhermeim);
+    Texture2D memoriastx = LoadTextureFromImage(memoriasim);
+    
+    //"cortando" a textura para usar só parte dela:
+    Rectangle Jorgerec = {0,0,53,102};// testando o tamanho do boneco no mapa (pegando só esse retângulo)
+    Rectangle Karolrec = {0,0,55,102}; // Esta ok
+    Rectangle Guilhermerec = {0,0,55,102}; //se desejar aumentar manter a proporção para os 3 bonecos (usar multiplo)
+    Rectangle memoriasrec = {0,0,33,20}; //ok!
+    
+    //criando colisão e retângulo de movimentação...
+    Rectangle estante = {466,519,979,337}; //colisão para a estante
+    Rectangle Jorger = {17,700,53,102}; //um retângulo de colisão que representa Jorge
+    
+    //posição das memórias:
+    Vector2 memoriasp = {circulo1.posicaox+100,circulo1.posicaoy+100}; //ferias com a família
+    Vector2 memoriasp2 = {circulo1.posicaox+200,circulo1.posicaoy+100}; //ganhou um ps4
+    Vector2 memoriasp3 = {circulo1.posicaox+200,circulo1.posicaoy+300}; //passou de ano
+    
+    while (!WindowShouldClose())   
+    {
+         
+         Vector2 Jorgep = {Jorger.x,Jorger.y}; //posição do Jorge
+         //Vector2 Karolp = {circulo1.posicaox+100,circulo1.posicaoy+100};
+        // Vector2 Guilhermep = {circulo1.posicaox+100,circulo1.posicaoy+100};
+         
+         //Posição do mouse na tela
+         int x = GetMouseX();
+         int y = GetMouseY();
+        if (IsKeyDown(KEY_DOWN))
+        {
+            Jorger.y += 4; //y cresce para baixo.
+        }
+        else if(IsKeyDown(KEY_UP))
+        {
+            Jorger.y -= 4;
+        }
+        else if(IsKeyDown(KEY_RIGHT))
+        {
+            Jorger.x +=4;
+        }
+        else if(IsKeyDown(KEY_LEFT))
+        {
+            Jorger.x -=4;
+        }
+        
+        //Checando se saiu do mapa:
+        if(Jorger.x+53>screenWidth)
+        {
+            Jorger.x = screenWidth-53;
+        }
+        else if(Jorger.x-8<0) 
+        {
+            Jorger.x=0+8;
+        }
+        else if(Jorger.y+102>screenHeight)
+        {
+            Jorger.y=screenHeight-102;
+        }
+        else if(Jorger.y-10<0)
+        {
+            Jorger.y=0+10;
+        }
+        
+        //Checado se colidiu com estante ou memórias: (ainda em progresso)
+        else if(Jorger.y<=estante.y && Jorger.x==estante.x)
+        {
+            Jorger.y=estante.y-10;
+        }
+        else if(Jorger.y==memoriasp3.y && Jorger.x==memoriasp3.x)
+        {
+            Jorger.x=memoriasp3.x-10;
+        }
+        
+        //parte gráfica:
+        BeginDrawing();
+           ClearBackground(WHITE);
+           DrawTexture(Quartotx,0,0,RAYWHITE);
+           //DrawTexture(circulo1.posicaox,circulo1.posicaoy,RAYWHITE);
+           //DrawTextureRec(Texture2D texture, Rectangle sourceRec, Vector2 position, Color tint); 
+           DrawText(TextFormat("%i %i",x,y),500,450,40,RED);
+           DrawTextureRec(Jorgetx,Jorgerec,Jorgep,RAYWHITE);
+           //DrawTextureRec(Karoltx,Karolrec,Karolp,RAYWHITE);
+           //DrawTextureRec(Guilhermetx,Guilhermerec,Guilhermep,RAYWHITE);
+           
+           // desenhando memórias:
+           DrawTextureRec(memoriastx,memoriasrec,memoriasp,RAYWHITE);
+           DrawTextureRec(memoriastx,memoriasrec,memoriasp2,RAYWHITE);
+           DrawTextureRec(memoriastx,memoriasrec,memoriasp3,RAYWHITE);
+        EndDrawing();
+        //JORGE: 10,10 até 80 170;
+    }
+    CloseWindow();
+    return 0;
+}

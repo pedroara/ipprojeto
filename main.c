@@ -35,15 +35,15 @@ int subiu_de_level(int checkpoint){
     int levelum = 0, leveldois = 0, leveltres = 0;
     //Se a função for chamada quando o checkpoint = 1; será escrito no arquivo checkpoint.txt 1 1 0
     if(checkpoint == 1){
-        fprintf("1 1 0" , levelum, leveldois, leveltres);
+        fprintf("checkpoint.txt" , "1 1 0");
     }
     //Se a função for chamada quando o checkpoint = 2; será escrito no arquivo checkpoint.txt 1 1 1
     if(checkpoint == 2){
-        fprintf("1 1 1" , levelum, leveldois, leveltres);
+        fprintf("checkpoint.txt" , "1 1 1");
     }
     //Por precaução se a função for chamada quando o checkpoint = 3; será escrito no arquivo checkpoint.txt 1 1 1
     if(checkpoint == 3){
-        fprintf("1 1 1" , levelum, leveldois, leveltres);
+        fprintf("checkpoint.txt" , "1 1 1");
     }
 }//end subiu_de_level()
 

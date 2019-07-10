@@ -71,35 +71,104 @@ void tamanhotela(Rectangle* Jorger, int screenHeight,int screenWidth)
         }
 }
 
-int batalha()
-{
-    int ruim=0;
-    
-    if(IsKeyDown(KEY_A))
-    {
-        ruim++;
-    }
-    if(IsKeyDown(KEY_B))
-    {
-        ruim--;
-    }
-    if(IsKeyDown(KEY_C))
-    {
-        ruim++;
-    }
-        
-    
-    return ruim;
-    
-}
+
 void desenharconflito(Texture2D fala)
 {
-     DrawTexture(fala,150,570,RAYWHITE);
-     //DrawRectangle(200,670,730,400,BLACK);
-     DrawText("Conflito: Ir para a festa de Carla.\nAjude Jorge a deixar seus pensamentos mais funcionais\n",250,670,20,WHITE);
-     DrawText(" Aperte A para: Ninguém me quer lá\tAperte B para: Vai ser divertido",220,730,20,WHITE);
+     
+     DrawTexture(fala,0,570,RAYWHITE);
+     DrawText("Conflito: Ir para a festa de Carla.\nAjude Jorge a deixar seus pensamentos mais funcionais",250,650,20,WHITE);
+     DrawText(" Aperte A para: Ninguém me quer lá\nAperte B para: Vai ser divertido",220,700,20,WHITE);
+     
 }
-
+void desenharconflito2(Texture2D fala)
+{
+     
+     DrawTexture(fala,0,570,RAYWHITE);
+     DrawText("Conflito: Na festa, alguém te chamou para dançar.\n",250,650,20,WHITE);
+     DrawText(" Aperte A para: Não. Vou passar vergonha\nAperte B para: Sim. Estou entre amigos, ninguém vai ligar",220,680,20,WHITE);
+     
+}
+void desenharconflito3(Texture2D fala)
+{
+     
+     DrawTexture(fala,0,570,RAYWHITE);
+     DrawText("Conflito: Alguém está olhando para você.\n",250,650,20,WHITE);
+     DrawText(" Aperte A para: A algo de errado comigo\nAperte B para: Talvez ela queira conversar",220,680,20,WHITE);
+     
+}
+void batalhafuncao(Texture2D fala,int* ruim, int* batalha)
+{
+     *ruim=2;
+    //while(IsKeyPressed(KEY_A)!=1 && IsKeyPressed(KEY_B)!=1)
+    {
+        desenharconflito(fala);
+    }
+    
+    //se aperta A o jogo fecha...???
+    if(IsKeyPressed(KEY_A))
+    {
+        *ruim++;
+        if(*ruim==3)
+        {
+            //while(IsKeyPressed(KEY_A)!=1 && IsKeyPressed(KEY_B)!=1)
+            {
+                 desenharconflito2(fala);
+            }  
+            batalhafuncao(fala,&(*ruim),&(*batalha));
+        }
+        else
+        {
+            //while(IsKeyPressed(KEY_A)!=1 && IsKeyPressed(KEY_B)!=1)
+            {
+                desenharconflito3(fala);
+            } 
+            batalhafuncao(fala,&(*ruim),&(*batalha));
+            *batalha=0;
+        }
+        
+    }
+    //não mudei essa parte como fiz na de cima pq a de cima n está funcionando direito
+    else if(IsKeyPressed(KEY_B))
+    {
+        *ruim--;
+        if(*ruim==1)
+        {
+            desenharconflito2(fala);
+        }
+        else
+        {
+            desenharconflito3(fala);
+            *batalha=0;
+        }
+        
+        
+    }
+    
+    /*if(IsKeyPressed(KEY_W))
+    {
+        if((*posic)>708)
+        {
+            (*posic) -= 30;
+        }
+      // if(IsKeyDown(KEY_W) && )
+                 
+        
+    }
+    if(IsKeyPressed(KEY_S))
+    {
+        if((*posic)<790)
+        {
+            (*posic) += 30;
+        }
+        //ruim--;
+        
+    }
+    
+    
+     DrawCircle(280,(*posic),10,RED);*/
+      
+    
+}
 
 int main(void)
 {
@@ -124,7 +193,7 @@ int main(void)
     ImageResize (&Karolim,144,104);
     ImageResize (&Guilhermeim,144,104);
     ImageResize (&Quarto,1366,788); //passar o endereço pq ele modifica a imagem original.
-    ImageResize (&fala,850,300);
+    ImageResize (&fala,1366,300);
     ImageResize (&monstro,1300,678);
     Texture2D Quartotx = LoadTextureFromImage(Quarto);
     Texture2D Jorgetx = LoadTextureFromImage(Jorgeim);
@@ -149,7 +218,7 @@ int main(void)
     Rectangle memoria2 = {600,325,20,3};
     Rectangle memoria3 = {600,525,20,5};
     Rectangle memoriasad1 = {800,600,20,5};
-    Rectangle conflito = {930,600,70,80};
+    Rectangle conflito = {930,300,70,80};
     Rectangle mesa = {525,405,305,100};
     Rectangle pe1= {570,515,20,15};
     Rectangle pe2= {790,515,20,15};
@@ -166,9 +235,14 @@ int main(void)
     Vector2 memoriasp2 = {600,325}; //ganhou um ps4
     Vector2 memoriasp3 = {600,525}; //passou de ano
     Vector2 memoriaspsad1 = {800,600}; //perdeu contato com um amigo querido
-    Vector2 conflitop = {900,600};
+    Vector2 conflitop = {900,300};
     //variáveis :
-    int memoria=0,stress=0,sad=0,ruim,desafio=0;
+    int memoria=0;
+    int stress=0;
+    int sad=0;
+    int desafio=0;
+    int batalha=-1;
+    int ruim=0;
     int desenharmemoria[6]={1,1,1,1,1,1};
     
     while (!WindowShouldClose())   
@@ -251,12 +325,12 @@ int main(void)
         {
             if(IsKeyDown(KEY_ENTER))
             {
-                 //desenharmemoria[4]=0;
+                 
                  memoria=1;
-                 ruim = batalha();
+                 batalha=1;
                  desafio=1;
                  
-                //n está saindo do modo batalha... 
+                
             }
             colisao(&Jorger);
         }
@@ -298,6 +372,7 @@ int main(void)
            //DrawTextureRec(Texture2D texture, Rectangle sourceRec, Vector2 position, Color tint); 
            DrawText(TextFormat("%i %i",x,y),500,450,40,RED);
            DrawText(TextFormat("%i",memoria),500,500,40,RED);
+           DrawText(TextFormat("%i %i",batalha,desafio),500,550,40,RED);
           
            //DrawTextureRec(Karoltx,Karolrec,Karolp,RAYWHITE);
            //DrawTextureRec(Guilhermetx,Guilhermerec,Guilhermep,RAYWHITE);
@@ -325,16 +400,32 @@ int main(void)
            }
            if(desafio==1)
            {
-               desenharconflito(falatx);
-               if(ruim<0)
+               
+               if(batalha>=1)
                {
-                 DrawTextureRec(memoriastx,memoriasrec,conflitop,RAYWHITE);  
-                 desafio=0;
+                   batalhafuncao(falatx,&ruim,&batalha);
+                   
+               }
+               if(batalha==0)
+               {
+                   desenharmemoria[4]=0;
+               }
+               if(batalha==0 && ruim>0)
+               {
+                   if(desenharmemoria[5]==1)
+                   {
+                      DrawTextureRec(memoriastx,memoriasrec,conflitop,RAYWHITE); 
+                   }
+                  
+                 
                }    
-               else if(ruim>0)
+               else if(batalha==0 && ruim>=0)
                {
-                   DrawTextureRec(memoriastx,memoriassadrec,conflitop,RAYWHITE);
-                   desafio=0;
+                   if(desenharmemoria[5]==1)
+                   {
+                      DrawTextureRec(memoriastx,memoriassadrec,conflitop,RAYWHITE);
+                   }
+                   
                }
                
            }

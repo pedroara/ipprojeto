@@ -85,7 +85,7 @@ void desenharconflito2(Texture2D fala)
      
      DrawTexture(fala,0,570,RAYWHITE);
      DrawText("Conflito: Na festa, alguém te chamou para dançar.\n",250,650,20,WHITE);
-     DrawText(" Aperte A para: Não. Vou passar vergonha\nAperte B para: Sim. Estou entre amigos, ninguém vai ligar",220,680,20,WHITE);
+     DrawText(" Aperte A para: Sim. Estou entre amigos, ninguém vai ligar\nAperte B para: Não. Vou passar vergonha",220,680,20,WHITE);
      
 }
 void desenharconflito3(Texture2D fala)
@@ -93,83 +93,165 @@ void desenharconflito3(Texture2D fala)
      
      DrawTexture(fala,0,570,RAYWHITE);
      DrawText("Conflito: Alguém está olhando para você.\n",250,650,20,WHITE);
-     DrawText(" Aperte A para: A algo de errado comigo\nAperte B para: Talvez ela queira conversar",220,680,20,WHITE);
+     DrawText(" Aperte A para: Talvez ela queira conversar\nAperte B para: A algo de errado comigo",220,680,20,WHITE);
      
 }
-void batalhafuncao(Texture2D fala,int* ruim, int* batalha)
+
+void desenharconflito4(Texture2D fala)
 {
-     *ruim=2;
-    //while(IsKeyPressed(KEY_A)!=1 && IsKeyPressed(KEY_B)!=1)
-    {
-        desenharconflito(fala);
-    }
-    
-    //se aperta A o jogo fecha...???
-    if(IsKeyPressed(KEY_A))
-    {
-        *ruim++;
-        if(*ruim==3)
-        {
-            //while(IsKeyPressed(KEY_A)!=1 && IsKeyPressed(KEY_B)!=1)
-            {
-                 desenharconflito2(fala);
-            }  
-            batalhafuncao(fala,&(*ruim),&(*batalha));
-        }
-        else
-        {
-            //while(IsKeyPressed(KEY_A)!=1 && IsKeyPressed(KEY_B)!=1)
-            {
-                desenharconflito3(fala);
-            } 
-            batalhafuncao(fala,&(*ruim),&(*batalha));
-            *batalha=0;
-        }
-        
-    }
-    //não mudei essa parte como fiz na de cima pq a de cima n está funcionando direito
-    else if(IsKeyPressed(KEY_B))
-    {
-        *ruim--;
-        if(*ruim==1)
-        {
-            desenharconflito2(fala);
-        }
-        else
-        {
-            desenharconflito3(fala);
-            *batalha=0;
-        }
-        
-        
-    }
-    
-    /*if(IsKeyPressed(KEY_W))
-    {
-        if((*posic)>708)
-        {
-            (*posic) -= 30;
-        }
-      // if(IsKeyDown(KEY_W) && )
-                 
-        
-    }
-    if(IsKeyPressed(KEY_S))
-    {
-        if((*posic)<790)
-        {
-            (*posic) += 30;
-        }
-        //ruim--;
-        
-    }
-    
-    
-     DrawCircle(280,(*posic),10,RED);*/
-      
-    
+     
+     DrawTexture(fala,0,570,RAYWHITE);
+     DrawText("Conflito: Apresentar trabalho em público.\nAjude Jorge a deixar seus pensamentos mais funcionais",250,650,20,WHITE);
+     DrawText(" Aperte A para: Todo mundo já esteve na mesma situação\nAperte B para: Todos vão estar me julgando",220,700,20,WHITE);
+     
+}
+void desenharconflito5(Texture2D fala)
+{
+     
+     DrawTexture(fala,0,570,RAYWHITE);
+     DrawText("Conflito: Um grupo de pessoas está rindo no fundo da sala.\n",250,650,20,WHITE);
+     DrawText(" Aperte A para: Estão rindo de mim\nAperte B para: Eles conversam em todas as aulas",220,680,20,WHITE);
+     
+}
+void desenharconflito6(Texture2D fala)
+{
+     
+     DrawTexture(fala,0,570,RAYWHITE);
+     DrawText("Conflito: O professor está escrevendo algo em sua prancheta.\n",250,650,20,WHITE);
+     DrawText(" Aperte A para: Ele só está tomando notas\nAperte B para: Eu estou falando tudo errado",220,680,20,WHITE);
+     
+}
+void desenharconflito7(Texture2D fala)
+{
+     
+     DrawTexture(fala,0,570,RAYWHITE);
+     DrawText("Conflito: Estar em um elevador cheio.\nAjude Jorge a deixar seus pensamentos mais funcionais",250,650,20,WHITE);
+     DrawText(" Aperte A para: Vou ficar sem ar\nAperte B para: Vai dar tudo certo",220,700,20,WHITE);
+     
+}
+void desenharconflito8(Texture2D fala)
+{
+     
+     DrawTexture(fala,0,570,RAYWHITE);
+     DrawText("Conflito: O lugar está apertado.\n",250,650,20,WHITE);
+     DrawText(" Aperte A para: Tem mais gente do que o elevador aguenta\nAperte B para: Só está um pouco cheio",220,680,20,WHITE);
+     
+}
+void desenharconflito9(Texture2D fala)
+{
+     
+     DrawTexture(fala,0,570,RAYWHITE);
+     DrawText("Conflito: Você está com medo de ficar preso",250,650,20,WHITE);
+     DrawText(" Aperte A para: Fazer exercício de respiração\nAperte B para: Acho que vou morrer",220,700,20,WHITE);
+     
+}
+void batalhafuncao(int* ruim,int opc, int* batalha)
+{
+   if(opc==1)
+   {
+       if(IsKeyPressed(KEY_A)) //A=ruim, B=bom;
+       {
+           (*ruim)++;
+           (*batalha)++;
+       }
+       else if(IsKeyPressed(KEY_B))
+       {
+           (*ruim)--;
+           (*batalha)++;
+       }
+   }
+   else if(opc==2)
+   {
+       if(IsKeyPressed(KEY_A)) //A=bom, B=ruim;
+       {
+           (*ruim)--;
+           (*batalha)++;
+       }
+       else if(IsKeyPressed(KEY_B))
+       {
+           (*ruim)++;
+           (*batalha)++;
+       }
+       
+   }
 }
 
+void batalhafuncao2(Texture2D fala,int* ruim, int* batalha)
+{
+      if((*batalha)==1)
+      {
+          desenharconflito(fala);
+          batalhafuncao(&(*ruim),1,&(*batalha)); 
+          
+      }
+      else if((*batalha)==2)
+      {
+          desenharconflito2(fala);
+          batalhafuncao(&(*ruim),2,&(*batalha));
+          
+      }    
+      else if((*batalha)==3)
+      {
+        desenharconflito3(fala);
+        batalhafuncao(&(*ruim),2,&(*batalha));
+      } 
+      else if((*batalha)==4)
+      {
+        (*batalha)=0;
+      }          
+        
+       
+        
+}
+void batalhafuncao3(Texture2D fala,int* ruim, int* batalha)
+{
+      if((*batalha)==1)
+      {
+          desenharconflito4(fala);
+          batalhafuncao(&(*ruim),2,&(*batalha)); 
+          
+      }
+      else if((*batalha)==2)
+      {
+          desenharconflito5(fala);
+          batalhafuncao(&(*ruim),1,&(*batalha));
+          
+      }    
+      else if((*batalha)==3)
+      {
+        desenharconflito6(fala);
+        batalhafuncao(&(*ruim),2,&(*batalha));
+      } 
+      else if((*batalha)==4)
+      {
+        (*batalha)=0;
+      }              
+        
+}
+void batalhafuncao4(Texture2D fala,int* ruim, int* batalha)
+{
+      if((*batalha)==1)
+      {
+          desenharconflito7(fala);
+          batalhafuncao(&(*ruim),1,&(*batalha)); 
+          
+      }
+      else if((*batalha)==2)
+      {
+          desenharconflito8(fala);
+          batalhafuncao(&(*ruim),1,&(*batalha));
+          
+      }    
+      else if((*batalha)==3)
+      {
+        desenharconflito9(fala);
+        batalhafuncao(&(*ruim),2,&(*batalha));
+      } 
+      else if((*batalha)==4)
+      {
+        (*batalha)=0;
+      }                
+}
 int main(void)
 {
     const int screenWidth = 1366; //dimenssão da minha tela
@@ -217,6 +299,9 @@ int main(void)
     Rectangle memoria1 = {500,325,20,3};
     Rectangle memoria2 = {600,325,20,3};
     Rectangle memoria3 = {600,525,20,5};
+   
+    Rectangle memoria4 = {965,340,20,3};
+ 
     Rectangle memoriasad1 = {800,600,20,5};
     Rectangle conflito = {930,300,70,80};
     Rectangle mesa = {525,405,305,100};
@@ -235,6 +320,7 @@ int main(void)
     Vector2 memoriasp2 = {600,325}; //ganhou um ps4
     Vector2 memoriasp3 = {600,525}; //passou de ano
     Vector2 memoriaspsad1 = {800,600}; //perdeu contato com um amigo querido
+    Vector2 memoriap4 = {965,340};
     Vector2 conflitop = {900,300};
     //variáveis :
     int memoria=0;
@@ -321,12 +407,31 @@ int main(void)
             }
             colisao(&Jorger);
         }
+        else if(CheckCollisionRecs(Jorger,memoria4))
+        {
+            if(IsKeyDown(KEY_ENTER)==1 && memoria==0)
+            {
+                 desenharmemoria[5]=0;
+                 if(ruim>0)
+                 {
+                     memoria=1;
+                     sad=1;
+                 }
+                 else
+                 {
+                     memoria=1;
+                 }
+                 
+                 memoria4.x=0;
+                 memoria4.y=0;
+            }
+            colisao(&Jorger);
+        }
         else if(CheckCollisionRecs(Jorger,conflito))
         {
             if(IsKeyDown(KEY_ENTER))
             {
                  
-                 memoria=1;
                  batalha=1;
                  desafio=1;
                  
@@ -340,6 +445,7 @@ int main(void)
             {
                  desenharmemoria[3]=0;
                  memoria=1;
+                 sad=1;
                  memoriasad1.x=0;
                  memoriasad1.y=0;
             }
@@ -403,27 +509,30 @@ int main(void)
                
                if(batalha>=1)
                {
-                   batalhafuncao(falatx,&ruim,&batalha);
+                   batalhafuncao2(falatx,&ruim,&batalha);
                    
                }
                if(batalha==0)
                {
                    desenharmemoria[4]=0;
+                   conflito.x=0;
+                   conflito.y=0;
+                   
                }
-               if(batalha==0 && ruim>0)
+               if(batalha==0 && ruim<=0)
                {
                    if(desenharmemoria[5]==1)
                    {
-                      DrawTextureRec(memoriastx,memoriasrec,conflitop,RAYWHITE); 
+                      DrawTextureRec(memoriastx,memoriasrec,memoriap4,RAYWHITE); 
                    }
                   
                  
                }    
-               else if(batalha==0 && ruim>=0)
+               else if(batalha==0 && ruim>0)
                {
                    if(desenharmemoria[5]==1)
                    {
-                      DrawTextureRec(memoriastx,memoriassadrec,conflitop,RAYWHITE);
+                      DrawTextureRec(memoriastx,memoriassadrec,memoriap4,RAYWHITE);
                    }
                    
                }

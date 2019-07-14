@@ -1,0 +1,33 @@
+Créditos:
+
+Jogo desenvolvido pelos alunos de Ciência da Computação da UFRPE:  Izabelle Tais, Maely S. Coutinho, Marcos Bernardo, Marielly Lins e Pedro Araújo para cadeira de Introdução à Programação I. 
+
+Tem como intuito tornar palpável, de forma lúdica, a realidade de pessoas que diariamente convivem com doenças/transtornos/distúrbios mentais. 
+
+O nosso grupo gostaria de esclarecer que não somos especialistas no assunto e nos desculpar por qualquer erro que podemos ter cometido no desenvolvimento desse projeto
+
+Se você está passando por essas ou outras doenças/transtornos/distúrbios mentais e está em tratamento a equipe do “nome do jogo” torce pela sua estabilidade. 
+
+Se você ainda não buscou ajuda esperamos que esses jogo tenha lhe mostrado a importância da terapia em sua melhora.
+                                                Esse é você.
+                                                  Ajude-se.  
+
+E por fim esse é um mundo com muitos Jorges, Karol’s, Guilhermes e Luizas.
+                                                   Ajude-o.
+
+
+
+Frase do nível 1:
+
+     * Caso o primeiro conflito tenha resultado ruim: “Jorge sente que está perdendo o controle sobre si”
+     *Caso o segundo conflito tenha resultado ruim: “Jorge tem uma forte sensação de que vai enlouquecer”
+     *Caso o terceiro conflito tenha resultado ruim: “Jorge estava com muito medo de ter um ataque de pânico em público”
+     *Game over: “Jorge sente um desconforto no peito, seu coração acelera, está com falta de ar e tontura. Jorge está tendo um crise de pânico”
+
+Frases do nível 2:
+     *Estabilidade chega a  7: “Karol está com uma forte sensação que algo ruim está para acontecer, isso a deixa inquieta - Karol está com tremor nas mãos ”
+     *Estabilidade chega a  4: “Algo está deixando Karol muito apreensiva, ela não consegue se concentrar e sente um desconfortável frio na barriga. Karol está com medo”
+     *Estabilidade chega a  1: “Karol se sente extremamente preocupada com nada em específico e está suscetível a perder a paciência, uma dor no peito a incomoda constantemente e ela está soando frio. Karol está prestes a ter uma crise de ansiedade”
+     *Game Over: “Karol sente que não consegue respirar, uma forte tontura a domina, ela está suando muito e seu coração está batendo em ritmo acelerado. Karol sente que seus problemas estão sufocando-a. Karol está tendo uma crise de ansiedade”
+
+

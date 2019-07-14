@@ -273,11 +273,18 @@ void atualizarestabilidade(int* stress,int* estabilidade)//mudar nome dessa fun�
     }
     
 }
-void diversaoaviso(Texture2D fala)
+void diversaoaviso(Texture2D fala)//mudanças a serem feitas
 {
-     
+     int contador = 0;
+     contador++;
+     int segundos = 0;
+     if(contador%60 == 0){
+         segundos++;
+     }
      DrawTexture(fala,0,570,RAYWHITE);
-     DrawText("Está na hora de Jorge se divertir",350,700,20,WHITE);  
+     DrawText(TextFormat("Está na hora de Jorge se divertir %i", segundos),370,700,20,WHITE);  
+     
+
      
 }
 void terapiaaviso(Texture2D fala)
@@ -301,16 +308,15 @@ void tudoDoJorge(){
     
     int screenWidth = 1366; //dimenssão da minha tela
     int screenHeight = 768;
-    
     int contadordetempo = 0;
     
     //Carregando imagem e transformando em textura:
     //Image:
-        Image Quarto = LoadImage("/jogoip2/Quarto002.png"); //diretorio apartir do C: com as \ invertidas (/);
-        Image Jorgeim = LoadImage("/jogoip2/Jorge01.png");
-        Image memoriasim = LoadImage("/jogoip2/memorias.png");
-        Image monstro = LoadImage("/jogoip2/monstro2.png");
-        Image fala = LoadImage("/jogoip2/fala.png");
+        Image Quarto = LoadImage("/jogoip/Quarto002.png"); //diretorio apartir do C: com as \ invertidas (/);
+        Image Jorgeim = LoadImage("/jogoip/Jorge01.png");
+        Image memoriasim = LoadImage("/jogoip/memorias.png");
+        Image monstro = LoadImage("/jogoip/monstro2.png");
+        Image fala = LoadImage("/jogoip/fala.png");
      //Image Resize:
         ImageResize (&Jorgeim,144,104); //144,104,(108,78) - Aumentando a imagem original
         ImageResize (&Quarto,1366,788); //passar o endereço pq ele modifica a imagem original.
@@ -347,7 +353,7 @@ void tudoDoJorge(){
         Rectangle parede5 = {1166,669,190,340};
         Rectangle memoriasrec = {0,0,30,20}; //ok!
         Rectangle memoriassadrec = {30,20,30,20}; //ok!
-        Rectangle conflitorec = {60,40,35,20};
+        //Rectangle conflitorec = {60,40,35,20};//slah o compilador de um warning
         Rectangle monstrorec = {0,0,90,90};
        //posição das memórias:
         Vector2 memoriasp = {500,325}; //ferias com a família
@@ -368,6 +374,8 @@ void tudoDoJorge(){
     int diversao = 0;
     int terapia = 0;
     int desenharmemoria[6] = {1,1,1,1,1,1};
+    int checkpoint = 0;
+    checkpoint = qual_level(checkpoint);
     
     while (!WindowShouldClose())   
     {
@@ -672,6 +680,10 @@ void tudoDoJorge(){
            {
                DrawTextureRec(Jorgetx,Jorgerec,Jorgep,RAYWHITE);
            }
+           //CONDIÇÃO PARA SUBIR DE NIVEL, POR FAVOR LEMBRAR DE ALTERAR ISSO KK SE NÃO ELE VAI SUBIR DE LEVEL FACIL KKKK
+           if(estabilidade => 14){
+                int tantoFaz = subiu_de_level(&checkpoint);
+           }
            
         EndDrawing();
     }
@@ -679,18 +691,134 @@ void tudoDoJorge(){
     
 }// fim de tudo
 
+void move_circ(int* posic){
+    if(IsKeyPressed(KEY_UP))
+    {
+        if((*posic) > 420)
+        {
+            (*posic) -= 50;
+        }
+    }
+    if(IsKeyPressed(KEY_DOWN))
+    {
+        if((*posic) < 600)
+        {
+            (*posic) += 50;
+        }
+    }
+}
 
+void menu(){
+        
+        int posic_circ = 470;
+        Image Menu = LoadImage("/jogoip/menu.png");
+        ImageResize (&Menu,1366,788);
+        Texture2D Menutx = LoadTextureFromImage(Menu);
+        
+    while(!WindowShouldClose()){
+        
+        BeginDrawing();
+               ClearBackground(RAYWHITE);
+               DrawTexture(Menutx,0,0,RAYWHITE);
+               int x = GetMouseX();
+               int y = GetMouseY();
+               DrawText(TextFormat("x: %i y: %i",x,y),10,15,40,RED);
+               DrawText("Fase 1",600,450,50,BLACK);
+               DrawText("Fase 2",600,500,50,BLACK);
+               DrawText("Fase 3",600,550,50,BLACK);
+               DrawText("Sobre nós",600,600,50,BLACK);
+               DrawCircle(580,posic_circ,10,RED);
+               move_circ(&posic_circ);
+               
+        int opcMenu = 0;
+        
+        int checkpoint = qual_level(0);
+        
+        if (posic_circ == 470 && IsKeyPressed(KEY_ENTER)){
+            opcMenu = 1;
+        }else if ((posic_circ == 520 && IsKeyPressed(KEY_ENTER)) && checkpoint >= 2){
+            opcMenu = 2;
+        }else if ((posic_circ == 570 && IsKeyPressed(KEY_ENTER)) && checkpoint >= 3){
+            opcMenu = 3;
+        }else if (posic_circ == 620 && IsKeyPressed(KEY_ENTER)){
+            opcMenu = 4;
+        }
+        EndDrawing();
+        switch(opcMenu){
+            case 1 : 
+                tudoDoJorge();
+                break;
+            //end case 1
+            case 2 : 
+                CloseWindow();
+                break;
+            //end case 2
+            case 3 : 
+                CloseWindow();
+                break;
+            //end case 3
+            case 4 : 
+                CloseWindow();
+                break;
+            //end case 4
+        }//end switch
+    }//end window should close
+}// end função menu 
+
+//Verificar qual level a pessoa está e atribuir a um int check
+int qual_level(int checkpoint){
+     //PARA O ARMAZENAMENTO (LER)
+    FILE *level;
+    level = fopen("checkpoint.txt" , "r");
+    //Variavel aonde estará armazenado em qual fase ele está
+    int levelum = 0, leveldois = 0, leveltres = 0;
+    //Função que escreve do arquivo (.txt) e passa para as variaveis levelum, leveldois, leveltres
+    fscanf(level, "%i %i %i", &levelum, &leveldois, &leveltres);
+    //Função para parar de ler o arquivo
+    fclose(level);
+    //Caso o jogador só tenha o primeiro level desbloqueado
+    int check = levelum + leveldois + leveltres;
+    if(check == 1){
+        return checkpoint = 1;
+    }
+    //Caso o jogador tenha os dois primeiros level desbloqueado
+    if(check == 2){
+        return checkpoint = 2;
+    }
+    //Caso o jogador tenha os três primeiros level desbloqueado
+    if(check == 3){
+        return checkpoint = 3;
+    }
+}
+
+int subiu_de_level(int* checkpoint){
+    //ESCREVENDO NO ARQUIVO (checkpoint.txt)
+    FILE *level;
+    level = fopen("checkpoint.txt" , "w");
+    //Variaveis criadas no escopo dessa função
+    int check = qual_level(&checkpoint);
+    //Se a função for chamada quando o checkpoint = 1; será escrito no arquivo checkpoint.txt 1 1 0
+    if(check == 1){
+        fprintf("checkpoint.txt" , "1 1 0");
+    }
+    //Se a função for chamada quando o checkpoint = 2; será escrito no arquivo checkpoint.txt 1 1 1
+    if(check == 2){
+        fprintf("checkpoint.txt" , "1 1 1");
+    }
+    fclose(level);
+    return 0;
+}//end subiu
 
 int main(void)
 {
-    const int screenWidth = 1366; //dimensão da minha tela
+    const int screenWidth = 1366; 
     const int screenHeight = 768;
      
     InitWindow(screenWidth, screenHeight, " Pixelmind ");
 
     SetTargetFPS(60);    
     
-    tudoDoJorge();
+    menu();
     
     return 0;
 }

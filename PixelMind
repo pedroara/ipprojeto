@@ -410,7 +410,7 @@ void tudoDoJorge(){
         //Rectangle p2 = {};
         //Rectangle p3 = {};
         Rectangle falacolisao = {0,630,1300,300};
-        Rectangle refletirec = {636,390,20,20};
+        Rectangle refletirec = {680,390,20,20};
         
         //recorte de imagem:
         Rectangle memoriasrec = {0,0,30,20}; //ok!

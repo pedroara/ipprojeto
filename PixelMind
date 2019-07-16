@@ -2,9 +2,14 @@
 #include <stdio.h>
 #include <math.h>
 void sobrenos()
-{
+{      Music nos = LoadMusicStream("/jogoip/Warriors.ogg");
+PlayMusicStream(nos);
+SetMusicVolume(nos, 0.2);
    while(!WindowShouldClose())
-   {
+   { UpdateMusicStream(nos);
+
+ 
+ 
        BeginDrawing();
       ClearBackground(RAYWHITE); 
       DrawText("Créditos:\nJogo desenvolvido pelos alunos de Ciência da Computação da UFRPE:  Izabelle Tais, Maely S. Coutinho, \nMarcos Bernardo, Marielly Lins e Pedro Araújo para cadeira de Introdução à Programação I. \nTem como intuito tornar palpável, de forma lúdica, a realidade de pessoas que diariamente convivem com \ndoenças/transtornos/distúrbios mentais. \nO nosso grupo gostaria de esclarecer que não somos especialistas no assunto e nos desculpar por qualquer erro que podemos \nter cometido no desenvolvimento desse projeto",10,10,20,BLACK);
@@ -453,9 +458,12 @@ void tudoDoJorge(){
     int refletir=0;
     checkpoint = qual_level(0);
     int desenharmemoria[15] = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
-    
+    Music ewof = LoadMusicStream("/jogoip/Ewof.ogg");
+    PlayMusicStream(ewof);
+    SetMusicVolume(ewof, 0.2);
     while (!WindowShouldClose())   
-    {
+    { 
+       UpdateMusicStream(ewof);
         //CONDIÇÃO PARA SUBIR DE NIVEL
         if(estabilidade >= 30){
             subiu_de_level();
@@ -1304,9 +1312,11 @@ void tudoDaKarol(){
     int falac=0;
     int desenharmemoria[6] = {1,1,1,1,1,1};
     
-    while (!WindowShouldClose())   
-    {
-        
+    Music memory = LoadMusicStream("/jogoip/Memory.ogg");
+    PlayMusicStream(memory);
+    
+    while (!WindowShouldClose()){
+        UpdateMusicStream (memory);
          contadordetempo++;
          //Vector2 Jorgep = {Jorger.x,Jorger.y-51}; //posição do Jorge (menos 51 para a colisão ficar no pé)
          Vector2 Karolp = {Karolr.x,Karolr.y-51};
@@ -1551,7 +1561,7 @@ void tudoDaKarol(){
            DrawTexture(estressetx, 35, estabilidadetx.height + 16, WHITE);
            DrawRectangleGradientH(39, 36,((estabilidade*0.1)/3)*325, 26, SKYBLUE, DARKBLUE);
            DrawRectangleGradientH(39, 104,(stress*0.1)*325, 25, RED, (Color){123, 20, 34, 255});
-           DrawText(TextFormat("Refletir: %i",refletir),15,710,35,BLACK);
+           //DrawText(TextFormat("Refletir: %i",refletir),15,710,35,BLACK); 
            DrawText(TextFormat("Fase 2"),629,94,35,BLACK);
            DrawText(TextFormat("Tempo: %0.1f", (float)(contadordetempo/100)),1150,42,30,BLACK);
            //DrawTextureRec(Karoltx,Karolrec,Karolp,RAYWHITE);
@@ -1637,20 +1647,448 @@ void tudoDaKarol(){
         EndDrawing();
     }
     CloseWindow();
+    }// fim de tudo
     
-}// fim de tudo
+    void tudoDoGuilherme() {
+    int screenWidth = 1366; //dimenssão da minha tela
+    int screenHeight = 768;
+    
+    int contadordetempo = 0;
+    
+    //Carregando imagem e transformando em textura:
+    //Image:
+        Image Quarto = LoadImage("/jogoip/Quarto002.png"); //diretorio apartir do C: com as \ invertidas (/);
+        Image Guilhermeim = LoadImage("/jogoip/Guilherme01.png");
+        Image memoriasim = LoadImage("/jogoip/memorias.png");
+        Image monstro = LoadImage("/jogoip/monstro2.png");
+        Image fala = LoadImage("/jogoip/fala.png");
+        Image desafioim = LoadImage("/jogoip/aviao.png");
+     //Image Resize:
+        ImageResize (&Guilhermeim,144,104); //144,104,(108,78) - Aumentando a imagem original
+        ImageResize (&Quarto,1366,788); //passar o endereço pq ele modifica a imagem original.
+        ImageResize (&fala,1366,300);
+        ImageResize (&monstro,1300,678);
+        ImageResize (&desafioim,96,102);
+     //Texture2D:
+        Texture2D Quartotx = LoadTextureFromImage(Quarto);
+        Texture2D Guilhermetx = LoadTextureFromImage(Guilhermeim);
+        Texture2D memoriastx = LoadTextureFromImage(memoriasim);
+        Texture2D falatx = LoadTextureFromImage(fala);
+        Texture2D monstrotx = LoadTextureFromImage(monstro);
+        Texture2D desafiotx = LoadTextureFromImage(desafioim);
+        Texture2D estabilidadetx = LoadTexture("/jogoip/estabilidade.png");
+        Texture2D estressetx = LoadTexture("/jogoip/estresse.png");
+     //Rectengles:
+        Rectangle Guilhermerec = {0,0,55,102};// testando o tamanho do boneco no mapa (pegando só esse retângulo)
+        //Rectangle Karolrec = {0,0,55,102}; // Esta ok
+        //Rectangle Guilhermerec = {0,0,55,102}; //se desejar aumentar manter a proporção para os 3 bonecos (usar multiplo)
+       //Retângulo de movimentação:
+        Rectangle Guilhermer = {17,400,53,51}; //um retângulo de colisão que representa Jorge (metade da altura para colidir com o pé)
+       //criando colisão
+        Rectangle estante = {330,116,979,180}; //colisão para a estante
+        Rectangle memoria1 = {500,325,20,3};
+        Rectangle memoria2 = {600,325,20,3};
+        Rectangle memoria3 = {600,525,20,5};
+        Rectangle memoria4 = {965,340,20,3};
+        Rectangle memoria5 = {1025,560,30,5};
+        Rectangle memoria6 = {130,520,30,5}; 
+        Rectangle memoria10 = {995,400,30,3};
+        Rectangle memoria11 = {1030,400,30,3};
+        Rectangle memoriasad1 = {800,600,20,5};
+        Rectangle memoriasad2 = {255,380,20,5};
+        Rectangle memoriasad3 = {1270,540,30,5};
+        Rectangle conflito = {930,300,70,80};
+        Rectangle conflito2 = {995,400,70,80};
+        Rectangle conflito3 = {1030,400,70,80};
+        Rectangle mesa = {525,405,305,100};
+        Rectangle pe1= {570,515,20,15};
+        Rectangle pe2= {790,515,20,15};
+        Rectangle lixo = {1070,304,113,20};
+        Rectangle parede1 = {0,0,190,340};
+        Rectangle parede2 = {1166,0,190,340};
+        Rectangle parede3 = {221,304,55,20};
+        Rectangle parede4 = {0,669,190,340};
+        Rectangle parede5 = {1166,669,190,340};
+        //Rectangle p1 = {};
+        //Rectangle p2 = {};
+        //Rectangle p3 = {};
+        Rectangle falacolisao = {0,630,1300,300};
+        Rectangle refletirec = {636,390,20,20};
+        
+        //recorte de imagem:
+        Rectangle memoriasrec = {0,0,30,20}; //ok!
+        Rectangle memoriassadrec = {30,20,30,20}; //ok!
+        Rectangle conflitorec = {60,40,35,20};
+        Rectangle monstrorec = {0,0,90,90};
+        
+       
+        
+        
+       //posição das memórias:
+        Vector2 memoriasp = {500,325}; //ferias com a família
+        Vector2 memoriasp2 = {600,325}; //ganhou um ps4
+        Vector2 memoriasp3 = {600,525}; //passou de ano
+        Vector2 memoriasp5 = {130,520}; //conseguiu vencer algum medo 
+        Vector2 memoriasp6 = {1025,560}; //fez uma nova amizade
+        Vector2 memoriaspsad1 = {800,600}; //perdeu contato com um amigo querido
+        Vector2 memoriap4 = {965,340};
+        Vector2 memoriap10 = {1025,443};
+        Vector2 memoriap11 = {1000,443};
+        Vector2 memoriaspsad2 = {255,380}; //morte de um familiar
+        Vector2 memoriaspsad3 = {1270,540}; //teve uma crise de pânico em público 
+        Vector2 conflitop = {900,300};
+        Vector2 conflitop2 = {965,400};
+        Vector2 conflitop3 = {1000,400};
+         
+        
+    //variáveis :
+    int memoria = 0;
+    int stress = 5; //chegando a 0 aumenta estabilidade, chegando a 10 diminui.
+    int estabilidade = 10; //chegando a 30 (exemplo) passa de nível, chegando a 0 perde
+    int sad = 0; 
+    int desafio = 0;
+    int batalha = -1;
+    int batalha2= -1;
+    int batalha3= -1;
+    int ruim = 0;
+    int ruim2=0;
+    int ruim3=0;
+    int desenhar = 1;
+    int diversao = 0;
+    int terapia = 0;
+    int falac=0;
+    int checkpoint = 0;
+    int refletir=0;
+    checkpoint = qual_level(0);
+    int desenharmemoria[15] = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
+    Music space = LoadMusicStream("/jogoip/Space.ogg");
+                PlayMusicStream(space);
+        while (!WindowShouldClose()){
+            UpdateMusicStream (space);
+         contadordetempo++;
+         //Vector2 Jorgep = {Jorger.x,Jorger.y-51}; //posição do Jorge (menos 51 para a colisão ficar no pé)
+         Vector2 Guilhermep = {Guilhermer.x,Guilhermer.y-51};
+         //Posição do mouse na tela
+         int x = GetMouseX();
+         int y = GetMouseY();
+        
+        //função de movimentação do jorge:
+         movimentacaoK(&Guilhermer);
+        //Checando se saiu do mapa:
+        tamanhotelaK(&Guilhermer,screenHeight,screenWidth);
+        //atualizando estabilidade:
+        atualizarestabilidade(&stress,&estabilidade);
+        
+        //checando colisão:
+        if(CheckCollisionRecs(Guilhermer,estante)==1)
+        {
+            Guilhermer.y+=4;
+            if(memoria==1 && IsKeyPressed(KEY_ENTER)==1)
+            {
+                if(sad==0)
+                {
+                    stress = stress-2;
+                }
+                else
+                {
+                    stress = stress+2;
+                    sad=0;
+                }
+                
+                memoria=0;
+                ruim=0;
+            }
+        }
+        else if(CheckCollisionRecs(Guilhermer,mesa)==1 ||CheckCollisionRecs(Guilhermer,pe1)==1|| CheckCollisionRecs(Guilhermer,pe2)==1)
+        {
+            colisaoK(&Guilhermer);
+        }
+        else if(CheckCollisionRecs(Guilhermer,parede1)==1) 
+        {
+            colisaoK(&Guilhermer);
+            if(diversao==1)
+            {
+                
+                desenhar=0;
+                stress = stress - 5;
+                diversao=0;
+            }
+            
+        }
+        else if(CheckCollisionRecs(Guilhermer,parede2)==1)
+        {
+            colisaoK(&Guilhermer);
+            if(terapia==1)
+            {
+                desenhar=0;
+                estabilidade = estabilidade + 5;
+                terapia=0;
+            }
+            
+        }
+        else if(CheckCollisionRecs(Guilhermer,parede3))
+        {
+            colisaoK(&Guilhermer); 
+        }
+        else if(CheckCollisionRecs(Guilhermer,parede4) || CheckCollisionRecs(Guilhermer,parede5))
+        {
+            colisaoK(&Guilhermer); 
+        }
+        else if(CheckCollisionRecs(Guilhermer,memoria1)==1)
+        {
+            if(IsKeyPressed(KEY_ENTER)==1 && memoria==0)
+            {
+                 desenharmemoria[0]=0;
+                 memoria=1;
+                 memoria1.x=0;
+                 memoria1.y=0;
+            }
+            
+            colisaoK(&Guilhermer);
+        }
+        else if(CheckCollisionRecs(Guilhermer,memoria2)==1)
+        {
+            if(IsKeyPressed(KEY_ENTER)==1 && memoria==0)
+            {
+                 desenharmemoria[1]=0;
+                 memoria=1;
+                 memoria2.x=0;
+                 memoria2.y=0;
+            }
+            colisaoK(&Guilhermer);
+        }
+        else if(CheckCollisionRecs(Guilhermer,memoria3))
+        {
+            if(IsKeyDown(KEY_ENTER)==1 && memoria==0)
+            {
+                 desenharmemoria[2]=0;
+                 memoria=1;
+                 memoria3.x=0;
+                 memoria3.y=0;
+            }
+            colisaoK(&Guilhermer);
+        }
+        else if(CheckCollisionRecs(Guilhermer,memoria4) && contadordetempo>=3600)
+        {
+            if(IsKeyDown(KEY_ENTER)==1 && memoria==0)
+            {
+                 desenharmemoria[5]=0;
+                 if(ruim>0)
+                 {
+                     memoria=1;
+                     sad=1;
+                     //criou um memória ruim:
+                     stress = stress+3;
+                     
+                 }
+                 else
+                 {
+                     memoria=1;
+                     //recompensa por ter dado certo:
+                     stress = stress-3;
+                 }
+                 
+                 memoria4.x=0;
+                 memoria4.y=0;
+            }
+            colisaoK(&Guilhermer);
+        }
+        else if(CheckCollisionRecs(Guilhermer,conflito)==1 && memoria==1)
+        {
+            ruim=1;
+            colisaoK(&Guilhermer);
+        }
+        else if(CheckCollisionRecs(Guilhermer,conflito2)==1 && memoria==1)
+        {
+            ruim=2;
+            colisaoK(&Guilhermer);
+        }
+         else if(CheckCollisionRecs(Guilhermer,conflito3)==1 && memoria==1)
+        {
+            ruim=3;
+            colisaoK(&Guilhermer);
+        }
+        else if(CheckCollisionRecs(Guilhermer,memoriasad1))
+        {
+            if(IsKeyDown(KEY_ENTER)==1 && memoria==0)
+            {
+                 desenharmemoria[3]=0;
+                 memoria=1;
+                 sad=1;
+                 memoriasad1.x=0;
+                 memoriasad1.y=0;
+            }
+            colisaoK(&Guilhermer);
+        }
+        else if (CheckCollisionRecs(Guilhermer,lixo))
+        {
+           if(IsKeyPressed(KEY_ENTER)==1 && memoria==1)
+            {
+                if(sad==1)
+                {
+                    stress--;
+                    sad=0;
+                }
+                else
+                {
+                    stress = stress+3;
+                }
+                 memoria=0;
+                 ruim=0;
+            }
+            colisaoK(&Guilhermer); 
+        }  
+        else if(CheckCollisionRecs(Guilhermer,falacolisao))
+        {
+           if(falac==1)
+           {
+              colisaoK(&Guilhermer);  
+              falac=0;
+           }
+            
+        }        
+            int minutos = 3600;
+            if(contadordetempo==2*minutos)
+            {
+                diversao=1;
+                
+            }
+            if(contadordetempo==4*minutos)
+            {
+                terapia=1;
+                //remedio=1;
+                
+               
+            }
+            if(contadordetempo==6*minutos)
+            {
+                diversao=1;
+                
+            }
+            if(contadordetempo==8*minutos)
+            {
+                terapia=1;
+               // remedio=1;
+               
+            }
+            if(contadordetempo==10*minutos)
+            {
+                diversao=1;
+                
+            }
+            
+        //parte gráfica:
+        BeginDrawing();
+           ClearBackground(WHITE);
+           DrawTexture(Quartotx,0,0,RAYWHITE);
+           //DrawTexture(circulo1.posicaox,circulo1.posicaoy,RAYWHITE);
+           //DrawTextureRec(Texture2D texture, Rectangle sourceRec, Vector2 position, Color tint); 
+           DrawText(TextFormat("x: %i y: %i",x,y),605,15,40,RED);
+           DrawText(TextFormat("Memoria: %i",memoria),15,680,35,BLACK);
+           DrawTexture(estabilidadetx, 35, 8, WHITE);
+           DrawTexture(estressetx, 35, estabilidadetx.height + 16, WHITE);
+           DrawRectangleGradientH(39, 36,((estabilidade*0.1)/3)*325, 26, SKYBLUE, DARKBLUE);
+           DrawRectangleGradientH(39, 104,(stress*0.1)*325, 25, RED, (Color){123, 20, 34, 255});
+           //DrawText(TextFormat("Refletir: %i",refletir),15,710,35,BLACK); 
+           DrawText(TextFormat("Fase 3"),629,94,35,BLACK);
+           DrawText(TextFormat("Tempo: %0.1f", (float)(contadordetempo/100)),1150,42,30,BLACK);
+           //DrawTextureRec(Karoltx,Karolrec,Karolp,RAYWHITE);
+           //DrawTextureRec(Guilhermetx,Guilhermerec,Guilhermep,RAYWHITE);
+           
+           // desenhando memórias:
+           if(desenharmemoria[0]==1)
+           {
+              DrawTextureRec(memoriastx,memoriasrec,memoriasp,RAYWHITE); 
+           }
+           if(desenharmemoria[1]==1)
+           {
+              DrawTextureRec(memoriastx,memoriasrec,memoriasp2,RAYWHITE);
+           }
+           if(desenharmemoria[2]==1)
+           {
+              DrawTextureRec(memoriastx,memoriasrec,memoriasp3,RAYWHITE);
+           }
+           if(desenharmemoria[3]==1)
+           {
+              DrawTextureRec(memoriastx,memoriassadrec,memoriaspsad1,RAYWHITE);
+           }
+           if(desenharmemoria[4]==1 && memoria==1)
+           {
+              DrawTexture(desafiotx,900,300,RAYWHITE);
+             DrawTexture(desafiotx,900,500,RAYWHITE);
+              DrawTexture(desafiotx,200,500,RAYWHITE);
+              DrawTexture(desafiotx,400,300,RAYWHITE);
+              DrawTexture(desafiotx,790,595,RAYWHITE);
+              DrawTexture(desafiotx,300,500,RAYWHITE);
+              DrawTexture(desafiotx,600,560,RAYWHITE);
+           }
+           //desenhando desafio:
+           if(memoria==1)
+           {
+                 desafiofuncaoK(falatx,&ruim,&falac);
+                 
+           }
+           //diversao e terapia:
+           if(diversao==1)
+           {
+               diversaoavisoK(falatx, &falac, &Guilhermer, falacolisao);
+           }
+           if(terapia==1)
+           {
+               terapiaavisoK(falatx, &falac, &Guilhermer, falacolisao);
+           }
+           int espera = 1000; //modificar essa variável para reduzir o tempo de espera
+          if(contadordetempo>=(2*minutos)+espera && contadordetempo<(4*minutos)) 
+           {
+               desenhar=1;
+           }
+           if(contadordetempo>=(4*minutos)+espera && contadordetempo<(6*minutos))
+           {
+               desenhar=1;
+           }
+           if(contadordetempo>=(6*minutos)+espera && contadordetempo<(8*minutos))
+           {
+               desenhar=1;
+           }
+           if(contadordetempo>=(8*minutos)+espera && contadordetempo<(10*minutos))
+           {
+               desenhar=1;
+           }
+           if(contadordetempo>=(10*minutos)+espera)
+           {
+               desenhar=1;
+           }
+           
+           if(estabilidade >= 30)
+           {
+               // int tantoFaz = subiu_de_level(&checkpoint);
+           }
+           if(desenhar==1)
+           {
+               DrawTextureRec(Guilhermetx,Guilhermerec,Guilhermep,RAYWHITE);
+           }
+           
+        EndDrawing();
+    }
+    CloseWindow();
+    }//SXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+    
+
 
 
 void menu()
-{
-        
+{    
+   
+          Music maya = LoadMusicStream("/jogoip/Maya.ogg");
+                PlayMusicStream(maya);
+
         int posic_circ = 470;
         Image Menu = LoadImage("/jogoip/menu.png");
         ImageResize (&Menu,1366,788);
         Texture2D Menutx = LoadTextureFromImage(Menu);
         
     while(!WindowShouldClose()){
-        
+        UpdateMusicStream(maya);
         BeginDrawing();
                ClearBackground(RAYWHITE);
                DrawTexture(Menutx,0,0,RAYWHITE);
@@ -1688,7 +2126,7 @@ void menu()
                 break;
             //end case 2
             case 3 : 
-                CloseWindow();
+                tudoDoGuilherme();
                 break;
             //end case 3
             case 4 : 
@@ -1751,10 +2189,11 @@ int main(void)
     const int screenHeight = 768;
      
     InitWindow(screenWidth, screenHeight, " Pixelmind ");
-
+    InitAudioDevice();
     SetTargetFPS(60);    
+   
     
     menu();
-    
+   
     return 0;
 }

@@ -308,7 +308,7 @@ void atualizarestabilidade(int* stress,int* estabilidade)//mudar nome dessa fun�
     }
     
 }
-void diversaoaviso(Texture2D fala,int* falac)
+void diversaoaviso(Texture2D fala,int* falac, Rectangle* Jorger, Rectangle falacolisao)
 {
      (*falac)=1;
      int contador = 0;
@@ -322,15 +322,18 @@ void diversaoaviso(Texture2D fala,int* falac)
      DrawText(TextFormat("Está na hora de Jorge se divertir %i", segundos),370,700,20,WHITE);  
      
 }
-void terapiaaviso(Texture2D fala,int* falac)
+void terapiaaviso(Texture2D fala,int* falac, Rectangle* Jorger, Rectangle falacolisao)
 {
      (*falac)=1;
      
      DrawTexture(fala,0,570,RAYWHITE);
+     if((Jorger->x >= falacolisao.x) && (Jorger->y >= falacolisao.y))
+     {
+         Jorger->y = 525;
+     }
      DrawText("Está na hora de Jorge ir à terapia",210,660,20,WHITE);
      
 }
-
 /*
 Coisas dos outros personagens
 //Image Karolim = LoadImage("/jogoip/Karol01.png");
@@ -364,7 +367,9 @@ void tudoDoJorge(){
         Texture2D Jorgetx = LoadTextureFromImage(Jorgeim);
         Texture2D memoriastx = LoadTextureFromImage(memoriasim);
         Texture2D falatx = LoadTextureFromImage(fala);
-        Texture2D monstrotx = LoadTextureFromImage(monstro); 
+        Texture2D monstrotx = LoadTextureFromImage(monstro);
+        Texture2D estabilidadetx = LoadTexture("/jogoip/estabilidade.png");
+        Texture2D estressetx = LoadTexture("/jogoip/estresse.png");
      //Rectengles:
         Rectangle Jorgerec = {0,0,53,102};// testando o tamanho do boneco no mapa (pegando só esse retângulo)
         //Rectangle Karolrec = {0,0,55,102}; // Esta ok
@@ -836,12 +841,15 @@ void tudoDoJorge(){
            DrawTexture(Quartotx,0,0,RAYWHITE);
            //DrawTexture(circulo1.posicaox,circulo1.posicaoy,RAYWHITE);
            //DrawTextureRec(Texture2D texture, Rectangle sourceRec, Vector2 position, Color tint); 
-           DrawText(TextFormat("x: %i y: %i",x,y),10,15,40,RED);
+           DrawText(TextFormat("x: %i y: %i",x,y),605,15,40,RED);
            DrawText(TextFormat("Memoria: %i",memoria),15,680,35,BLACK);
-           DrawText(TextFormat("Stress: %i Estabilidade: %i",stress,estabilidade),450,273,38,BLACK);
+           DrawTexture(estabilidadetx, 35, 8, WHITE);
+           DrawTexture(estressetx, 35, estabilidadetx.height + 16, WHITE);
+           DrawRectangleGradientH(39, 36,((estabilidade*0.1)/3)*325, 26, SKYBLUE, DARKBLUE);
+           DrawRectangleGradientH(39, 104,(stress*0.1)*325, 25, RED, (Color){123, 20, 34, 255});
            DrawText(TextFormat("Refletir: %i",refletir),15,710,35,BLACK);
            DrawText(TextFormat("Fase 1"),629,94,35,BLACK);
-           DrawText(TextFormat("Tempo: %i", contadordetempo),1115,42,35,BLACK);
+           DrawText(TextFormat("Tempo: %0.1f", (float)(contadordetempo/100)),1150,42,30,BLACK);
            //DrawTextureRec(Karoltx,Karolrec,Karolp,RAYWHITE);
            //DrawTextureRec(Guilhermetx,Guilhermerec,Guilhermep,RAYWHITE);
            
@@ -1002,11 +1010,11 @@ void tudoDoJorge(){
            //diversao e terapia:
            if(diversao==1 && desafio==0)
            {
-               diversaoaviso(falatx,&falac);
+               diversaoaviso(falatx, &falac, &Jorger, falacolisao);
            }
            if(terapia==1 && desafio==0)
            {
-               terapiaaviso(falatx,&falac);
+               terapiaaviso(falatx, &falac, &Jorger, falacolisao);
            }
            int espera = 1000; //modificar essa variável para reduzir o tempo de espera
            if(contadordetempo>=(2*minutos)+espera && contadordetempo<(4*minutos)) 
@@ -1128,24 +1136,36 @@ void tamanhotelaK(Rectangle* Karolr, int screenHeight,int screenWidth)
         }
 }
 
-void diversaoavisoK(Texture2D fala,int* falac)
+void diversaoavisoK(Texture2D fala,int* falac, Rectangle* Karolr, Rectangle falacolisao)
 {
      (*falac)=1;
      DrawTexture(fala,237,650,RAYWHITE);
+     if((Karolr->x >= falacolisao.x) && (Karolr->y >= falacolisao.y))
+     {
+         Karolr->y = 525;
+     }
      DrawText("Está na hora de Karol se divertir",450,720,20,WHITE);  
      
 }
-void terapiaavisoK(Texture2D fala,int* falac)
+void terapiaavisoK(Texture2D fala,int* falac, Rectangle* Karolr, Rectangle falacolisao)
 {
      (*falac)=1;
      DrawTexture(fala,237,650,RAYWHITE);
+     if((Karolr->x >= falacolisao.x) && (Karolr->y >= falacolisao.y))
+     {
+         Karolr->y = 525;
+     }
      DrawText("Está na hora de Karol ir para a terapia",450,720,20,WHITE);  
      
 }
-void remedioavisoK(Texture2D fala,int* falac)
+void remedioavisoK(Texture2D fala,int* falac, Rectangle* Karolr, Rectangle falacolisao)
 {
      (*falac)=1;
      DrawTexture(fala,237,650,RAYWHITE);
+     if((Karolr->x >= falacolisao.x) && (Karolr->y >= falacolisao.y))
+     {
+         Karolr->y = 525;
+     }
      DrawText("Está na hora de Karol tomar seu remedio",450,720,20,WHITE);  
      
 }
@@ -1221,6 +1241,8 @@ void tudoDaKarol(){
         Texture2D memoriastx = LoadTextureFromImage(memoriasim);
         Texture2D falatx = LoadTextureFromImage(fala);
         Texture2D desafiotx = LoadTextureFromImage(desafioim);
+        Texture2D estabilidadetx = LoadTexture("jogoip/estabilidade.png");
+        Texture2D estressetx = LoadTexture("jogoip/estresse.png");
         
      //Rectengles:
         //Rectangle Jorgerec = {0,0,53,102};// testando o tamanho do boneco no mapa (pegando só esse retângulo)
@@ -1523,11 +1545,15 @@ void tudoDaKarol(){
            DrawTexture(Quartotx,0,0,RAYWHITE);
            //DrawTexture(circulo1.posicaox,circulo1.posicaoy,RAYWHITE);
            //DrawTextureRec(Texture2D texture, Rectangle sourceRec, Vector2 position, Color tint); 
-           DrawText(TextFormat("x: %i y: %i",x,y),10,15,40,RED);
-           DrawText(TextFormat("Memoria: %i",memoria),16,717,40,BLACK);
-           DrawText(TextFormat("Stress: %i Estabilidade: %i",stress,estabilidade),450,273,38,BLACK);
+           DrawText(TextFormat("x: %i y: %i",x,y),605,15,40,RED);
+           DrawText(TextFormat("Memoria: %i",memoria),15,680,35,BLACK);
+           DrawTexture(estabilidadetx, 35, 8, WHITE);
+           DrawTexture(estressetx, 35, estabilidadetx.height + 16, WHITE);
+           DrawRectangleGradientH(39, 36,((estabilidade*0.1)/3)*325, 26, SKYBLUE, DARKBLUE);
+           DrawRectangleGradientH(39, 104,(stress*0.1)*325, 25, RED, (Color){123, 20, 34, 255});
+           DrawText(TextFormat("Refletir: %i",refletir),15,710,35,BLACK);
            DrawText(TextFormat("Fase 2"),629,94,35,BLACK);
-           DrawText(TextFormat("Tempo: %i", contadordetempo),1115,42,35,BLACK);
+           DrawText(TextFormat("Tempo: %0.1f", (float)(contadordetempo/100)),1150,42,30,BLACK);
            //DrawTextureRec(Karoltx,Karolrec,Karolp,RAYWHITE);
            //DrawTextureRec(Guilhermetx,Guilhermerec,Guilhermep,RAYWHITE);
            
@@ -1567,15 +1593,15 @@ void tudoDaKarol(){
            //diversao e terapia:
            if(diversao==1)
            {
-               diversaoavisoK(falatx,&falac);
+               diversaoavisoK(falatx, &falac, &Karolr, falacolisao);
            }
            if(terapia==1)
            {
-               terapiaavisoK(falatx,&falac);
+               terapiaavisoK(falatx, &falac, &Karolr, falacolisao);
            }
            if(remedio==1)
            {
-               remedioavisoK(falatx,&falac);
+               remedioavisoK(falatx, &falac, &Karolr, falacolisao);
            }
            int espera = 1000; //modificar essa variável para reduzir o tempo de espera
           if(contadordetempo>=(2*minutos)+espera && contadordetempo<(4*minutos)) 

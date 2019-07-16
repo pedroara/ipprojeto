@@ -13,6 +13,9 @@ void sobrenos()
       DrawText(" Ajude-se.\n",500,320,20,BLACK);
       DrawText("E por fim esse é um mundo com muitos Jorges, Karol’s, Guilhermes e Luizas.\n",10,350,20,BLACK);
       DrawText(" Ajude-o.",500,400,20,BLACK);      
+      if (IsKeyPressed(KEY_ENTER)){
+          menu();
+      }
     EndDrawing();
    }
     CloseWindow();

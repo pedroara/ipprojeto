@@ -12,7 +12,8 @@ void sobrenos()
       DrawText("Esse é você.\n",500,300,20,BLACK);
       DrawText(" Ajude-se.\n",500,320,20,BLACK);
       DrawText("E por fim esse é um mundo com muitos Jorges, Karol’s, Guilhermes e Luizas.\n",10,350,20,BLACK);
-      DrawText(" Ajude-o.",500,400,20,BLACK);      
+      DrawText(" Ajude-o.",500,400,20,BLACK);   
+      DrawText(" ENTER PARA VOLTAR ",500,450,20,RED);   
       if (IsKeyPressed(KEY_ENTER)){
           menu();
       }
@@ -1651,9 +1652,7 @@ void menu()
     }//end window should close
 }// end função menu 
 
-//Verificar qual level a pessoa está e atribuir a um int check
-int qual_level(int checkpoint)
-{
+int qual_level(int checkpoint){
      //PARA O ARMAZENAMENTO (LER)
     FILE *level;
     level = fopen("checkpoint.txt" , "r");
@@ -1666,35 +1665,35 @@ int qual_level(int checkpoint)
     //Caso o jogador só tenha o primeiro level desbloqueado
     int check = levelum + leveldois + leveltres;
     if(check == 1){
-        return checkpoint = 1;
-    }
-    //Caso o jogador tenha os dois primeiros level desbloqueado
+        return 1;
+    }else
     if(check == 2){
-        return checkpoint = 2;
-    }
-    //Caso o jogador tenha os três primeiros level desbloqueado
+        return 2;
+    }else
     if(check == 3){
-        return checkpoint = 3;
+        return 3;
     }
-}
+    return 1;
+}// end of non-void function
 
-int subiu_de_level(int* checkpoint)
-{
+
+void subiu_de_level (){
     //ESCREVENDO NO ARQUIVO (checkpoint.txt)
     FILE *level;
     level = fopen("checkpoint.txt" , "w");
     //Variaveis criadas no escopo dessa função
-    int check = qual_level(&checkpoint);
+    int check = qual_level(0);
     //Se a função for chamada quando o checkpoint = 1; será escrito no arquivo checkpoint.txt 1 1 0
     if(check == 1){
-        fprintf("checkpoint.txt" , "1 1 0");
+        int  a = 1, b = 1, c = 0;
+        fprintf(level , "%i %i %i", a, b, c);
     }
     //Se a função for chamada quando o checkpoint = 2; será escrito no arquivo checkpoint.txt 1 1 1
-    if(check == 2){
-        fprintf("checkpoint.txt" , "1 1 1");
+    if(check == 2){   
+        int  a = 1 , b = 1, c = 1;
+        fprintf(level , "%i %i %i", a, b, c);
     }
     fclose(level);
-    return 0;
 }//end subiu
 
 

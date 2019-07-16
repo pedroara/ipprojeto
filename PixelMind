@@ -430,7 +430,7 @@ void tudoDoJorge(){
     int falac=0;
     int checkpoint = 0;
     int refletir=0;
-    checkpoint = qual_level(checkpoint);
+    checkpoint = qual_level(0);
     int desenharmemoria[15] = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
     
     while (!WindowShouldClose())   
@@ -1014,7 +1014,7 @@ void tudoDoJorge(){
            }
            if(estabilidade >= 30)
            {
-                int tantoFaz = subiu_de_level(&checkpoint);
+               subiu_de_level();
            }
         EndDrawing();
     }
@@ -1026,7 +1026,7 @@ void move_circ(int* posic)
 {
     if(IsKeyPressed(KEY_UP))
     {
-        if((*posic) > 420)
+        if((*posic) > 470)
         {
             (*posic) -= 50;
         }

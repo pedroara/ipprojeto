@@ -17,6 +17,11 @@ void sobrenos()
    }
     CloseWindow();
 }
+typedef struct 
+{
+   int raio;
+   int x,y;      
+}circulo;
 void movimentacao(Rectangle* Jorger)
 {
         if (IsKeyDown(KEY_DOWN))
@@ -352,12 +357,16 @@ void tudoDoJorge(){
         Rectangle memoria2 = {600,325,20,3};
         Rectangle memoria3 = {600,525,20,5};
         Rectangle memoria4 = {965,340,20,3};
-        Rectangle memoria5 = {1025,710,30,5};
+        Rectangle memoria5 = {1025,560,30,5};
         Rectangle memoria6 = {130,520,30,5}; 
+        Rectangle memoria10 = {995,400,30,3};
+        Rectangle memoria11 = {1030,400,30,3};
         Rectangle memoriasad1 = {800,600,20,5};
-        Rectangle memoriasad2 = {255,680,20,5};
+        Rectangle memoriasad2 = {255,380,20,5};
         Rectangle memoriasad3 = {1270,540,30,5};
         Rectangle conflito = {930,300,70,80};
+        Rectangle conflito2 = {995,400,70,80};
+        Rectangle conflito3 = {1030,400,70,80};
         Rectangle mesa = {525,405,305,100};
         Rectangle pe1= {570,515,20,15};
         Rectangle pe2= {790,515,20,15};
@@ -367,8 +376,11 @@ void tudoDoJorge(){
         Rectangle parede3 = {221,304,55,20};
         Rectangle parede4 = {0,669,190,340};
         Rectangle parede5 = {1166,669,190,340};
+        //Rectangle p1 = {};
+        //Rectangle p2 = {};
+        //Rectangle p3 = {};
         Rectangle falacolisao = {0,630,1300,300};
-        Rectangle refletirec = {660,390,20,20};
+        Rectangle refletirec = {636,390,20,20};
         
         //recorte de imagem:
         Rectangle memoriasrec = {0,0,30,20}; //ok!
@@ -384,14 +396,17 @@ void tudoDoJorge(){
         Vector2 memoriasp2 = {600,325}; //ganhou um ps4
         Vector2 memoriasp3 = {600,525}; //passou de ano
         Vector2 memoriasp5 = {130,520}; //conseguiu vencer algum medo 
-        Vector2 memoriasp6 = {1025,710}; //fez uma nova amizade
+        Vector2 memoriasp6 = {1025,560}; //fez uma nova amizade
         Vector2 memoriaspsad1 = {800,600}; //perdeu contato com um amigo querido
         Vector2 memoriap4 = {965,340};
-        Vector2 memoriaspsad2 = {255,680}; //morte de um familiar
+        Vector2 memoriap10 = {1025,443};
+        Vector2 memoriap11 = {1000,443};
+        Vector2 memoriaspsad2 = {255,380}; //morte de um familiar
         Vector2 memoriaspsad3 = {1270,540}; //teve uma crise de pânico em público 
         Vector2 conflitop = {900,300};
-        
-        
+        Vector2 conflitop2 = {965,400};
+        Vector2 conflitop3 = {1000,400};
+         
         
     //variáveis :
     int memoria = 0;
@@ -400,7 +415,11 @@ void tudoDoJorge(){
     int sad = 0; 
     int desafio = 0;
     int batalha = -1;
+    int batalha2= -1;
+    int batalha3= -1;
     int ruim = 0;
+    int ruim2=0;
+    int ruim3=0;
     int desenhar = 1;
     int diversao = 0;
     int terapia = 0;
@@ -408,7 +427,7 @@ void tudoDoJorge(){
     int checkpoint = 0;
     int refletir=0;
     checkpoint = qual_level(checkpoint);
-    int desenharmemoria[11] = {1,1,1,1,1,1,1,1,1,1,1};
+    int desenharmemoria[15] = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
     
     while (!WindowShouldClose())   
     {
@@ -423,15 +442,35 @@ void tudoDoJorge(){
          //Posição do mouse na tela
          int x = GetMouseX();
          int y = GetMouseY();
-        
+        //colisão especifica 
+          /*circulo jogador;
+          circulo parede6;
+          circulo parede7;
+          jogador.raio= 25;
+          jogador.x=Jorger.x;
+          jogador.y=Jorger.y;
+          parede6.raio=35;
+          parede7.raio=35;
+          parede6.x= 35;
+          parede6.y=705; */
         //função de movimentação do jorge:
-         movimentacao(&Jorger);
+        if(desafio==0)
+        {
+            movimentacao(&Jorger);
+        }
+         
         //Checando se saiu do mapa:
         tamanhotela(&Jorger,screenHeight,screenWidth);
         //atualizando estabilidade:
         atualizarestabilidade(&stress,&estabilidade);
         
         //checando colisão:
+       //int distancia = sqrt(((jogador.x - parede6.x)^2) + ((jogador.y - parede6.y)^2)); 
+        
+       // if(parede6.raio + jogador.raio < distancia)
+        {
+            //colisao(&Jorger);
+        }
         if(CheckCollisionRecs(Jorger,estante)==1)
         {
             Jorger.y+=4;
@@ -450,6 +489,7 @@ void tudoDoJorge(){
                 memoria=0;
             }
         }
+        
         else if(CheckCollisionRecs(Jorger,mesa)==1 ||CheckCollisionRecs(Jorger,pe1)==1|| CheckCollisionRecs(Jorger,pe2)==1)
         {
             colisao(&Jorger);
@@ -490,9 +530,13 @@ void tudoDoJorge(){
             }
                
         }
-        else if(CheckCollisionRecs(Jorger,parede4) || CheckCollisionRecs(Jorger,parede5))
+        else if(CheckCollisionRecs(Jorger,parede4)) 
         {
-            colisao(&Jorger); 
+            colisao(&Jorger);  
+        }
+        else if(CheckCollisionRecs(Jorger,parede5))
+        {
+           colisao(&Jorger);  
         }
         else if(CheckCollisionRecs(Jorger,memoria1)==1)
         {
@@ -553,6 +597,56 @@ void tudoDoJorge(){
             }
             colisao(&Jorger);
         }
+        else if(CheckCollisionRecs(Jorger,memoria10) && contadordetempo>=3600*3)
+        {
+            if(IsKeyDown(KEY_ENTER)==1 && memoria==0)
+            {
+                 desenharmemoria[11]=0;
+                 if(ruim2>0)
+                 {
+                     memoria=1;
+                     sad=1;
+                     //criou um memória ruim:
+                     stress = stress+3;
+                     
+                 }
+                 else
+                 {
+                     memoria=1;
+                     //recompensa por ter dado certo:
+                     stress = stress-3;
+                 }
+                 
+                 memoria10.x=0;
+                 memoria10.y=0;
+            }
+            colisao(&Jorger);
+        }
+        else if(CheckCollisionRecs(Jorger,memoria11) && contadordetempo>=3600*5)
+        {
+            if(IsKeyDown(KEY_ENTER)==1 && memoria==0)
+            {
+                 desenharmemoria[13]=0;
+                 if(ruim3>0)
+                 {
+                     memoria=1;
+                     sad=1;
+                     //criou um memória ruim:
+                     stress = stress+3;
+                     
+                 }
+                 else
+                 {
+                     memoria=1;
+                     //recompensa por ter dado certo:
+                     stress = stress-3;
+                 }
+                 
+                 memoria11.x=0;
+                 memoria11.y=0;
+            }
+            colisao(&Jorger);
+        }
         else if(CheckCollisionRecs(Jorger,conflito)==1 && contadordetempo>=3600)
         {
             if(IsKeyDown(KEY_ENTER))
@@ -561,6 +655,28 @@ void tudoDoJorge(){
                  batalha=1;
                  desafio=1;
                  
+                
+            }
+            colisao(&Jorger);
+        }
+        else if(CheckCollisionRecs(Jorger,conflito2)==1 && contadordetempo>=3600*3)
+        {
+            if(IsKeyDown(KEY_ENTER))
+            {
+                 
+                 batalha2=1;
+                 desafio=2;  
+                
+            }
+            colisao(&Jorger);
+        }
+        else if(CheckCollisionRecs(Jorger,conflito3)==1 && contadordetempo>=3600*5)
+        {
+            if(IsKeyDown(KEY_ENTER))
+            {
+                 
+                 batalha3=1;
+                 desafio=3;  
                 
             }
             colisao(&Jorger);
@@ -605,7 +721,7 @@ void tudoDoJorge(){
         {
             if(IsKeyDown(KEY_ENTER)==1 && memoria==0)
             {
-                 desenharmemoria[5]=0;
+                 desenharmemoria[9]=0;
                  memoria=1;
                  memoria5.x=0;
                  memoria5.y=0;
@@ -725,7 +841,7 @@ void tudoDoJorge(){
            {
               DrawTextureRec(monstrotx,monstrorec,conflitop,RAYWHITE);
            }
-           if(desenharmemoria [5] == 1)
+           if(desenharmemoria [9] == 1)
            {
                DrawTextureRec(memoriastx,memoriasrec,memoriasp6,RAYWHITE);
            }
@@ -741,6 +857,14 @@ void tudoDoJorge(){
            {
                DrawTextureRec(memoriastx,memoriassadrec,memoriaspsad3,RAYWHITE);
            }
+           if(desenharmemoria[10] == 1 && contadordetempo >= 3600*3)
+           {
+               DrawTextureRec(monstrotx,monstrorec,conflitop2,RAYWHITE);
+           }
+           if(desenharmemoria[12] == 1 && contadordetempo >= 3600*5)
+           {
+               DrawTextureRec(monstrotx,monstrorec,conflitop3,RAYWHITE);
+           }
            //desenhando desafio:
            if(desafio==1)
            {
@@ -753,35 +877,109 @@ void tudoDoJorge(){
                if(batalha==0)
                {
                    desenharmemoria[4]=0;
+                   desafio=0;
                    conflito.x=0;
                    conflito.y=0;
                    
                }
-               if(batalha==0 && ruim<=0)
-               {
+               
+               
+           }
+           if(batalha==0 && ruim<0)
+            {
                    if(desenharmemoria[5]==1)
                    {
                       DrawTextureRec(memoriastx,memoriasrec,memoriap4,RAYWHITE); 
                    }
                   
                  
-               }    
-               else if(batalha==0 && ruim>0)
-               {
+            }    
+            else if(batalha==0 && ruim>0)
+            {
                    if(desenharmemoria[5]==1)
                    {
                       DrawTextureRec(memoriastx,memoriassadrec,memoriap4,RAYWHITE);
                    }
                    
+            }
+            if(desafio==2)
+           {
+               
+               if(batalha2>=1)
+               {
+                   batalhafuncao3(falatx,&ruim2,&batalha2,&falac);
+                   
+               }
+               if(batalha2==0)
+               {
+                   desenharmemoria[10]=0;
+                   desafio=0;
+                   conflito2.x=0;
+                   conflito2.y=0;
+                   
                }
                
+               
            }
+           if(batalha2==0 && ruim2<0)
+            {
+                   if(desenharmemoria[11]==1)
+                   {
+                      DrawTextureRec(memoriastx,memoriasrec,memoriap10,RAYWHITE); 
+                   }
+                  
+                 
+            }    
+            else if(batalha2==0 && ruim2>0)
+            {
+                   if(desenharmemoria[11]==1)
+                   {
+                      DrawTextureRec(memoriastx,memoriassadrec,memoriap10,RAYWHITE);
+                   }
+                   
+            }
+            if(desafio==3)
+           {
+               
+               if(batalha3>=1)
+               {
+                   batalhafuncao4(falatx,&ruim3,&batalha3,&falac);
+                   
+               }
+               if(batalha3==0)
+               {
+                   desenharmemoria[12]=0;
+                   desafio=0;
+                   conflito3.x=0;
+                   conflito3.y=0;
+                   
+               }
+               
+               
+           }
+           if(batalha3==0 && ruim3<0)
+            {
+                   if(desenharmemoria[13]==1)
+                   {
+                      DrawTextureRec(memoriastx,memoriasrec,memoriap11,RAYWHITE); 
+                   }
+                  
+                 
+            }    
+            else if(batalha3==0 && ruim3>0)
+            {
+                   if(desenharmemoria[13]==1)
+                   {
+                      DrawTextureRec(memoriastx,memoriassadrec,memoriap11,RAYWHITE);
+                   }
+                   
+            }
            //diversao e terapia:
-           if(diversao==1)
+           if(diversao==1 && desafio==0)
            {
                diversaoaviso(falatx,&falac);
            }
-           if(terapia==1)
+           if(terapia==1 && desafio==0)
            {
                terapiaaviso(falatx,&falac);
            }
@@ -818,7 +1016,7 @@ void tudoDoJorge(){
     }
     CloseWindow();
     
-}// fim de tudo
+}
 
 void move_circ(int* posic)
 {
@@ -1042,6 +1240,7 @@ void tudoDaKarol(){
         Vector2 memoriasp3 = {600,525}; //passou de ano
         Vector2 memoriaspsad1 = {800,600}; //perdeu contato com um amigo querido
         Vector2 memoriap4 = {965,340};
+       
         
     //variáveis :
     int memoria = 0;
@@ -1496,8 +1695,6 @@ int subiu_de_level(int* checkpoint)
 }//end subiu
 
 
-
-//CONDIÇÃO PARA SUBIR DE NIVEL, POR FAVOR LEMBRAR DE ALTERAR ISSO KK SE NÃO ELE VAI SUBIR DE LEVEL FACIL KKKK
            
 int main(void)
 {

@@ -280,15 +280,31 @@ void batalhafuncao4(Texture2D fala,int* ruim, int* batalha,int* falac)
 
 void atualizarestabilidade(int* stress,int* estabilidade)//mudar nome dessa função
 {
-    if((*stress)>= 10)
+       if((*stress)>= 10)
     {
         (*estabilidade) = *estabilidade-2;
         (*stress)=5;
     }
-    if((*stress)<=0)
+    if((*stress) == 0)
     {
         (*estabilidade) = *estabilidade+2;
         (*stress)=5;
+    }else
+    if((*stress) == -1){
+        (*estabilidade) = *estabilidade+2;
+        (*stress) = 4;
+    }else
+    if((*stress) == -2){
+        (*estabilidade) = *estabilidade+2;
+        (*stress) = 3;
+    }else
+    if((*stress) == -3){
+        (*estabilidade) = *estabilidade+2;
+        (*stress) = 2;
+    }else
+    if((*stress) <= -3){
+        (*estabilidade) = *estabilidade+2;
+        (*stress) = 2;
     }
     
 }

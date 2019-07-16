@@ -435,6 +435,11 @@ void tudoDoJorge(){
     
     while (!WindowShouldClose())   
     {
+        //CONDIÇÃO PARA SUBIR DE NIVEL
+        if(estabilidade >= 30){
+            subiu_de_level();
+            menu();
+        }
         /*
         Coisas da Karol e do Guilherme:
         //Vector2 Karolp = {circulo1.posicaox+100,circulo1.posicaoy+49};

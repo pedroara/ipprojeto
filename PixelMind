@@ -1241,8 +1241,8 @@ void tudoDaKarol(){
         Texture2D memoriastx = LoadTextureFromImage(memoriasim);
         Texture2D falatx = LoadTextureFromImage(fala);
         Texture2D desafiotx = LoadTextureFromImage(desafioim);
-        Texture2D estabilidadetx = LoadTexture("jogoip/estabilidade.png");
-        Texture2D estressetx = LoadTexture("jogoip/estresse.png");
+        Texture2D estabilidadetx = LoadTexture("/jogoip/estabilidade.png");
+        Texture2D estressetx = LoadTexture("/jogoip/estresse.png");
         
      //Rectengles:
         //Rectangle Jorgerec = {0,0,53,102};// testando o tamanho do boneco no mapa (pegando só esse retângulo)

@@ -2,14 +2,13 @@
 #include <stdio.h>
 #include <math.h>
 void sobrenos()
-{      Music nos = LoadMusicStream("/jogoip/Warriors.ogg");
+{
+   Music nos = LoadMusicStream("/jogoip/Warriors.ogg");
 PlayMusicStream(nos);
 SetMusicVolume(nos, 0.2);
    while(!WindowShouldClose())
    { UpdateMusicStream(nos);
-
- 
- 
+   
        BeginDrawing();
       ClearBackground(RAYWHITE); 
       DrawText("Créditos:\nJogo desenvolvido pelos alunos de Ciência da Computação da UFRPE:  Izabelle Tais, Maely S. Coutinho, \nMarcos Bernardo, Marielly Lins e Pedro Araújo para cadeira de Introdução à Programação I. \nTem como intuito tornar palpável, de forma lúdica, a realidade de pessoas que diariamente convivem com \ndoenças/transtornos/distúrbios mentais. \nO nosso grupo gostaria de esclarecer que não somos especialistas no assunto e nos desculpar por qualquer erro que podemos \nter cometido no desenvolvimento desse projeto",10,10,20,BLACK);
@@ -362,6 +361,7 @@ void tudoDoJorge(){
         Image memoriasim = LoadImage("/jogoip/memorias.png");
         Image monstro = LoadImage("/jogoip/monstro2.png");
         Image fala = LoadImage("/jogoip/fala.png");
+        
      //Image Resize:
         ImageResize (&Jorgeim,144,104); //144,104,(108,78) - Aumentando a imagem original
         ImageResize (&Quarto,1366,788); //passar o endereço pq ele modifica a imagem original.
@@ -389,8 +389,8 @@ void tudoDoJorge(){
         Rectangle memoria4 = {965,340,20,3};
         Rectangle memoria5 = {1025,560,30,5};
         Rectangle memoria6 = {130,520,30,5}; 
-        Rectangle memoria10 = {995,400,30,3};
-        Rectangle memoria11 = {1030,400,30,3};
+        Rectangle memoria10 = {1025,443,20,3};
+        Rectangle memoria11 = {1000,443,20,3};
         Rectangle memoriasad1 = {800,600,20,5};
         Rectangle memoriasad2 = {255,380,20,5};
         Rectangle memoriasad3 = {1270,540,30,5};
@@ -411,6 +411,7 @@ void tudoDoJorge(){
         //Rectangle p3 = {};
         Rectangle falacolisao = {0,630,1300,300};
         Rectangle refletirec = {680,390,20,20};
+        
         
         //recorte de imagem:
         Rectangle memoriasrec = {0,0,30,20}; //ok!
@@ -436,6 +437,7 @@ void tudoDoJorge(){
         Vector2 conflitop = {900,300};
         Vector2 conflitop2 = {965,400};
         Vector2 conflitop3 = {1000,400};
+        
          
         
     //variáveis :
@@ -458,23 +460,20 @@ void tudoDoJorge(){
     int refletir=0;
     checkpoint = qual_level(0);
     int desenharmemoria[15] = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
+    
     Music ewof = LoadMusicStream("/jogoip/Ewof.ogg");
     PlayMusicStream(ewof);
     SetMusicVolume(ewof, 0.2);
     while (!WindowShouldClose())   
     { 
-       UpdateMusicStream(ewof);
+       UpdateMusicStream(ewof); 
+    
         //CONDIÇÃO PARA SUBIR DE NIVEL
         if(estabilidade >= 30){
             subiu_de_level();
             menu();
         }
-        /*
-        Coisas da Karol e do Guilherme:
-        //Vector2 Karolp = {circulo1.posicaox+100,circulo1.posicaoy+49};
-        // Vector2 Guilhermep = {circulo1.posicaox+100,circulo1.posicaoy+49};
         
-        */
          contadordetempo++;
          Vector2 Jorgep = {Jorger.x,Jorger.y-51}; //posição do Jorge (menos 51 para a colisão ficar no pé)
          //Posição do mouse na tela
@@ -1177,28 +1176,103 @@ void remedioavisoK(Texture2D fala,int* falac, Rectangle* Karolr, Rectangle falac
      DrawText("Está na hora de Karol tomar seu remedio",450,720,20,WHITE);  
      
 }
-void desafiofuncaoK(Texture2D fala, int* ruim,int* falac)
+void desafiofuncaoK(Texture2D fala, int* ruim,int* falac,int opc)
 {
     (*falac)=1;
     if((*ruim)==1)
     {
-        DrawTexture(fala,237,650,RAYWHITE);
-        DrawText("Você tem certeza que esse dia foi bom?",450,720,20,RED);  
+        if(opc==1)
+        {
+            DrawTexture(fala,237,650,RAYWHITE);
+            DrawText("Você tem certeza que esse dia foi bom?",450,720,20,RED);  
+        }
+        else if(opc==2)
+        {
+           DrawTexture(fala,237,650,RAYWHITE);
+           DrawText("Você acha que essa nota foi merecida?",450,720,20,RED);   
+        }
+        else if(opc==3)
+        {
+            DrawTexture(fala,237,650,RAYWHITE);
+            DrawText("Você não deveria ter saido de casa",450,720,20,RED); 
+        }
+        else if(opc>=4)
+        {
+            DrawTexture(fala,237,650,RAYWHITE);
+            DrawText("Não tente fazer nada!",450,720,20,RED); 
+        }
+        
     }
     if((*ruim)==2)
     {
-        DrawTexture(fala,237,650,RAYWHITE);
-        DrawText("Tem certeza que não fez nada de errado?",450,720,20,RED);  
+        if(opc==1)
+        {
+            DrawTexture(fala,237,650,RAYWHITE);
+            DrawText("Tem certeza que não fez nada de errado?",450,720,20,RED); 
+        }
+        else if(opc==2)
+        {
+            DrawTexture(fala,237,650,RAYWHITE);
+            DrawText("Você teve sorte",450,720,20,RED); 
+        }
+        else if(opc==3)
+        {
+            DrawTexture(fala,237,650,RAYWHITE);
+            DrawText("Só atrapalhou o dia de todo mundo",450,720,20,RED);  
+        }
+        else if(opc>=4)
+        {
+            DrawTexture(fala,237,650,RAYWHITE);
+            DrawText("Pare!",450,720,20,RED); 
+        }
+         
     }
     if((*ruim)==3)
     {
-        DrawTexture(fala,237,650,RAYWHITE);
-        DrawText("Pense de novo!",500,720,20,RED);  
+        if(opc==1)
+        {
+            DrawTexture(fala,237,650,RAYWHITE);
+            DrawText("Pense de novo",450,720,20,RED); 
+        }
+        else if(opc==2)
+        {
+            DrawTexture(fala,237,650,RAYWHITE);
+            DrawText("Tudo que conseguiu foi por sorte",450,720,20,RED); 
+        }
+        else if(opc==3)
+        {
+            DrawTexture(fala,237,650,RAYWHITE);
+            DrawText("Você sempre atrapalha tudo",450,720,20,RED);  
+        }
+        else if(opc>=4)
+        {
+            DrawTexture(fala,237,650,RAYWHITE);
+            DrawText("Pense nas vezes que deu errado!",450,720,20,RED); 
+        }
     }
     if((*ruim)==4)
     {
-        DrawTexture(fala,237,650,RAYWHITE);
-        DrawText("Você sempre faz algo de errado",450,720,20,RED);
+        if(opc==1)
+        {
+            DrawTexture(fala,237,650,RAYWHITE);
+            DrawText("Você sempre faz algo de errado",450,720,20,RED);
+        }
+        else if(opc==2)
+        {
+            DrawTexture(fala,237,650,RAYWHITE);
+            DrawText("Se tentar de novo não vai conseguir",450,720,20,RED); 
+        }
+        else if(opc==3)
+        {
+            DrawTexture(fala,237,650,RAYWHITE);
+            DrawText("Eles não queriam você lá",450,720,20,RED);  
+        }
+        else if(opc>=4)
+        {
+            DrawTexture(fala,237,650,RAYWHITE);
+            DrawText("Vai dar errado!",450,720,20,RED); 
+        }
+        
     }
     if((*ruim)==5)
     {
@@ -1207,13 +1281,51 @@ void desafiofuncaoK(Texture2D fala, int* ruim,int* falac)
     }
     if((*ruim)==6)
     {
-        DrawTexture(fala,237,650,RAYWHITE);
-        DrawText("Pense! Pense!",500,720,20,RED);
+        if(opc==1)
+        {
+            DrawTexture(fala,237,650,RAYWHITE);
+            DrawText("Pense! Pense!",500,720,20,RED);
+        }
+        else if(opc==2)
+        {
+            DrawTexture(fala,237,650,RAYWHITE);
+            DrawText("Esse aperto no peito não vai embora",450,720,20,RED); 
+        }
+        else if(opc==3)
+        {
+            DrawTexture(fala,237,650,RAYWHITE);
+            DrawText("Algo de ruim vai acontecer",450,720,20,RED);  
+        }
+        else if(opc>=4)
+        {
+            DrawTexture(fala,237,650,RAYWHITE);
+            DrawText("Não tente! Você vai falhar",450,720,20,RED); 
+        }
+        
     }
     if((*ruim)==7)
     {
-        DrawTexture(fala,237,650,RAYWHITE);
-        DrawText("Há algo que você não está lembrando",450,720,20,RED);
+       if(opc==1)
+        {
+            DrawTexture(fala,237,650,RAYWHITE);
+            DrawText("Há algo que você não está lembrando",450,720,20,RED);
+        }
+        else if(opc==2)
+        {
+            DrawTexture(fala,237,650,RAYWHITE);
+            DrawText("Você não consegue se controlar!",450,720,20,RED); 
+        }
+        else if(opc==3)
+        {
+            DrawTexture(fala,237,650,RAYWHITE);
+            DrawText("Você deveria sumir",450,720,20,RED);  
+        }
+        else if(opc>=4)
+        {
+            DrawTexture(fala,237,650,RAYWHITE);
+            DrawText("Pense nisso!Pense de novo!",450,720,20,RED); 
+        }
+        
     }
            
 }
@@ -1251,7 +1363,8 @@ void tudoDaKarol(){
         Texture2D desafiotx = LoadTextureFromImage(desafioim);
         Texture2D estabilidadetx = LoadTexture("/jogoip/estabilidade.png");
         Texture2D estressetx = LoadTexture("/jogoip/estresse.png");
-        
+        Image Remedio = LoadImage("/jogoip/Remedio.png");
+        Texture2D remediotx = LoadTextureFromImage(Remedio);
      //Rectengles:
         //Rectangle Jorgerec = {0,0,53,102};// testando o tamanho do boneco no mapa (pegando só esse retângulo)
         Rectangle Karolrec = {0,0,55,102}; // Esta ok
@@ -1261,11 +1374,11 @@ void tudoDaKarol(){
          Rectangle Karolr = {17,400,55,51};
        //criando colisão
         Rectangle estante = {330,116,979,180}; //colisão para a estante
-        Rectangle memoria1 = {900,400,20,3};
-        Rectangle memoria2 = {933,470,20,3};
-        Rectangle memoria3 = {600,525,20,5};
-        Rectangle memoria4 = {965,340,20,3};
-        Rectangle memoriasad1 = {800,600,20,5};
+        Rectangle memoria1 = {290,400,10,3};
+        Rectangle memoria2 = {440,670,10,3};
+        Rectangle memoria3 = {1176,525,10,3};
+        Rectangle memoria4 = {1075,400,10,3};
+        Rectangle memoriasad1 = {810,600,10,3};
         Rectangle conflito = {940,330,20,10};
         Rectangle conflito2 = {940,530,20,10};
         Rectangle conflito3 = {240,530,20,10};
@@ -1283,18 +1396,18 @@ void tudoDaKarol(){
         Rectangle parede4 = {0,669,190,340};
         Rectangle parede5 = {1166,669,190,340};
         Rectangle falacolisao = {330,695,800,150};
-        
+        Rectangle remedior = {725,400,3,5};
         
         Rectangle memoriasrec = {0,0,30,20}; //ok!
         Rectangle memoriassadrec = {30,20,30,20}; //ok!
         
         
        //posição das memórias:
-        Vector2 memoriasp = {900,400}; //ferias com a família
-        Vector2 memoriasp2 = {933,470}; //ganhou um ps4
-        Vector2 memoriasp3 = {600,525}; //passou de ano
+        Vector2 memoriasp = {288,400}; //ferias com a família
+        Vector2 memoriasp2 = {430,670}; //ganhou um ps4
+        Vector2 memoriasp3 = {1166,525}; //passou de ano
         Vector2 memoriaspsad1 = {800,600}; //perdeu contato com um amigo querido
-        Vector2 memoriap4 = {965,340};
+        Vector2 memoriap4 = {1065,400};
        
         
     //variáveis :
@@ -1308,15 +1421,23 @@ void tudoDaKarol(){
     int desenhar = 1;
     int diversao = 0;
     int terapia = 0;
+    int refletir=0;
     int remedio=0;
     int falac=0;
+    float contar=0.0;
     int desenharmemoria[6] = {1,1,1,1,1,1};
-    
+    int colis[8] = {1,0,0,0,0,0,0,0};
+    int checkpoint = 0;
+    checkpoint = qual_level(0);
     Music memory = LoadMusicStream("/jogoip/Memory.ogg");
     PlayMusicStream(memory);
-    
-    while (!WindowShouldClose()){
-        UpdateMusicStream (memory);
+    while (!WindowShouldClose())   
+    { UpdateMusicStream (memory); UpdateMusicStream (memory);
+        if(estabilidade >= 30){
+            subiu_de_level();
+            menu();
+        }
+        
          contadordetempo++;
          //Vector2 Jorgep = {Jorger.x,Jorger.y-51}; //posição do Jorge (menos 51 para a colisão ficar no pé)
          Vector2 Karolp = {Karolr.x,Karolr.y-51};
@@ -1335,8 +1456,13 @@ void tudoDaKarol(){
         if(CheckCollisionRecs(Karolr,estante)==1)
         {
             Karolr.y+=4;
+            
             if(memoria==1 && IsKeyPressed(KEY_ENTER)==1)
             {
+                if(ruim>=3)
+                {
+                  sad=1;
+                }
                 if(sad==0)
                 {
                     stress = stress-2;
@@ -1349,6 +1475,11 @@ void tudoDaKarol(){
                 
                 memoria=0;
                 ruim=0;
+                for(int i=1;i<8;i++)
+                {
+                    colis[i]=0;
+                }
+                colis[0]= colis[0]+1;
             }
         }
         else if(CheckCollisionRecs(Karolr,mesa)==1 ||CheckCollisionRecs(Karolr,pe1)==1|| CheckCollisionRecs(Karolr,pe2)==1)
@@ -1375,6 +1506,17 @@ void tudoDaKarol(){
                 desenhar=0;
                 estabilidade = estabilidade + 5;
                 terapia=0;
+            }
+            
+        }
+        else if(CheckCollisionRecs(Karolr,remedior)==1)
+        {
+            colisaoK(&Karolr);
+            if(remedio==1)
+            {
+                //desenhar=2;
+                estabilidade = estabilidade + 5;
+                remedio=0;
             }
             
         }
@@ -1420,64 +1562,79 @@ void tudoDaKarol(){
             }
             colisaoK(&Karolr);
         }
-        else if(CheckCollisionRecs(Karolr,memoria4) && contadordetempo>=3600)
+        else if(CheckCollisionRecs(Karolr,memoria4))
         {
+            
             if(IsKeyDown(KEY_ENTER)==1 && memoria==0)
             {
                  desenharmemoria[5]=0;
-                 if(ruim>0)
-                 {
-                     memoria=1;
-                     sad=1;
-                     //criou um memória ruim:
-                     stress = stress+3;
-                     
-                 }
-                 else
-                 {
-                     memoria=1;
-                     //recompensa por ter dado certo:
-                     stress = stress-3;
-                 }
-                 
+                 memoria=1;
                  memoria4.x=0;
                  memoria4.y=0;
             }
             colisaoK(&Karolr);
         }
-        else if(CheckCollisionRecs(Karolr,conflito)==1 && memoria==1)
+        else if(CheckCollisionRecs(Karolr,conflito)==1 && memoria==1 && sad==0)
         {
-            ruim=1;
+            if(colis[1]==0)
+            {
+                ruim++;
+            }
+            colis[1]=1;
             colisaoK(&Karolr);
         }
-        else if(CheckCollisionRecs(Karolr,conflito2)==1 && memoria==1)
+        else if(CheckCollisionRecs(Karolr,conflito2)==1 && memoria==1 && sad==0)
         {
-            ruim=2;
+            if(colis[2]==0)
+            {
+                ruim++;
+            }
+            colis[2]=1;
             colisaoK(&Karolr);
         }
-         else if(CheckCollisionRecs(Karolr,conflito3)==1 && memoria==1)
+         else if(CheckCollisionRecs(Karolr,conflito3)==1 && memoria==1 && sad==0)
         {
-            ruim=3;
+            if(colis[3]==0)
+            {
+                ruim++;
+            }
+            colis[3]=1;
             colisaoK(&Karolr);
         }
-         else if(CheckCollisionRecs(Karolr,conflito4)==1 && memoria==1)
+         else if(CheckCollisionRecs(Karolr,conflito4)==1 && memoria==1 && sad==0)
         {
-            ruim=4;
+            if(colis[4]==0)
+            {
+                ruim++;
+            }
+            colis[4]=1;
             colisaoK(&Karolr);
         }
-        else if(CheckCollisionRecs(Karolr,conflito5)==1 && memoria==1)
+        else if(CheckCollisionRecs(Karolr,conflito5)==1 && memoria==1 && sad==0)
         {
-            ruim=5;
+            if(colis[5]==0)
+            {
+                ruim++;
+            }
+            colis[5]=1;
             colisaoK(&Karolr);
         }
-        else if(CheckCollisionRecs(Karolr,conflito6)==1 && memoria==1)
+        else if(CheckCollisionRecs(Karolr,conflito6)==1 && memoria==1 && sad==0)
         {
-            ruim=6;
+            if(colis[6]==0)
+            {
+                ruim++;
+            }
+            colis[6]=1;
             colisaoK(&Karolr);
         }
-        else if(CheckCollisionRecs(Karolr,conflito7)==1 && memoria==1)
+        else if(CheckCollisionRecs(Karolr,conflito7)==1 && memoria==1 && sad==0)
         {
-            ruim=7;
+            if(colis[7]==0)
+            {
+                ruim++;
+            }
+            colis[7]=1; 
             colisaoK(&Karolr);
         }
         else if(CheckCollisionRecs(Karolr,memoriasad1))
@@ -1496,6 +1653,10 @@ void tudoDaKarol(){
         {
            if(IsKeyPressed(KEY_ENTER)==1 && memoria==1)
             {
+                if(ruim>=3)
+                {
+                  sad=1;
+                }
                 if(sad==1)
                 {
                     stress--;
@@ -1508,6 +1669,11 @@ void tudoDaKarol(){
                  memoria=0;
                  ruim=0;
             }
+            for(int i=1;i<8;i++)
+            {
+                 colis[i]=0;
+            }
+            colis[0]= colis[0]+1;
             colisaoK(&Karolr); 
         }  
         else if(CheckCollisionRecs(Karolr,falacolisao))
@@ -1518,7 +1684,22 @@ void tudoDaKarol(){
               falac=0;
            }
             
-        }        
+        }  
+         
+        if(ruim>=1)
+            
+        {
+            contar= contar + 0.017; 
+            if(contar>=10)
+            {
+                stress++;
+                contar=0;
+            }
+            
+        
+        }
+        
+        
             int minutos = 3600;
             if(contadordetempo==2*minutos)
             {
@@ -1528,7 +1709,7 @@ void tudoDaKarol(){
             if(contadordetempo==4*minutos)
             {
                 terapia=1;
-                //remedio=1;
+                remedio=1;
                 
                
             }
@@ -1540,7 +1721,7 @@ void tudoDaKarol(){
             if(contadordetempo==8*minutos)
             {
                 terapia=1;
-               // remedio=1;
+                remedio=1;
                
             }
             if(contadordetempo==10*minutos)
@@ -1561,7 +1742,7 @@ void tudoDaKarol(){
            DrawTexture(estressetx, 35, estabilidadetx.height + 16, WHITE);
            DrawRectangleGradientH(39, 36,((estabilidade*0.1)/3)*325, 26, SKYBLUE, DARKBLUE);
            DrawRectangleGradientH(39, 104,(stress*0.1)*325, 25, RED, (Color){123, 20, 34, 255});
-           //DrawText(TextFormat("Refletir: %i",refletir),15,710,35,BLACK); 
+           DrawText(TextFormat("Refletir: %i",refletir),15,710,35,BLACK);
            DrawText(TextFormat("Fase 2"),629,94,35,BLACK);
            DrawText(TextFormat("Tempo: %0.1f", (float)(contadordetempo/100)),1150,42,30,BLACK);
            //DrawTextureRec(Karoltx,Karolrec,Karolp,RAYWHITE);
@@ -1584,7 +1765,7 @@ void tudoDaKarol(){
            {
               DrawTextureRec(memoriastx,memoriassadrec,memoriaspsad1,RAYWHITE);
            }
-           if(desenharmemoria[4]==1 && memoria==1)
+           if(desenharmemoria[4]==1 && memoria==1 && sad==0)
            {
               DrawTexture(desafiotx,900,300,RAYWHITE);
               DrawTexture(desafiotx,900,500,RAYWHITE);
@@ -1594,11 +1775,16 @@ void tudoDaKarol(){
               DrawTexture(desafiotx,300,500,RAYWHITE);
               DrawTexture(desafiotx,600,560,RAYWHITE);
            }
+           if(desenharmemoria[5]==1)
+           {
+              DrawTextureRec(memoriastx,memoriasrec,memoriap4,RAYWHITE);  
+           }
            //desenhando desafio:
            if(memoria==1)
            {
-                 desafiofuncaoK(falatx,&ruim,&falac);
-                 
+               
+                desafiofuncaoK(falatx,&ruim,&falac,colis[0]);
+
            }
            //diversao e terapia:
            if(diversao==1)
@@ -1614,7 +1800,7 @@ void tudoDaKarol(){
                remedioavisoK(falatx, &falac, &Karolr, falacolisao);
            }
            int espera = 1000; //modificar essa variável para reduzir o tempo de espera
-          if(contadordetempo>=(2*minutos)+espera && contadordetempo<(4*minutos)) 
+           if(contadordetempo>=(2*minutos)+espera && contadordetempo<(4*minutos)) 
            {
                desenhar=1;
            }
@@ -1634,10 +1820,14 @@ void tudoDaKarol(){
            {
                desenhar=1;
            }
-           
+           DrawTexture(remediotx,725,410,RAYWHITE);
            if(estabilidade >= 30)
            {
-               // int tantoFaz = subiu_de_level(&checkpoint);
+               int tantoFaz = subiu_de_level(&checkpoint);
+           }
+           if(estabilidade >= 30)
+           {
+               subiu_de_level();
            }
            if(desenhar==1)
            {
@@ -1647,9 +1837,9 @@ void tudoDaKarol(){
         EndDrawing();
     }
     CloseWindow();
-    }// fim de tudo
     
-    void tudoDoGuilherme() {
+}
+ void tudoDoGuilherme() {
     int screenWidth = 1366; //dimenssão da minha tela
     int screenHeight = 768;
     
@@ -2015,7 +2205,7 @@ void tudoDaKarol(){
            if(desenharmemoria[4]==1 && memoria==1)
            {
               DrawTexture(desafiotx,900,300,RAYWHITE);
-             DrawTexture(desafiotx,900,500,RAYWHITE);
+              DrawTexture(desafiotx,900,500,RAYWHITE);
               DrawTexture(desafiotx,200,500,RAYWHITE);
               DrawTexture(desafiotx,400,300,RAYWHITE);
               DrawTexture(desafiotx,790,595,RAYWHITE);
@@ -2025,7 +2215,7 @@ void tudoDaKarol(){
            //desenhando desafio:
            if(memoria==1)
            {
-                 desafiofuncaoK(falatx,&ruim,&falac);
+                 desafiofuncaoK(falatx, &ruim, &falac, desafio);
                  
            }
            //diversao e terapia:
@@ -2072,23 +2262,20 @@ void tudoDaKarol(){
     }
     CloseWindow();
     }//SXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-    
-
-
 
 void menu()
-{    
-   
-          Music maya = LoadMusicStream("/jogoip/Maya.ogg");
-                PlayMusicStream(maya);
-
+{
+        
         int posic_circ = 470;
         Image Menu = LoadImage("/jogoip/menu.png");
         ImageResize (&Menu,1366,788);
         Texture2D Menutx = LoadTextureFromImage(Menu);
         
-    while(!WindowShouldClose()){
+     Music maya = LoadMusicStream("/jogoip/Maya.ogg");
+                PlayMusicStream(maya);
+while(!WindowShouldClose()){
         UpdateMusicStream(maya);
+        
         BeginDrawing();
                ClearBackground(RAYWHITE);
                DrawTexture(Menutx,0,0,RAYWHITE);
@@ -2191,9 +2378,8 @@ int main(void)
     InitWindow(screenWidth, screenHeight, " Pixelmind ");
     InitAudioDevice();
     SetTargetFPS(60);    
-   
     
     menu();
-   
+    
     return 0;
 }

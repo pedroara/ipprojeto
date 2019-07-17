@@ -349,7 +349,7 @@ Coisas dos outros personagens
 */
 void tudoDoJorge(){
     
-    int screenWidth = 1366; //dimenssão da minha tela
+    int screenWidth = 1366; //dimensão da minha tela
     int screenHeight = 768;
     
     int contadordetempo = 0;
@@ -389,11 +389,16 @@ void tudoDoJorge(){
         Rectangle memoria4 = {965,340,20,3};
         Rectangle memoria5 = {1025,560,30,5};
         Rectangle memoria6 = {130,520,30,5}; 
+        Rectangle memoria7 = {700,325,20,3};
+        Rectangle memoria8 = {400,700,20,3};
+        Rectangle memoria9 = {1050,450,20,3};
         Rectangle memoria10 = {1025,443,20,3};
         Rectangle memoria11 = {1000,443,20,3};
         Rectangle memoriasad1 = {800,600,20,5};
         Rectangle memoriasad2 = {255,380,20,5};
         Rectangle memoriasad3 = {1270,540,30,5};
+        Rectangle memoriasad4 = {400,440,30,5};
+        Rectangle memoriasad5 = {1125,400,30,5};
         Rectangle conflito = {930,300,70,80};
         Rectangle conflito2 = {995,400,70,80};
         Rectangle conflito3 = {1030,400,70,80};
@@ -429,14 +434,19 @@ void tudoDoJorge(){
         Vector2 memoriasp5 = {130,520}; //conseguiu vencer algum medo 
         Vector2 memoriasp6 = {1025,560}; //fez uma nova amizade
         Vector2 memoriaspsad1 = {800,600}; //perdeu contato com um amigo querido
-        Vector2 memoriap4 = {965,340};
+        Vector2 memoriasp4 = {965,340};
         Vector2 memoriap10 = {1025,443};
         Vector2 memoriap11 = {1000,443};
         Vector2 memoriaspsad2 = {255,380}; //morte de um familiar
         Vector2 memoriaspsad3 = {1270,540}; //teve uma crise de pânico em público 
+        Vector2 memoriaspsad4 = {400,440};
+        Vector2 memoriaspsad5 = {1125,400};
         Vector2 conflitop = {900,300};
         Vector2 conflitop2 = {965,400};
         Vector2 conflitop3 = {1000,400};
+        Vector2 memoriasp7 = {700,325};
+        Vector2 memoriasp8 = {400,700};
+        Vector2 memoriasp9 = {1050,450};
         
          
         
@@ -929,7 +939,7 @@ void tudoDoJorge(){
             {
                    if(desenharmemoria[5]==1)
                    {
-                      DrawTextureRec(memoriastx,memoriasrec,memoriap4,RAYWHITE); 
+                      DrawTextureRec(memoriastx,memoriasrec,memoriasp4,RAYWHITE); 
                    }
                   
                  
@@ -938,7 +948,7 @@ void tudoDoJorge(){
             {
                    if(desenharmemoria[5]==1)
                    {
-                      DrawTextureRec(memoriastx,memoriassadrec,memoriap4,RAYWHITE);
+                      DrawTextureRec(memoriastx,memoriassadrec,memoriasp4,RAYWHITE);
                    }
                    
             }
@@ -1378,7 +1388,12 @@ void tudoDaKarol(){
         Rectangle memoria2 = {440,670,10,3};
         Rectangle memoria3 = {1176,525,10,3};
         Rectangle memoria4 = {1075,400,10,3};
+        Rectangle memoria5 = {300,350,10,3};
+        Rectangle memoria6 = {600,350,10,3};
+        Rectangle memoria7 = {1075,650,10,3};
         Rectangle memoriasad1 = {810,600,10,3};
+        Rectangle memoriasad2 = {850,380,10,3};
+        Rectangle memoriasad3 = {115,590,10,3};
         Rectangle conflito = {940,330,20,10};
         Rectangle conflito2 = {940,530,20,10};
         Rectangle conflito3 = {240,530,20,10};
@@ -1406,8 +1421,13 @@ void tudoDaKarol(){
         Vector2 memoriasp = {288,400}; //ferias com a família
         Vector2 memoriasp2 = {430,670}; //ganhou um ps4
         Vector2 memoriasp3 = {1166,525}; //passou de ano
+        Vector2 memoriasp4 = {1065,400};
+        Vector2 memoriasp5 = {300,350};
+        Vector2 memoriasp6 = {600,350};
+        Vector2 memoriasp7 = {1075,650};
         Vector2 memoriaspsad1 = {800,600}; //perdeu contato com um amigo querido
-        Vector2 memoriap4 = {1065,400};
+        Vector2 memoriaspsad2 = {850,380};
+        Vector2 memoriaspsad3 = {115,590};
        
         
     //variáveis :
@@ -1777,7 +1797,7 @@ void tudoDaKarol(){
            }
            if(desenharmemoria[5]==1)
            {
-              DrawTextureRec(memoriastx,memoriasrec,memoriap4,RAYWHITE);  
+              DrawTextureRec(memoriastx,memoriasrec,memoriasp4,RAYWHITE);  
            }
            //desenhando desafio:
            if(memoria==1)
@@ -1921,7 +1941,7 @@ void tudoDaKarol(){
         Vector2 memoriasp5 = {130,520}; //conseguiu vencer algum medo 
         Vector2 memoriasp6 = {1025,560}; //fez uma nova amizade
         Vector2 memoriaspsad1 = {800,600}; //perdeu contato com um amigo querido
-        Vector2 memoriap4 = {965,340};
+        Vector2 memoriasp4 = {965,340};
         Vector2 memoriap10 = {1025,443};
         Vector2 memoriap11 = {1000,443};
         Vector2 memoriaspsad2 = {255,380}; //morte de um familiar

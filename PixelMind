@@ -342,24 +342,23 @@ void tudoDoJorge(){
         Image Quarto = LoadImage("/jogoip/Quarto002.png"); //diretorio apartir do C: com as \ invertidas (/);
         Image Jorgeim = LoadImage("/jogoip/Jorge01.png");
         Image memoriasim = LoadImage("/jogoip/memorias.png");
-        Image monstro = LoadImage("/jogoip/monstro2.png");
         Image fala = LoadImage("/jogoip/fala.png");
         Image tutorialim = LoadImage("/jogoip/tutorial.png");
      //Image Resize:
         ImageResize (&Jorgeim,144,104); //144,104,(108,78) - Aumentando a imagem original
         ImageResize (&Quarto,1366,788); //passar o endereço pq ele modifica a imagem original.
         ImageResize (&fala,1366,300);
-        ImageResize (&monstro,1300,678);
         ImageResize (&tutorialim,1366,788);
      //Texture2D:
         Texture2D Quartotx = LoadTextureFromImage(Quarto);
         Texture2D Jorgetx = LoadTextureFromImage(Jorgeim);
         Texture2D memoriastx = LoadTextureFromImage(memoriasim);
         Texture2D falatx = LoadTextureFromImage(fala);
-        Texture2D monstrotx = LoadTextureFromImage(monstro);
+        Texture2D monstrotx = LoadTexture("/jogoip/monstro.png");
         Texture2D estabilidadetx = LoadTexture("/jogoip/estabilidade.png");
         Texture2D estressetx = LoadTexture("/jogoip/estresse.png");
         Texture2D tutorialtx = LoadTextureFromImage(tutorialim);
+        LoadTexture("/jogoip/estabilidade.png");
      //Rectengles:
         Rectangle Jorgerec = {0,0,53,102};// testando o tamanho do boneco no mapa (pegando só esse retângulo)
         //Rectangle Karolrec = {0,0,55,102}; // Esta ok
@@ -407,7 +406,7 @@ void tudoDoJorge(){
         Rectangle memoriasrec = {0,0,30,20}; //ok!
         Rectangle memoriassadrec = {30,20,30,20}; //ok!
         Rectangle conflitorec = {60,40,35,20};
-        Rectangle monstrorec = {0,0,90,90};
+        Rectangle monstrorec = {0,0,93,126};
         
        
         
@@ -1422,7 +1421,6 @@ void tudoDaKarol(){
         Image Quarto = LoadImage("/jogoip/Quarto002.png"); //diretorio apartir do C: com as \ invertidas (/);
         Image Jorgeim = LoadImage("/jogoip/Jorge01.png");
         Image memoriasim = LoadImage("/jogoip/memorias.png");
-        Image monstro = LoadImage("/jogoip/monstro2.png");
         Image fala = LoadImage("/jogoip/fala.png");
         Image Karolim = LoadImage("/jogoip/Karol01.png");
         Image desafioim = LoadImage("/jogoip/aviao.png");
@@ -1432,7 +1430,6 @@ void tudoDaKarol(){
         ImageResize (&Karolim,144,104);
         ImageResize (&Quarto,1366,788); //passar o endereço pq ele modifica a imagem original.
         ImageResize (&fala,900,200);
-        ImageResize (&monstro,1300,678);
         ImageResize (&desafioim,96,102);
      //Texture2D:
         Texture2D Quartotx = LoadTextureFromImage(Quarto);
@@ -1443,6 +1440,7 @@ void tudoDaKarol(){
         Texture2D desafiotx = LoadTextureFromImage(desafioim);
         Texture2D estabilidadetx = LoadTexture("/jogoip/estabilidade.png");
         Texture2D estressetx = LoadTexture("/jogoip/estresse.png");
+        Texture2D monstrotx = LoadTexture("/jogoip/monstro.png");
         Image Remedio = LoadImage("/jogoip/Remedio.png");
         Texture2D remediotx = LoadTextureFromImage(Remedio);
         //Tutorial:
@@ -2191,21 +2189,19 @@ void tudoDaKarol(){
         Image Quarto = LoadImage("/jogoip/Quarto002.png"); //diretorio apartir do C: com as \ invertidas (/);
         Image Guilhermeim = LoadImage("/jogoip/Guilherme01.png");
         Image memoriasim = LoadImage("/jogoip/memorias.png");
-        Image monstro = LoadImage("/jogoip/monstro2.png");
         Image fala = LoadImage("/jogoip/fala.png");
         Image desafioim = LoadImage("/jogoip/aviao.png");
      //Image Resize:
         ImageResize (&Guilhermeim,144,104); //144,104,(108,78) - Aumentando a imagem original
         ImageResize (&Quarto,1366,788); //passar o endereço pq ele modifica a imagem original.
         ImageResize (&fala,1366,300);
-        ImageResize (&monstro,1300,678);
         ImageResize (&desafioim,96,102);
      //Texture2D:
         Texture2D Quartotx = LoadTextureFromImage(Quarto);
         Texture2D Guilhermetx = LoadTextureFromImage(Guilhermeim);
         Texture2D memoriastx = LoadTextureFromImage(memoriasim);
         Texture2D falatx = LoadTextureFromImage(fala);
-        Texture2D monstrotx = LoadTextureFromImage(monstro);
+        Texture2D monstrotx = LoadTexture("/jogoip/monstro.png");
         Texture2D desafiotx = LoadTextureFromImage(desafioim);
         Texture2D estabilidadetx = LoadTexture("/jogoip/estabilidade.png");
         Texture2D estressetx = LoadTexture("/jogoip/estresse.png");
@@ -2250,7 +2246,7 @@ void tudoDaKarol(){
         Rectangle memoriasrec = {0,0,30,20}; //ok!
         Rectangle memoriassadrec = {30,20,30,20}; //ok!
         Rectangle conflitorec = {60,40,35,20};
-        Rectangle monstrorec = {0,0,90,90};
+        Rectangle monstrorec = {0,0,93,126};
         
        
         

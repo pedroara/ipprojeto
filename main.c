@@ -206,8 +206,6 @@ void batalhafuncao2(Texture2D fala,int* ruim, int* batalha,int* falac){
         (*batalha)=0;
       }          
         
-       
-        
 }
 void batalhafuncao3(Texture2D fala,int* ruim, int* batalha,int* falac){
       (*falac)=1;
@@ -315,6 +313,7 @@ void terapiaaviso(Texture2D fala,int* falac, Rectangle* Jorger, Rectangle falaco
      DrawText("Está na hora de Jorge ir à terapia",210,660,20,WHITE);
      
 }
+
 void tudoDoJorge(){
     
     int screenWidth = 1366; //dimensão da minha tela
@@ -400,9 +399,7 @@ void tudoDoJorge(){
         Rectangle monstrorec = {0,0,90,90};
         
        
-        
-        
-       //posição das memórias:
+        //posição das memórias:
         Vector2 memoriasp = {500,325}; //ferias com a família
         Vector2 memoriasp2 = {600,325}; //ganhou um ps4
         Vector2 memoriasp3 = {600,525}; //passou de ano
@@ -457,10 +454,6 @@ void tudoDoJorge(){
         //CONDIÇÃO PARA SUBIR DE NIVEL
         if(estabilidade >= 30){
             subiu_de_level();
-            menu();
-        }
-        //Condição do game over
-        if(estabilidade <= 0 ){
             menu();
         }
         
@@ -1005,10 +998,7 @@ void tudoDoJorge(){
                    desafio=0;
                    conflito.x=0;
                    conflito.y=0;
-                   
                }
-               
-               
            }
            if(batalha==0 && ruim<0)
             {
@@ -1027,6 +1017,7 @@ void tudoDoJorge(){
                    }
                    
             }
+            
             if(desafio==2)
            {
                
@@ -1145,6 +1136,19 @@ void tudoDoJorge(){
            if(IsKeyDown(KEY_I))
            {
                DrawTexture(info1tx,340,256,RAYWHITE); 
+           }
+           
+           if(estabilidade <= 0) //game over
+           {
+               DrawTexture(falatx,0,570,RAYWHITE);
+               DrawText("Jorge sente um desconforto no peito, seu coração acelera, está com falta de ar e tontura",220,650,20,WHITE);
+               DrawText("Jorge está tendo uma crise de pânico!\n[PRESS SPACE TO RESTART]",220,680,20,WHITE);
+               
+               if(IsKeyPressed(KEY_SPACE))
+               {
+                   menu();
+               }
+               
            }
         EndDrawing();
     }
@@ -1538,10 +1542,6 @@ void tudoDaKarol(){
         if(estabilidade >= 30){
             subiu_de_level();
             menu();
-        }
-        
-        if(estabilidade <= 0){
-            main();
         }
         
          contadordetempo++;
@@ -2148,6 +2148,18 @@ if(colis[0]==2||colis[0]==4||colis[0]==6||colis[0]==8||colis[0]==10)
            if(IsKeyDown(KEY_I))
            {
                DrawTexture(info2tx,340,256,RAYWHITE); 
+           }
+           
+           if(estabilidade <= 0) //game over
+           {
+               DrawTexture(falatx,0,570,RAYWHITE);
+               DrawText("Karol sente que não consegue respirar, uma forte tontura a domina, ela está suando muito\n e seu coração está batendo em ritmo acelerado.",200,630,20,WHITE);
+               DrawText("Karol sente que seus problemas estão sufocando-a. Karol está tendo uma crise de ansiedade!\n[PRESS SPACE TO RESTART]",200,680,20,WHITE);
+               
+               if(IsKeyPressed(KEY_SPACE))
+               {
+                   menu();
+               }
            }
         EndDrawing();
     }
@@ -2962,7 +2974,7 @@ void tudoDoGuilherme() {
            DrawText(TextFormat("Fase 3"),629,94,35,BLACK);
            DrawText(TextFormat("Refletir: "),15,710,35,BLACK);
            DrawText(TextFormat("Tempo: %0.1f", (float)(contadordetempo/100)),1150,42,30,BLACK);
-           DrawText(TextFormat("T - Tutorial"),1173,720,24,BLACK);
+           DrawText(TextFormat("Y - Tutorial"),1173,720,24,BLACK);
            DrawText(TextFormat("I - Info"),1173,690,24,BLACK);
            //DrawTextureRec(Karoltx,Karolrec,Karolp,RAYWHITE);
            //DrawTextureRec(Guilhermetx,Guilhermerec,Guilhermep,RAYWHITE);
@@ -3109,13 +3121,25 @@ void tudoDoGuilherme() {
            }
            
            //Tutorial:
-           if (IsKeyDown(KEY_T)){
+           if (IsKeyDown(KEY_Y)){
                DrawTexture(tutorialtx,0,0,RAYWHITE);
            }
            //Informações:
            if(IsKeyDown(KEY_I))
            {
                DrawTexture(info3tx,340,256,RAYWHITE); 
+           }
+           
+           if(estabilidade <= 0) //game over
+           {
+               DrawTexture(falatx,0,570,RAYWHITE);
+               DrawText("Guilherme não está conseguindo manter o foco. Sua mente fica confusa e com dificuldade\n de aprender novas coisas.",200,630,20,WHITE);
+               DrawText("Isso deixa Guilherme inseguro e com medo do julgamento alheio!\n[PRESS SPACE TO RESTART]",200,680,20,WHITE);
+               
+               if(IsKeyPressed(KEY_SPACE))
+               {
+                   menu();
+               }
            }
            
         EndDrawing();

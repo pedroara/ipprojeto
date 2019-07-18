@@ -2171,7 +2171,7 @@ if(colis[0]==2||colis[0]==4||colis[0]==6||colis[0]==8||colis[0]==10)
                DrawTexture(falatx,0,570,RAYWHITE);
                DrawText("Karol está com uma forte sensação que algo ruim está para acontecer, isso a deixa inquieta.\nKarol está com tremor nas mãos!\n[PRESS R TO CONTINUE]",220,650,20,WHITE);
                
-               if(IsKeyPressed(KEY_R)
+               if(IsKeyPressed(KEY_R))
                {
                    estabilidade=8;
                }
@@ -2181,7 +2181,7 @@ if(colis[0]==2||colis[0]==4||colis[0]==6||colis[0]==8||colis[0]==10)
                DrawTexture(falatx,0,570,RAYWHITE);
                DrawText("Algo está deixando Karol muito apreensiva, ela não consegue se concentrar e sente \num desconfortável frio na barriga.\nKarol está com medo!\n[PRESS R TO CONTINUE]",220,650,20,WHITE);
            
-               if(IsKeyPressed(KEY_R)
+               if(IsKeyPressed(KEY_R))
                {
                    estabilidade=5;
                }
@@ -2191,7 +2191,7 @@ if(colis[0]==2||colis[0]==4||colis[0]==6||colis[0]==8||colis[0]==10)
                DrawTexture(falatx,0,570,RAYWHITE);
                DrawText("Karol se sente extremamente preocupada com nada em específico e está suscetível a perder a paciência,\numa dor no peito a incomoda constantemente e ela está soando frio.\nKarol está prestes a ter uma crise de ansiedade!\n[PRESS R TO CONTINUE]",220,650,20,WHITE);
            
-               if(IsKeyPressed(KEY_R)
+               if(IsKeyPressed(KEY_R))
                {
                    estabilidade=2;
                }

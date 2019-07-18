@@ -2688,6 +2688,39 @@ void tudoDoGuilherme() {
             }
             colisaoK(&Guilhermer);
         }
+        else if(CheckCollisionRecs(Guilhermer,memoria4))
+        {
+            if(IsKeyDown(KEY_ENTER)==1 && memoria==0)
+            {
+                 desenharmemoria[8]=0;
+                 memoria=1;
+                 memoria4.x=0;
+                 memoria4.y=0;
+            }
+            colisaoK(&Guilhermer);
+        }
+        else if(CheckCollisionRecs(Guilhermer,memoria5))
+        {
+            if(IsKeyDown(KEY_ENTER)==1 && memoria==0)
+            {
+                 desenharmemoria[5]=0;
+                 memoria=1;
+                 memoria5.x=0;
+                 memoria5.y=0;
+            }
+            colisaoK(&Guilhermer);
+        }
+        else if(CheckCollisionRecs(Guilhermer,memoria6))
+        {
+            if(IsKeyDown(KEY_ENTER)==1 && memoria==0)
+            {
+                 desenharmemoria[6]=0;
+                 memoria=1;
+                 memoria6.x=0;
+                 memoria6.y=0;
+            }
+            colisaoK(&Guilhermer);
+        }
         
         else if(CheckCollisionRecs(Guilhermer,conflito)==1 && memoria==1)
         {
@@ -2758,6 +2791,30 @@ void tudoDoGuilherme() {
                  sad=1;
                  memoriasad1.x=0;
                  memoriasad1.y=0;
+            }
+            colisaoK(&Guilhermer);
+        }
+        else if(CheckCollisionRecs(Guilhermer,memoriasad2))
+        {
+            if(IsKeyDown(KEY_ENTER)==1 && memoria==0)
+            {
+                 desenharmemoria[10]=0;
+                 memoria=1;
+                 sad=1;
+                 memoriasad2.x=0;
+                 memoriasad2.y=0;
+            }
+            colisaoK(&Guilhermer);
+        }
+        else if(CheckCollisionRecs(Guilhermer,memoriasad3))
+        {
+            if(IsKeyDown(KEY_ENTER)==1 && memoria==0)
+            {
+                 desenharmemoria[11]=0;
+                 memoria=1;
+                 sad=1;
+                 memoriasad3.x=0;
+                 memoriasad3.y=0;
             }
             colisaoK(&Guilhermer);
         }
@@ -2861,6 +2918,27 @@ void tudoDoGuilherme() {
            if(desenharmemoria[3]==1)
            {
               DrawTextureRec(memoriastx,memoriassadrec,memoriaspsad1,RAYWHITE);
+           }
+           if(desenharmemoria[5]==1)
+           {
+              DrawTextureRec(memoriastx,memoriasrec,memoriasp6,RAYWHITE);
+           }
+           if(desenharmemoria[6]==1)
+           {
+              DrawTextureRec(memoriastx,memoriasrec,memoriasp5,RAYWHITE);
+           }
+           
+           if(desenharmemoria[8]==1)
+           {
+              DrawTextureRec(memoriastx,memoriasrec,memoriasp4,RAYWHITE);
+           }
+           if(desenharmemoria[10]==1)
+           {
+              DrawTextureRec(memoriastx,memoriassadrec,memoriaspsad2,RAYWHITE);
+           }
+           if(desenharmemoria[11]==1)
+           {
+              DrawTextureRec(memoriastx,memoriassadrec,memoriaspsad3,RAYWHITE);
            }
            if(desenharmemoria[4]==1 && memoria==1)
            {

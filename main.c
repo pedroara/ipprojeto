@@ -326,7 +326,7 @@ void tudoDoJorge(){
         Image Quarto = LoadImage("/jogoip/Quarto002.png"); //diretorio apartir do C: com as \ invertidas (/);
         Image Jorgeim = LoadImage("/jogoip/Jorge01.png");
         Image memoriasim = LoadImage("/jogoip/memorias.png");
-        Image monstro = LoadImage("/jogoip/monstro2.png");
+        Image monstro = LoadImage("/jogoip/monstro.png");
         Image fala = LoadImage("/jogoip/fala.png");
         Image tutorialim = LoadImage("/jogoip/tutorial.png");
         Image info1 = LoadImage("/jogoip/panico.png");
@@ -334,7 +334,6 @@ void tudoDoJorge(){
         ImageResize (&Jorgeim,144,104); //144,104,(108,78) - Aumentando a imagem original
         ImageResize (&Quarto,1366,788); //passar o endereço pq ele modifica a imagem original.
         ImageResize (&fala,1366,300);
-        ImageResize (&monstro,1300,678);
         ImageResize (&tutorialim,1366,788);
      //Texture2D:
         Texture2D Quartotx = LoadTextureFromImage(Quarto);
@@ -396,7 +395,7 @@ void tudoDoJorge(){
         Rectangle memoriasrec = {0,0,30,20}; //ok!
         Rectangle memoriassadrec = {30,20,30,20}; //ok!
         Rectangle conflitorec = {60,40,35,20};
-        Rectangle monstrorec = {0,0,90,90};
+        Rectangle monstrorec = {0,0,93,126};
         
        
         //posição das memórias:
@@ -1133,6 +1132,37 @@ void tudoDoJorge(){
                DrawTexture(info1tx,340,256,RAYWHITE); 
            }
            
+           if(estabilidade==7)
+           {
+               DrawTexture(falatx,0,570,RAYWHITE);
+               DrawText("Jorge sente que está perdendo o controle sobre si!\n[PRESS R TO CONTINUE]",220,650,20,WHITE);
+               
+               if(IsKeyPressed(KEY_R))
+               {
+                   estabilidade=8;
+               }
+           }
+           if(estabilidade == 4)
+           {
+               DrawTexture(falatx,0,570,RAYWHITE);
+               DrawText("Jorge tem uma forte sensação de que vai enlouquecer!\n[PRESS R TO CONTINUE]",220,650,20,WHITE);
+               
+               if(IsKeyPressed(KEY_R))
+               {
+                   estabilidade=5;
+               }
+           }
+           if(estabilidade == 1)
+           {
+               DrawTexture(falatx,0,570,RAYWHITE);
+               DrawText("Jorge está sozinho e com muito medo de ter uma crise de pânico!\n[PRESS R TO CONTINUE]",220,650,20,WHITE);
+               
+               if(IsKeyPressed(KEY_R))
+               {
+                   estabilidade=2;
+               }
+           }
+           
            if(estabilidade <= 0) //game over
            {
                DrawTexture(falatx,0,570,RAYWHITE);
@@ -1407,7 +1437,6 @@ void tudoDaKarol(){
         Image Quarto = LoadImage("/jogoip/Quarto002.png"); //diretorio apartir do C: com as \ invertidas (/);
         Image Jorgeim = LoadImage("/jogoip/Jorge01.png");
         Image memoriasim = LoadImage("/jogoip/memorias.png");
-        Image monstro = LoadImage("/jogoip/monstro2.png");
         Image fala = LoadImage("/jogoip/fala.png");
         Image Karolim = LoadImage("/jogoip/Karol01.png");
         Image desafioim = LoadImage("/jogoip/aviao.png");
@@ -1418,7 +1447,6 @@ void tudoDaKarol(){
         ImageResize (&Karolim,144,104);
         ImageResize (&Quarto,1366,788); //passar o endereço pq ele modifica a imagem original.
         ImageResize (&fala,900,200);
-        ImageResize (&monstro,1300,678);
         ImageResize (&desafioim,96,102);
      //Texture2D:
         Texture2D Quartotx = LoadTextureFromImage(Quarto);
@@ -2136,6 +2164,37 @@ if(colis[0]==2||colis[0]==4||colis[0]==6||colis[0]==8||colis[0]==10)
            if(IsKeyDown(KEY_I))
            {
                DrawTexture(info2tx,340,256,RAYWHITE); 
+           }
+           
+           if(estabilidade==7)
+           {
+               DrawTexture(falatx,0,570,RAYWHITE);
+               DrawText("Karol está com uma forte sensação que algo ruim está para acontecer, isso a deixa inquieta.\nKarol está com tremor nas mãos!\n[PRESS R TO CONTINUE]",220,650,20,WHITE);
+               
+               if(IsKeyPressed(KEY_R)
+               {
+                   estabilidade=8;
+               }
+           }
+           if(estabilidade == 4)
+           {
+               DrawTexture(falatx,0,570,RAYWHITE);
+               DrawText("Algo está deixando Karol muito apreensiva, ela não consegue se concentrar e sente \num desconfortável frio na barriga.\nKarol está com medo!\n[PRESS R TO CONTINUE]",220,650,20,WHITE);
+           
+               if(IsKeyPressed(KEY_R)
+               {
+                   estabilidade=5;
+               }
+           }
+           if(estabilidade == 1)
+           {
+               DrawTexture(falatx,0,570,RAYWHITE);
+               DrawText("Karol se sente extremamente preocupada com nada em específico e está suscetível a perder a paciência,\numa dor no peito a incomoda constantemente e ela está soando frio.\nKarol está prestes a ter uma crise de ansiedade!\n[PRESS R TO CONTINUE]",220,650,20,WHITE);
+           
+               if(IsKeyPressed(KEY_R)
+               {
+                   estabilidade=2;
+               }
            }
            
            if(estabilidade <= 0) //game over

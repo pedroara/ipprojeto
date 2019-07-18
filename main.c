@@ -3156,7 +3156,7 @@ while(!WindowShouldClose()){
                DrawTexture(Menutx,0,0,RAYWHITE);
                int x = GetMouseX();
                int y = GetMouseY();
-               DrawText(TextFormat("x: %i y: %i",x,y),10,15,40,RED);
+               //DrawText(TextFormat("x: %i y: %i",x,y),10,15,40,RED);
                DrawText("Fase 1",600,450,50,BLACK);
                DrawText("Fase 2",600,500,50,BLACK);
                DrawText("Fase 3",600,550,50,BLACK);

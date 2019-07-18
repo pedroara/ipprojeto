@@ -1803,7 +1803,7 @@ void tudoDaKarol(){
                                                                                                                             colisaoK(&Karolr); 
                                                                                                 }else 
                                                                                                     if(CheckCollisionRecs(Karolr,refletirec)==1)
-                                                                                                       {
+                                                                                                        {
                                                                                                             colisaoK(&Karolr); 
                                                                                                             if(refletir==1)
                                                                                                                 {
@@ -1822,150 +1822,151 @@ void tudoDaKarol(){
                                                                                                                                         refletir=0;
                                                                                                                                     }
                                                                                                                         }
-                                                                                                                }else
-                                                                                                                    if(colis[0]==1||colis[0]==3||colis[0]==5||colis[0]==7||colis[0]==9)
+                                                                                                                }else 
+                                                                                                                    if(CheckCollisionRecs(Karolr,falacolisao))
                                                                                                                         {
-                                                                                                                            if(CheckCollisionRecs(Karolr,conflito)==1 && memoria==1 && sad==0)
-                                                                                                                            {
-                                                                                                                                if(colis[1]==0)
+                                                                                                                            if(falac==1 && ruim>=1)
                                                                                                                                 {
-                                                                                                                                    ruim++;
+                                                                                                                                    colisaoK(&Karolr);  
+                                                                                                                                    falac=0;
                                                                                                                                 }
-                                                                                                                                colis[1]=1;
-                                                                                                                                colisaoK(&Karolr);
-                                                                                                                            }
-                                                                                                                            else if(CheckCollisionRecs(Karolr,conflito2)==1 && memoria==1 && sad==0)
-                                                                                                                            {
-                                                                                                                                if(colis[2]==0)
-                                                                                                                                {
-                                                                                                                                    ruim++;
-                                                                                                                                }
-                                                                                                                                colis[2]=1;
-                                                                                                                                colisaoK(&Karolr);
-                                                                                                                            }
-                                                                                                                             else if(CheckCollisionRecs(Karolr,conflito3)==1 && memoria==1 && sad==0)
-                                                                                                                            {
-                                                                                                                                if(colis[3]==0)
-                                                                                                                                {
-                                                                                                                                    ruim++;
-                                                                                                                                }
-                                                                                                                                colis[3]=1;
-                                                                                                                                colisaoK(&Karolr);
-                                                                                                                            }
-                                                                                                                             else if(CheckCollisionRecs(Karolr,conflito4)==1 && memoria==1 && sad==0)
-                                                                                                                            {
-                                                                                                                                if(colis[4]==0)
-                                                                                                                                {
-                                                                                                                                    ruim++;
-                                                                                                                                }
-                                                                                                                                colis[4]=1;
-                                                                                                                                colisaoK(&Karolr);
-                                                                                                                            }
-                                                                                                                            else if(CheckCollisionRecs(Karolr,conflito5)==1 && memoria==1 && sad==0)
-                                                                                                                            {
-                                                                                                                                if(colis[5]==0)
-                                                                                                                                {
-                                                                                                                                    ruim++;
-                                                                                                                                }
-                                                                                                                                colis[5]=1;
-                                                                                                                                colisaoK(&Karolr);
-                                                                                                                            }
-                                                                                                                            else if(CheckCollisionRecs(Karolr,conflito6)==1 && memoria==1 && sad==0)
-                                                                                                                            {
-                                                                                                                                if(colis[6]==0)
-                                                                                                                                {
-                                                                                                                                    ruim++;
-                                                                                                                                }
-                                                                                                                                colis[6]=1;
-                                                                                                                                colisaoK(&Karolr);
-                                                                                                                            }
-                                                                                                                            else if(CheckCollisionRecs(Karolr,conflito7)==1 && memoria==1 && sad==0)
-                                                                                                                            {
-                                                                                                                                if(colis[7]==0)
-                                                                                                                                {
-                                                                                                                                    ruim++;
-                                                                                                                                }
-                                                                                                                                colis[7]=1; 
-                                                                                                                                colisaoK(&Karolr);
-                                                                                                                            }
-                                                                                                                        }else 
-                                                                                                                            if(colis[0]==2||colis[0]==4||colis[0]==6||colis[0]==8||colis[0]==10)
-                                                                                                                            {
-                                                                                                                                if(CheckCollisionRecs(Karolr,conflito1par)==1 && memoria==1 && sad==0)
-                                                                                                                                    {
-                                                                                                                                        if(colis[1]==0)
-                                                                                                                                        {
-                                                                                                                                            ruim++;
-                                                                                                                                        }
-                                                                                                                                        colis[1]=1;
-                                                                                                                                        colisaoK(&Karolr);
-                                                                                                                                    }else 
-                                                                                                                                        if(CheckCollisionRecs(Karolr,conflito2par)==1 && memoria==1 && sad==0)
-                                                                                                                                        {
-                                                                                                                                            if(colis[2]==0)
-                                                                                                                                            {
-                                                                                                                                                ruim++;
-                                                                                                                                            }
-                                                                                                                                            colis[2]=1;
-                                                                                                                                            colisaoK(&Karolr);
-                                                                                                                                        }
-                                                                                                                                         else if(CheckCollisionRecs(Karolr,conflito3par)==1 && memoria==1 && sad==0)
-                                                                                                                                        {
-                                                                                                                                            if(colis[3]==0)
-                                                                                                                                            {
-                                                                                                                                                ruim++;
-                                                                                                                                            }
-                                                                                                                                            colis[3]=1;
-                                                                                                                                            colisaoK(&Karolr);
-                                                                                                                                        }
-                                                                                                                                         else if(CheckCollisionRecs(Karolr,conflito4par)==1 && memoria==1 && sad==0)
-                                                                                                                                        {
-                                                                                                                                            if(colis[4]==0)
-                                                                                                                                            {
-                                                                                                                                                ruim++;
-                                                                                                                                            }
-                                                                                                                                            colis[4]=1;
-                                                                                                                                            colisaoK(&Karolr);
-                                                                                                                                        }
-                                                                                                                                        else if(CheckCollisionRecs(Karolr,conflito5par)==1 && memoria==1 && sad==0)
-                                                                                                                                        {
-                                                                                                                                            if(colis[5]==0)
-                                                                                                                                            {
-                                                                                                                                                ruim++;
-                                                                                                                                            }
-                                                                                                                                            colis[5]=1;
-                                                                                                                                            colisaoK(&Karolr);
-                                                                                                                                        }
-                                                                                                                                        else if(CheckCollisionRecs(Karolr,conflito6par)==1 && memoria==1 && sad==0)
-                                                                                                                                        {
-                                                                                                                                            if(colis[6]==0)
-                                                                                                                                            {
-                                                                                                                                                ruim++;
-                                                                                                                                            }
-                                                                                                                                            colis[6]=1;
-                                                                                                                                            colisaoK(&Karolr);
-                                                                                                                                        }
-                                                                                                                                        else if(CheckCollisionRecs(Karolr,conflito7par)==1 && memoria==1 && sad==0)
-                                                                                                                                        {
-                                                                                                                                            if(colis[7]==0)
-                                                                                                                                            {
-                                                                                                                                                ruim++;
-                                                                                                                                            }
-                                                                                                                                            colis[7]=1; 
-                                                                                                                                            colisaoK(&Karolr);
-                                                                                                                                        }
-                                                                                                                            }else 
-                                                                                                                                        if(CheckCollisionRecs(Karolr,falacolisao))
-                                                                                                                                            {
-                                                                                                                                                if(falac==1 && ruim>=1)
-                                                                                                                                                    {
-                                                                                                                                                                      colisaoK(&Karolr);  
-                                                                                                                                                                      falac=0;
-                                                                                                                                                                   }
                                                                                                                                                                     
-                                                                                                                                                                }  
-                                                                                                                                            } 
-                                                                        
+                                                                                                                         }  
+                                                                                                        } 
+
+if(colis[0]==1||colis[0]==3||colis[0]==5||colis[0]==7||colis[0]==9)
+{
+    if(CheckCollisionRecs(Karolr,conflito)==1 && memoria==1 && sad==0)
+    {
+        if(colis[1]==0)
+        {
+            ruim++;
+        }
+        colis[1]=1;
+        colisaoK(&Karolr);
+    }else
+        if(CheckCollisionRecs(Karolr,conflito2)==1 && memoria==1 && sad==0)
+            {
+                if(colis[2]==0)
+                    {
+                        ruim++;
+                    }
+                colis[2]=1;
+                colisaoK(&Karolr);
+            }else
+                if(CheckCollisionRecs(Karolr,conflito3)==1 && memoria==1 && sad==0)
+                    {
+                        if(colis[3]==0)
+                            {
+                                ruim++;
+                            }
+                        colis[3]=1;
+                        colisaoK(&Karolr);
+                    }else
+                        if(CheckCollisionRecs(Karolr,conflito4)==1 && memoria==1 && sad==0)
+                            {
+                                if(colis[4]==0)
+                                    {
+                                        ruim++;
+                                    }
+                                colis[4]=1;
+                                colisaoK(&Karolr);
+                            }else 
+                                if(CheckCollisionRecs(Karolr,conflito5)==1 && memoria==1 && sad==0)
+                                    {
+                                        if(colis[5]==0)
+                                            {
+                                                ruim++;
+                                            }
+                                        colis[5]=1;
+                                        colisaoK(&Karolr);
+                                    }else 
+                                        if(CheckCollisionRecs(Karolr,conflito6)==1 && memoria==1 && sad==0)
+                                            {
+                                                if(colis[6]==0)
+                                                    {
+                                                    ruim++;
+                                                    }
+                                                colis[6]=1;
+                                                colisaoK(&Karolr);
+                                            }else
+                                                if(CheckCollisionRecs(Karolr,conflito7)==1 && memoria==1 && sad==0)
+                                                    {
+                                                        if(colis[7]==0)
+                                                            {
+                                                            ruim++;
+                                                            }
+                                                        colis[7]=1; 
+                                                        colisaoK(&Karolr);
+                                                    }
+}
+if(colis[0]==2||colis[0]==4||colis[0]==6||colis[0]==8||colis[0]==10)
+{
+    if(CheckCollisionRecs(Karolr,conflito1par)==1 && memoria==1 && sad==0)
+        {
+        if(colis[1]==0)
+        {
+        ruim++;
+        }
+    colis[1]=1;
+    colisaoK(&Karolr);
+    }else 
+    if(CheckCollisionRecs(Karolr,conflito2par)==1 && memoria==1 && sad==0)
+    {
+        if(colis[2]==0)
+            {
+            ruim++;
+            }
+        colis[2]=1;
+        colisaoK(&Karolr);
+    }else 
+        if(CheckCollisionRecs(Karolr,conflito3par)==1 && memoria==1 && sad==0)
+        {
+            if(colis[3]==0)
+                {
+                ruim++;
+                }
+            colis[3]=1;
+            colisaoK(&Karolr);
+        }else
+            if(CheckCollisionRecs(Karolr,conflito4par)==1 && memoria==1 && sad==0)
+                {
+                if(colis[4]==0)
+                    {
+                    ruim++;
+                    }
+                colis[4]=1;
+                colisaoK(&Karolr);
+                }else 
+                    if(CheckCollisionRecs(Karolr,conflito5par)==1 && memoria==1 && sad==0)
+                        {
+                            if(colis[5]==0)
+                                {
+                                ruim++;
+                                }
+                            colis[5]=1;
+                            colisaoK(&Karolr);
+                        }else
+                            if(CheckCollisionRecs(Karolr,conflito6par)==1 && memoria==1 && sad==0)
+                                {
+                                    if(colis[6]==0)
+                                        {
+                                        ruim++;
+                                        }
+                                    colis[6]=1;
+                                    colisaoK(&Karolr);
+                                }else
+                                    if(CheckCollisionRecs(Karolr,conflito7par)==1 && memoria==1 && sad==0)
+                                        {
+                                            if(colis[7]==0)
+                                                {
+                                                ruim++;
+                                                }
+                                            colis[7]=1; 
+                                            colisaoK(&Karolr);
+                                        }
+}
+
         if(ruim>=1)   
         {
             contar= contar + 0.017; 
@@ -2026,12 +2027,12 @@ void tudoDaKarol(){
                DrawCircle(175,728,12,GREEN);
            }
            DrawText(TextFormat("x: %i y: %i",x,y),605,15,40,RED);
-           DrawText(TextFormat("Memoria: ",memoria),15,680,35,BLACK);
+           DrawText(TextFormat("Memoria: "),15,680,35,BLACK);
            DrawTexture(estabilidadetx, 35, 8, WHITE);
            DrawTexture(estressetx, 35, estabilidadetx.height + 16, WHITE);
            DrawRectangleGradientH(39, 36,((estabilidade*0.1)/3)*325, 26, SKYBLUE, DARKBLUE);
            DrawRectangleGradientH(39, 104,(stress*0.1)*325, 25, RED, (Color){123, 20, 34, 255});
-           DrawText(TextFormat("Refletir: ",refletir),15,710,35,BLACK);
+           DrawText(TextFormat("Refletir: "),15,710,35,BLACK);
            DrawText(TextFormat("Fase 2"),629,94,35,BLACK);
            DrawText(TextFormat("Tempo: %0.1f", (float)(contadordetempo/100)),1150,42,30,BLACK);
            DrawText(TextFormat("T - Tutorial"),1173,720,24,BLACK);
@@ -2147,14 +2148,15 @@ void tudoDaKarol(){
                desenhar=1;
            }
            DrawTexture(remediotx,755,410,RAYWHITE);
-           if(estabilidade >= 30)
-           {
-               int tantoFaz = subiu_de_level(&checkpoint);
-           }
+           //Condição para ganhar ou perder o jogo
            if(estabilidade >= 30)
            {
                subiu_de_level();
            }
+           if(estabilidade<=0){
+               menu();
+           }
+           //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
            if(desenhar==1)
            {
                DrawTextureRec(Karoltx,Karolrec,Karolp,RAYWHITE);
@@ -2172,7 +2174,6 @@ void tudoDaKarol(){
     CloseWindow();
     
 }
-
 void desafiofuncaoG(Texture2D fala,int* ruim, int* batalha,int* falac){
       (*falac)=1;
       if((*batalha)==1)
@@ -2405,8 +2406,7 @@ void desenharconflitoG7(Texture2D fala){
      DrawText("CONFLITO: Ajude Guilherme a retomar o foco.",220,630,20,WHITE);
      DrawText("[PRESS O]",275,680,20,WHITE);
      
-}
- 
+} 
 void tudoDoGuilherme() {
     int screenWidth = 1366; //dimenssão da minha tela
     int screenHeight = 768;
@@ -2425,7 +2425,7 @@ void tudoDoGuilherme() {
         Image capim = LoadImage("/jogoip/filme2.png");
         Image loveim = LoadImage("/jogoip/crush.png");
         Image jogoim = LoadImage("/jogoip/jogo.png");
-        Image info3 = LoadImage("/jogoip/TDA.png")
+        Image info3 = LoadImage("/jogoip/TDA.png");
      //Image Resize:
         ImageResize (&Guilhermeim,144,104); //144,104,(108,78) - Aumentando a imagem original
         ImageResize (&Quarto,1366,788); //passar o endereço pq ele modifica a imagem original.
@@ -2914,9 +2914,10 @@ void tudoDoGuilherme() {
            {
                DrawTextureRec(Guilhermetx,Guilhermerec,Guilhermep,RAYWHITE);
            }
+           
            if(IsKeyDown(KEY_I))
            {
-               DrawTexture(info13tx,340,256,RAYWHITE); 
+               DrawTexture(info3tx,340,256,RAYWHITE); 
            }
         EndDrawing();
     }

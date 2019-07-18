@@ -1786,21 +1786,21 @@ void tudoDaKarol(){
                                                                                                                 }
                                                                                                             if(sad==1)
                                                                                                                 {
-                                                                                                                    stress--;
+                                                                                                                    stress=stress - 3;
                                                                                                                     sad=0;
                                                                                                                 }else
                                                                                                                     {
                                                                                                                         stress = stress+3;
                                                                                                                     }
-                                                                                                                        memoria=0;
-                                                                                                                        ruim=0;
-                                                                                                                    }
-                                                                                                                    for(int i=1;i<8;i++)
-                                                                                                                        {
-                                                                                                                            colis[i]=0;
-                                                                                                                        }
-                                                                                                                            colis[0]= colis[0]+1;
-                                                                                                                            colisaoK(&Karolr); 
+                                                                                                            memoria=0;
+                                                                                                            ruim=0;
+                                                                                                        }
+                                                                                                    for(int i=1;i<8;i++)
+                                                                                                        {
+                                                                                                            colis[i]=0;
+                                                                                                        }
+                                                                                                    colis[0]= colis[0]+1;
+                                                                                                    colisaoK(&Karolr); 
                                                                                                 }else 
                                                                                                     if(CheckCollisionRecs(Karolr,refletirec)==1)
                                                                                                         {

@@ -1,41 +1,40 @@
 #include <raylib.h>
 #include <stdio.h>
 #include <math.h>
-void sobrenos()
-{
-   Music nos = LoadMusicStream("/jogoip/Warriors.ogg");
-PlayMusicStream(nos);
-SetMusicVolume(nos, 0.2);
+
+void sobrenos(){
+    //Musica:
+    Music nos = LoadMusicStream("/jogoip/Warriors.ogg");
+    PlayMusicStream(nos);
+    SetMusicVolume(nos, 0.2);    
+          Image Sobre = LoadImage("/jogoip/Sobre.png");
+          ImageResize(&Sobre,1005,700);
+          Texture2D sobretx = LoadTextureFromImage(Sobre);
+    
    while(!WindowShouldClose())
-   { UpdateMusicStream(nos);
-   
-      Image Sobre = LoadImage("/jogoip/Sobre.png");
-      ImageResize(&Sobre,1005,700);
-      Texture2D sobretx = LoadTextureFromImage(Sobre);
-       BeginDrawing();
-      ClearBackground(BLACK); 
-      /*DrawText("Créditos:\nJogo desenvolvido pelos alunos de Ciência da Computação da UFRPE:  Izabelle Tais, Maely S. Coutinho, \nMarcos Bernardo, Marielly Lins e Pedro Araújo para cadeira de Introdução à Programação I. \nTem como intuito tornar palpável, de forma lúdica, a realidade de pessoas que diariamente convivem com \ndoenças/transtornos/distúrbios mentais. \nO nosso grupo gostaria de esclarecer que não somos especialistas no assunto e nos desculpar por qualquer erro que podemos \nter cometido no desenvolvimento desse projeto",10,10,20,BLACK);
-      DrawText("Se você está passando por essas ou outras doenças/transtornos/distúrbios mentais e está em tratamento a equipe do PixelMind \ntorce pela sua estabilidade. \nSe você ainda não buscou ajuda esperamos que esses jogo tenha lhe mostrado a importância da terapia em sua melhora.",10,220,20,BLACK);
-      DrawText("Esse é você.\n",500,300,20,BLACK);
-      DrawText(" Ajude-se.\n",500,320,20,BLACK);
-      DrawText("E por fim esse é um mundo com muitos Jorges, Karol’s, Guilhermes e Luizas.\n",10,350,20,BLACK);
-      DrawText(" Ajude-o.",500,400,20,BLACK);   
-      DrawText(" ENTER PARA VOLTAR ",500,450,20,RED); */
-      DrawTexture(sobretx,200,30,RAYWHITE);     
+   { 
+        //Pra musica tocar:
+          UpdateMusicStream(nos);
+        //Carregando e redimensionando a imagem:
+      
+        BeginDrawing();
+        ClearBackground(BLACK); 
+      //Desenhar textura na tela:
+      DrawTexture(sobretx,200,30,RAYWHITE);  
+      
       if (IsKeyPressed(KEY_ENTER)){
           menu();
       }
-    EndDrawing();
+        EndDrawing();
    }
     CloseWindow();
 }
-typedef struct 
-{
+
+typedef struct {
    int raio;
    int x,y;      
 }circulo;
-void movimentacao(Rectangle* Jorger)
-{
+void movimentacao(Rectangle* Jorger){
         if (IsKeyDown(KEY_DOWN))
         {
             (Jorger->y)+= 4; //y cresce para baixo.
@@ -52,22 +51,15 @@ void movimentacao(Rectangle* Jorger)
         {
             (Jorger->x) -=4;
         }
-            
-    
 }
-
-void colisao(Rectangle* Jorger)
-{ 
+void colisao(Rectangle* Jorger){ 
            if(IsKeyDown(KEY_LEFT))
-           
            {
                (Jorger->x)+=4;
-               
            }
            if(IsKeyDown(KEY_RIGHT))
            {
                (Jorger->x)-=4;
-               
            }
            if(IsKeyDown(KEY_UP))
            {
@@ -76,14 +68,9 @@ void colisao(Rectangle* Jorger)
            if(IsKeyDown(KEY_DOWN))
            {
                (Jorger->y)-=4;
-               
            } 
-    
 }
-
-
-void tamanhotela(Rectangle* Jorger, int screenHeight,int screenWidth)
-{
+void tamanhotela(Rectangle* Jorger, int screenHeight,int screenWidth){
         if(Jorger->x+53>screenWidth)
         {
             Jorger->x = screenWidth-53;
@@ -101,138 +88,69 @@ void tamanhotela(Rectangle* Jorger, int screenHeight,int screenWidth)
             Jorger->y=0+10;
         }
 }
-
-
-void desenharconflito(Texture2D fala)
-{
+void desenharconflito(Texture2D fala){
      
-     DrawTexture(fala,0,570,RAYWHITE);
+      DrawTexture(fala,0,570,RAYWHITE);
       DrawText("CONFLITO: Ir para a festa de Carla.\nAjude Jorge a deixar seus pensamentos mais funcionais",220,630,20,WHITE);
       DrawText("[PRESS A] Ninguém me quer lá\n[PRESS B] Vai ser divertido!",220,680,20,WHITE);
      
 }
-void desenharconflito2(Texture2D fala)
-{
+void desenharconflito2(Texture2D fala){
      
      DrawTexture(fala,0,570,RAYWHITE);
      DrawText("CONFLITO: Na festa, alguém te chamou para dançar.\n",220,630,20,WHITE);
      DrawText("[PRESS A] Sim. Estou entre amigos, ninguém vai ligar\n[PRESS B] Não. Vou passar vergonha",220,680,20,WHITE);
      
 }
-void desenharconflito3(Texture2D fala)
-{
+void desenharconflito3(Texture2D fala){
      
      DrawTexture(fala,0,570,RAYWHITE);
      DrawText("CONFLITO: Alguém está olhando para você.\n",220,630,20,WHITE);
      DrawText("[PRESS A] Talvez ela queira conversar\n[PRESS B] Há algo de errado comigo",220,680,20,WHITE);
      
 }
-
-void desenharconflito4(Texture2D fala)
-{
+void desenharconflito4(Texture2D fala){
      
      DrawTexture(fala,0,570,RAYWHITE);
      DrawText("CONFLITO: Apresentar trabalho em público.\nAjude Jorge a deixar seus pensamentos mais funcionais",220,630,20,WHITE);
      DrawText("[PRESS A] Todo mundo já esteve na mesma situação\n[PRESS B] Todos vão estar me julgando",220,680,20,WHITE);
      
 }
-void desenharconflito5(Texture2D fala)
-{
+void desenharconflito5(Texture2D fala){
      
      DrawTexture(fala,0,570,RAYWHITE);
      DrawText("CONFLITO: Um grupo de pessoas está rindo no fundo da sala.\n",220,630,20,WHITE);
      DrawText("[PRESS A] Estão rindo de mim\n[PRESS B] Eles conversam em todas as aulas",220,680,20,WHITE);
 }
-void desenharconflito6(Texture2D fala)
-{
+void desenharconflito6(Texture2D fala){
      
      DrawTexture(fala,0,570,RAYWHITE);
      DrawText("CONFLITO: O professor está escrevendo algo em sua prancheta.\n",220,630,20,WHITE);
      DrawText("[PRESS A] Ele só está tomando notas\n[PRESS B] Eu estou falando tudo errado",220,680,20,WHITE);
      
 }
-void desenharconflito7(Texture2D fala)
-{
+void desenharconflito7(Texture2D fala){
      
      DrawTexture(fala,0,570,RAYWHITE);
      DrawText("CONFLITO: Estar em um elevador cheio.\nAjude Jorge a deixar seus pensamentos mais funcionais",220,630,20,WHITE);
      DrawText("[PRESS A] Vou ficar sem ar!\n[PRESS B] Vai dar tudo certo!",220,680,20,WHITE);
      
 }
-void desenharconflito8(Texture2D fala)
-{
+void desenharconflito8(Texture2D fala){
      
      DrawTexture(fala,0,570,RAYWHITE);
      DrawText("CONFLITO: O lugar está apertado.\n",220,630,20,WHITE);
      DrawText("[PRESS A] Tem mais gente do que o elevador aguenta\n[PRESS B] Só está um pouco cheio",220,680,20,WHITE);
      
 }
-void desenharconflito9(Texture2D fala)
-{
+void desenharconflito9(Texture2D fala){
      
      DrawTexture(fala,0,570,RAYWHITE);
      DrawText("CONFLITO: Você está com medo de ficar preso.",220,630,20,WHITE);
      DrawText("[PRESS A] Vou fazer exercício de respiração\n[PRESS B] Acho que vou morrer!",220,680,20,WHITE);
      
 }
-void desenharconflitoG1(Texture2D fala)
-{
-     
-     DrawTexture(fala,237,630,RAYWHITE);
-     DrawText("CONFLITO: Ajude Guilherme a retomar o foco.",450,690,20,WHITE);
-     DrawText("[PRESS A]",450,720,20,WHITE);
-     
-}
-void desenharconflitoG2(Texture2D fala)
-{
-     
-     DrawTexture(fala,237,630,RAYWHITE);
-     DrawText("CONFLITO: Ajude Guilherme a retomar o foco.",450,690,20,WHITE);
-     DrawText("[PRESS T]",450,720,20,WHITE);
-     
-}
-void desenharconflitoG3(Texture2D fala)
-{
-     
-     DrawTexture(fala,237,630,RAYWHITE);
-     DrawText("CONFLITO: Ajude Guilherme a retomar o foco.",450,690,20,WHITE);
-     DrawText("[PRESS E]",450,720,20,WHITE);
-     
-}
-void desenharconflitoG4(Texture2D fala)
-{
-     
-     DrawTexture(fala,237,630,RAYWHITE);
-     DrawText("CONFLITO: Ajude Guilherme a retomar o foco.",450,690,20,WHITE);
-     DrawText("[PRESS N]",450,720,20,WHITE);
-     
-}
-void desenharconflitoG5(Texture2D fala)
-{
-     
-     DrawTexture(fala,237,630,RAYWHITE);
-     DrawText("CONFLITO: Ajude Guilherme a retomar o foco.",450,690,20,WHITE);
-     DrawText("[PRESS C]",450,720,20,WHITE);
-     
-}
-void desenharconflitoG6(Texture2D fala)
-{
-     
-     DrawTexture(fala,237,630,RAYWHITE);
-     DrawText("CONFLITO: Ajude Guilherme a retomar o foco.",450,690,20,WHITE);
-     DrawText("[PRESS A]",450,720,20,WHITE);
-     
-}
-void desenharconflitoG7(Texture2D fala)
-{
-     
-     DrawTexture(fala,237,630,RAYWHITE);
-     DrawText("CONFLITO: Ajude Guilherme a retomar o foco.",450,690,20,WHITE);
-     DrawText("[PRESS O]",450,720,20,WHITE);
-     
-}
-void batalhafuncao(int* ruim,int opc, int* batalha)
-{
+void batalhafuncao(int* ruim,int opc, int* batalha){
    if(opc == 1)
    {
        if(IsKeyPressed(KEY_A)) //A=ruim, B=bom;
@@ -261,159 +179,7 @@ void batalhafuncao(int* ruim,int opc, int* batalha)
        
    }
 }
-void batalhafuncaoG(int* ruim,int opc, int* batalha)
-{
-   if(opc == 1)
-   {
-       
-       if(GetKeyPressed()<=0)
-       {
-           
-       }
-       else 
-       {
-          if(IsKeyPressed("A")) 
-           {
-               (*ruim)--;
-               (*batalha)++;
-           }
-           else 
-           {
-               (*ruim)++;
-               (*batalha)++;
-           } 
-       }
-   }
-   else if(opc == 2)
-   {
-      if(GetKeyPressed()<=0)
-       {
-           
-       }
-       else 
-       {
-          if(IsKeyPressed("T")) 
-           {
-               (*ruim)--;
-               (*batalha)++;
-           }
-           else 
-           {
-               (*ruim)++;
-               (*batalha)++;
-           } 
-       }
-       
-   }
-   else if(opc == 3)
-   {
-       if(GetKeyPressed()<=0)
-       {
-           
-       }
-       else 
-       {
-          if(IsKeyPressed("E")) 
-           {
-               (*ruim)--;
-               (*batalha)++;
-           }
-           else 
-           {
-               (*ruim)++;
-               (*batalha)++;
-           } 
-       }
-       
-   }
-   else if(opc == 4)
-   {
-     if(GetKeyPressed()<=0)
-       {
-           
-       }
-       else 
-       {
-          if(IsKeyPressed("N")) 
-           {
-               (*ruim)--;
-               (*batalha)++;
-           }
-           else 
-           {
-               (*ruim)++;
-               (*batalha)++;
-           } 
-       }
-       
-   }
-   else if(opc == 5)
-   {
-       if(GetKeyPressed()<=0)
-       {
-           
-       }
-       else 
-       {
-          if(IsKeyPressed("C")) 
-           {
-               (*ruim)--;
-               (*batalha)++;
-           }
-           else 
-           {
-               (*ruim)++;
-               (*batalha)++;
-           } 
-       }
-       
-   }
-   else if(opc == 6)
-   {
-       if(GetKeyPressed()<=0)
-       {
-           
-       }
-       else 
-       {
-          if(IsKeyPressed("A")) 
-           {
-               (*ruim)--;
-               (*batalha)++;
-           }
-           else 
-           {
-               (*ruim)++;
-               (*batalha)++;
-           } 
-       }
-       
-       
-   }
-   else if(opc == 7)
-   {
-       if(GetKeyPressed()<=0)
-       {
-           
-       }
-       else 
-       {
-          if(IsKeyPressed("O")) 
-           {
-               (*ruim)--;
-               (*batalha)++;
-           }
-           else 
-           {
-               (*ruim)++;
-               (*batalha)++;
-           } 
-       }
-       
-   }
-}
-void batalhafuncao2(Texture2D fala,int* ruim, int* batalha,int* falac)
-{
+void batalhafuncao2(Texture2D fala,int* ruim, int* batalha,int* falac){
      (*falac)=1;
       if((*batalha)==1)
       {
@@ -440,8 +206,7 @@ void batalhafuncao2(Texture2D fala,int* ruim, int* batalha,int* falac)
        
         
 }
-void batalhafuncao3(Texture2D fala,int* ruim, int* batalha,int* falac)
-{
+void batalhafuncao3(Texture2D fala,int* ruim, int* batalha,int* falac){
       (*falac)=1;
       if((*batalha)==1)
       {
@@ -466,8 +231,7 @@ void batalhafuncao3(Texture2D fala,int* ruim, int* batalha,int* falac)
       }              
         
 }
-void batalhafuncao4(Texture2D fala,int* ruim, int* batalha,int* falac)
-{
+void batalhafuncao4(Texture2D fala,int* ruim, int* batalha,int* falac){
       (*falac=1);
       if((*batalha)==1)
       {
@@ -491,9 +255,7 @@ void batalhafuncao4(Texture2D fala,int* ruim, int* batalha,int* falac)
         (*batalha)=0;
       }                
 }
-
-void atualizarestabilidade(int* stress,int* estabilidade)
-{
+void atualizarestabilidade(int* stress,int* estabilidade){
        if((*stress)>= 10)
     {
         (*estabilidade) = *estabilidade-2;
@@ -522,8 +284,7 @@ void atualizarestabilidade(int* stress,int* estabilidade)
     }
     
 }
-void diversaoaviso(Texture2D fala,int* falac, Rectangle* Jorger, Rectangle falacolisao)
-{
+void diversaoaviso(Texture2D fala,int* falac, Rectangle* Jorger, Rectangle falacolisao){
      (*falac)=1;
      /*int contador = 0;
      contador++;
@@ -540,8 +301,7 @@ void diversaoaviso(Texture2D fala,int* falac, Rectangle* Jorger, Rectangle falac
      DrawText("Está na hora de Jorge se divertir",370,700,20,WHITE);  
      
 }
-void terapiaaviso(Texture2D fala,int* falac, Rectangle* Jorger, Rectangle falacolisao)
-{
+void terapiaaviso(Texture2D fala,int* falac, Rectangle* Jorger, Rectangle falacolisao){
      (*falac)=1;
      
      DrawTexture(fala,0,570,RAYWHITE);
@@ -552,62 +312,6 @@ void terapiaaviso(Texture2D fala,int* falac, Rectangle* Jorger, Rectangle falaco
      DrawText("Está na hora de Jorge ir à terapia",210,660,20,WHITE);
      
 }
-
-void desafiofuncaoG(Texture2D fala,int* ruim, int* batalha,int* falac)
-{
-      (*falac)=1;
-      if((*batalha)==1)
-      {
-          desenharconflitoG2(fala);
-          batalhafuncaoG(&(*ruim),2,&(*batalha)); 
-          
-      }
-      else if((*batalha)==2)
-      {
-          desenharconflitoG1(fala);
-          batalhafuncaoG(&(*ruim),1,&(*batalha));
-          
-      }    
-      else if((*batalha)==3)
-      {
-        desenharconflitoG5(fala);
-        batalhafuncaoG(&(*ruim),5,&(*batalha));
-      } 
-      else if((*batalha)==4)
-      {
-        desenharconflitoG3(fala);
-        batalhafuncaoG(&(*ruim),3,&(*batalha));
-      } 
-      else if((*batalha)==5)
-      {
-        desenharconflitoG7(fala);
-        batalhafuncaoG(&(*ruim),7,&(*batalha));
-      } 
-      else if((*batalha)==6)
-      {
-        desenharconflitoG4(fala);
-        batalhafuncaoG(&(*ruim),4,&(*batalha));
-      } 
-      else if((*batalha)==7)
-      {
-        desenharconflitoG6(fala);
-        batalhafuncaoG(&(*ruim),6,&(*batalha));
-      } 
-      else if((*batalha)==8)
-      {
-        (*batalha)=0;
-      }              
-        
-}
-/*
-Coisas dos outros personagens
-//Image Karolim = LoadImage("/jogoip/Karol01.png");
-//Image Guilhermeim = LoadImage("/jogoip/Guilherme01.png");
-//ImageResize (&Karolim,144,104);
-//ImageResize (&Guilhermeim,144,104);
-//Texture2D Karoltx = LoadTextureFromImage(Karolim);
-//Texture2D Guilhermetx = LoadTextureFromImage(Guilhermeim);
-*/
 void tudoDoJorge(){
     
     int screenWidth = 1366; //dimensão da minha tela
@@ -622,12 +326,14 @@ void tudoDoJorge(){
         Image memoriasim = LoadImage("/jogoip/memorias.png");
         Image monstro = LoadImage("/jogoip/monstro2.png");
         Image fala = LoadImage("/jogoip/fala.png");
-        
+        Image tutorialim = LoadImage("/jogoip/tutorial.png");
+        Image info1 = LoadImage("/jogoip/panico.png");
      //Image Resize:
         ImageResize (&Jorgeim,144,104); //144,104,(108,78) - Aumentando a imagem original
         ImageResize (&Quarto,1366,788); //passar o endereço pq ele modifica a imagem original.
         ImageResize (&fala,1366,300);
         ImageResize (&monstro,1300,678);
+        ImageResize (&tutorialim,1366,788);
      //Texture2D:
         Texture2D Quartotx = LoadTextureFromImage(Quarto);
         Texture2D Jorgetx = LoadTextureFromImage(Jorgeim);
@@ -636,6 +342,8 @@ void tudoDoJorge(){
         Texture2D monstrotx = LoadTextureFromImage(monstro);
         Texture2D estabilidadetx = LoadTexture("/jogoip/estabilidade.png");
         Texture2D estressetx = LoadTexture("/jogoip/estresse.png");
+        Texture2D tutorialtx = LoadTextureFromImage(tutorialim);
+        Texture2D info1tx = LoadTextureFromImage(info1);
      //Rectengles:
         Rectangle Jorgerec = {0,0,53,102};// testando o tamanho do boneco no mapa (pegando só esse retângulo)
         //Rectangle Karolrec = {0,0,55,102}; // Esta ok
@@ -672,11 +380,14 @@ void tudoDoJorge(){
         Rectangle parede3 = {221,304,55,20};
         Rectangle parede4 = {0,669,190,340};
         Rectangle parede5 = {1166,669,190,340};
+        Rectangle latInfEsq = {0,672,230,768};
+        Rectangle latInfEsq2 ={0,700,300,768};
+        Rectangle latInfDir ={1060,678,1366,768}; 
         //Rectangle p1 = {};
         //Rectangle p2 = {};
         //Rectangle p3 = {};
         Rectangle falacolisao = {0,630,1300,300};
-        Rectangle refletirec = {680,390,20,20};
+        Rectangle refletirec = {640,400,60,15};
         
         
         //recorte de imagem:
@@ -731,10 +442,11 @@ void tudoDoJorge(){
     int refletir=0;
     checkpoint = qual_level(0);
     int desenharmemoria[20] = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
-    
+    //Musica do jogo:
     Music ewof = LoadMusicStream("/jogoip/Ewof.ogg");
     PlayMusicStream(ewof);
     SetMusicVolume(ewof, 0.2);
+    
     while (!WindowShouldClose())   
     { 
        UpdateMusicStream(ewof); 
@@ -742,6 +454,10 @@ void tudoDoJorge(){
         //CONDIÇÃO PARA SUBIR DE NIVEL
         if(estabilidade >= 30){
             subiu_de_level();
+            menu();
+        }
+        //Condição do game over
+        if(estabilidade <= 0 ){
             menu();
         }
         
@@ -813,6 +529,8 @@ void tudoDoJorge(){
                 diversao=0;
             }
             
+        }else if(CheckCollisionRecs(Jorger,latInfEsq)==1 || CheckCollisionRecs(Jorger,latInfEsq2)==1|| CheckCollisionRecs(Jorger,latInfDir)==1){
+            colisao(&Jorger);
         }
         else if(CheckCollisionRecs(Jorger,parede2)==1)
         {
@@ -1106,6 +824,7 @@ void tudoDoJorge(){
         }
         else if (CheckCollisionRecs(Jorger,lixo))
         {
+           colisao(&Jorger);
            if(IsKeyPressed(KEY_ENTER)==1 && memoria==1)
             {
                 if(sad==1)
@@ -1121,25 +840,30 @@ void tudoDoJorge(){
             }
             colisao(&Jorger); 
         }
-        else if(CheckCollisionRecs(Jorger,refletirec) && refletir==1)
+        else if(CheckCollisionRecs(Jorger,refletirec)==1)
         {
-            if(IsKeyPressed(KEY_ENTER)==1 && memoria==1)
-            {                
-                if(sad==1)
-                {
-                    stress-=2;
-                    memoria=0;
-                    sad=0;
-                    refletir=0;
-                }
-                else
-                {
-                    estabilidade+=1;
-                    memoria=0;
-                    refletir=0;
+           colisao(&Jorger);
+           if(refletir == 1)
+            {
+               
+                if(IsKeyPressed(KEY_ENTER)==1 && memoria==1)
+                {                
+                    if(sad==1)
+                    {
+                        stress-=2;
+                        memoria=0;
+                        sad=0;
+                        refletir=0;
+                    }
+                    else
+                    {
+                        estabilidade+=1;
+                        memoria=0;
+                        refletir=0;
+                    }
                 }
             }
-        }            
+        }
 
         
             int minutos = 3600;
@@ -1177,14 +901,26 @@ void tudoDoJorge(){
            //DrawTexture(circulo1.posicaox,circulo1.posicaoy,RAYWHITE);
            //DrawTextureRec(Texture2D texture, Rectangle sourceRec, Vector2 position, Color tint); 
            DrawText(TextFormat("x: %i y: %i",x,y),605,15,40,RED);
-           DrawText(TextFormat("Memoria: %i",memoria),15,680,35,BLACK);
+           if(memoria==1 && sad==1){
+                DrawCircle(175,695,12,BLUE);
+           }else
+               if(memoria == 1 && sad == 0){
+                DrawCircle(175,695,12,YELLOW);   
+               }
+           if(refletir==1){
+               DrawCircle(175,728,12,GREEN);
+           }
+           DrawText(TextFormat("Memoria: "),15,680,35,BLACK);
            DrawTexture(estabilidadetx, 35, 8, WHITE);
            DrawTexture(estressetx, 35, estabilidadetx.height + 16, WHITE);
            DrawRectangleGradientH(39, 36,((estabilidade*0.1)/3)*325, 26, SKYBLUE, DARKBLUE);
            DrawRectangleGradientH(39, 104,(stress*0.1)*325, 25, RED, (Color){123, 20, 34, 255});
-           DrawText(TextFormat("Refletir: %i",refletir),15,710,35,BLACK);
+           DrawText(TextFormat("Refletir:"),15,710,35,BLACK);
            DrawText(TextFormat("Fase 1"),629,94,35,BLACK);
            DrawText(TextFormat("Tempo: %0.1f", (float)(contadordetempo/100)),1150,42,30,BLACK);
+           DrawText(TextFormat("T - Tutorial"),1173,720,24,BLACK);
+           DrawText(TextFormat("I - Info"),1173,690,24,BLACK);
+           
            //DrawTextureRec(Karoltx,Karolrec,Karolp,RAYWHITE);
            //DrawTextureRec(Guilhermetx,Guilhermerec,Guilhermep,RAYWHITE);
            
@@ -1400,31 +1136,23 @@ void tudoDoJorge(){
            {
                subiu_de_level();
            }
+
+           if (IsKeyDown(KEY_T)){
+               DrawTexture(tutorialtx,0,0,RAYWHITE);
+           }
+           
+           if(IsKeyDown(KEY_I))
+           {
+               DrawTexture(info1tx,340,256,RAYWHITE); 
+           }
         EndDrawing();
     }
     CloseWindow();
-    
 }
 
-void move_circ(int* posic)
-{
-    if(IsKeyPressed(KEY_UP))
-    {
-        if((*posic) > 470)
-        {
-            (*posic) -= 50;
-        }
-    }
-    if(IsKeyPressed(KEY_DOWN))
-    {
-        if((*posic) < 600)
-        {
-            (*posic) += 50;
-        }
-    }
-}
-void movimentacaoK(Rectangle* Karolr)
-{
+//FASE 2
+
+void movimentacaoK(Rectangle* Karolr){
         if (IsKeyDown(KEY_DOWN))
         {
             (Karolr->y)+= 4; //y cresce para baixo.
@@ -1444,9 +1172,7 @@ void movimentacaoK(Rectangle* Karolr)
             
     
 }
-
-void colisaoK(Rectangle* Karolr)
-{ 
+void colisaoK(Rectangle* Karolr){ 
            if(IsKeyDown(KEY_LEFT))
            
            {
@@ -1469,10 +1195,7 @@ void colisaoK(Rectangle* Karolr)
            } 
     
 }
-
-
-void tamanhotelaK(Rectangle* Karolr, int screenHeight,int screenWidth)
-{
+void tamanhotelaK(Rectangle* Karolr, int screenHeight,int screenWidth){
         if(Karolr->x+53>screenWidth)
         {
             Karolr->x = screenWidth-53;
@@ -1490,9 +1213,7 @@ void tamanhotelaK(Rectangle* Karolr, int screenHeight,int screenWidth)
            Karolr->y=0+10;
         }
 }
-
-void diversaoavisoK(Texture2D fala,int* falac, Rectangle* Karolr, Rectangle falacolisao)
-{
+void diversaoavisoK(Texture2D fala,int* falac, Rectangle* Karolr, Rectangle falacolisao){
      (*falac)=1;
      DrawTexture(fala,237,650,RAYWHITE);
      if((Karolr->x >= falacolisao.x) && (Karolr->y >= falacolisao.y))
@@ -1502,19 +1223,7 @@ void diversaoavisoK(Texture2D fala,int* falac, Rectangle* Karolr, Rectangle fala
      DrawText("Está na hora de Karol se divertir",450,720,20,WHITE);  
      
 }
-void diversaoavisoG(Texture2D fala,int* falac, Rectangle* Guilhermer, Rectangle falacolisao)
-{
-     (*falac)=1;
-     DrawTexture(fala,237,650,RAYWHITE);
-     if((Guilhermer->x >= falacolisao.x) && (Guilhermer->y >= falacolisao.y))
-     {
-         Guilhermer->y = 525;
-     }
-     DrawText("Está na hora de Guilherme se divertir",450,720,20,WHITE);  
-     
-}
-void terapiaavisoK(Texture2D fala,int* falac, Rectangle* Karolr, Rectangle falacolisao)
-{
+void terapiaavisoK(Texture2D fala,int* falac, Rectangle* Karolr, Rectangle falacolisao){
      (*falac)=1;
      DrawTexture(fala,237,650,RAYWHITE);
      if((Karolr->x >= falacolisao.x) && (Karolr->y >= falacolisao.y))
@@ -1524,19 +1233,7 @@ void terapiaavisoK(Texture2D fala,int* falac, Rectangle* Karolr, Rectangle falac
      DrawText("Está na hora de Karol ir para a terapia",450,720,20,WHITE);  
      
 }
-void terapiaavisoG(Texture2D fala,int* falac, Rectangle* Guilhermer, Rectangle falacolisao)
-{
-     (*falac)=1;
-     DrawTexture(fala,237,650,RAYWHITE);
-     if((Guilhermer->x >= falacolisao.x) && (Guilhermer->y >= falacolisao.y))
-     {
-         Guilhermer->y = 525;
-     }
-     DrawText("Está na hora de Guilherme ir para a terapia",450,720,20,WHITE);  
-     
-}
-void remedioavisoK(Texture2D fala,int* falac, Rectangle* Karolr, Rectangle falacolisao)
-{
+void remedioavisoK(Texture2D fala,int* falac, Rectangle* Karolr, Rectangle falacolisao){
      (*falac)=1;
      DrawTexture(fala,237,650,RAYWHITE);
      if((Karolr->x >= falacolisao.x) && (Karolr->y >= falacolisao.y))
@@ -1546,30 +1243,7 @@ void remedioavisoK(Texture2D fala,int* falac, Rectangle* Karolr, Rectangle falac
      DrawText("Está na hora de Karol tomar seu remedio",450,720,20,WHITE);  
      
 }
-void remedioavisoG(Texture2D fala,int* falac, Rectangle* Guilhermer, Rectangle falacolisao)
-{
-     (*falac)=1;
-     DrawTexture(fala,237,650,RAYWHITE);
-     if((Guilhermer->x >= falacolisao.x) && (Guilhermer->y >= falacolisao.y))
-     {
-         Guilhermer->y = 525;
-     }
-     DrawText("Está na hora de Guilherme tomar seu remedio",450,720,20,WHITE);  
-     
-}
-void perdeumemoria(Texture2D fala,int* falac, Rectangle* Guilhermer, Rectangle falacolisao)
-{
-     (*falac)=1;
-     DrawTexture(fala,237,650,RAYWHITE);
-     if((Guilhermer->x >= falacolisao.x) && (Guilhermer->y >= falacolisao.y))
-     {
-         Guilhermer->y = 525;
-     }
-     DrawText("Guilherme se esqueceu da memória que tentava guardar",450,720,20,WHITE);  
-     
-}
-void desafiofuncaoK(Texture2D fala, int* ruim,int* falac,int opc)
-{
+void desafiofuncaoK(Texture2D fala, int* ruim,int* falac,int opc){
     (*falac)=1;
     if((*ruim)==1)
     {
@@ -1721,7 +1395,6 @@ void desafiofuncaoK(Texture2D fala, int* ruim,int* falac,int opc)
     }
            
 }
-
 void tudoDaKarol(){
     
     int screenWidth = 1366; //dimenssão da minha tela
@@ -1738,6 +1411,7 @@ void tudoDaKarol(){
         Image fala = LoadImage("/jogoip/fala.png");
         Image Karolim = LoadImage("/jogoip/Karol01.png");
         Image desafioim = LoadImage("/jogoip/aviao.png");
+        Image info2 = LoadImage("/jogoip/ansiedade.png");
 
      //Image Resize:
         //ImageResize (&Jorgeim,144,104); //144,104,(108,78) - Aumentando a imagem original
@@ -1757,6 +1431,12 @@ void tudoDaKarol(){
         Texture2D estressetx = LoadTexture("/jogoip/estresse.png");
         Image Remedio = LoadImage("/jogoip/Remedio.png");
         Texture2D remediotx = LoadTextureFromImage(Remedio);
+        Texture2D info2tx = LoadTextureFromImage(info2);
+        //Tutorial:
+        Image tutorialim = LoadImage("/jogoip/tutorial.png");
+        ImageResize (&tutorialim,1366,788);
+        Texture2D tutorialtx = LoadTextureFromImage(tutorialim);
+
      //Rectengles:
         //Rectangle Jorgerec = {0,0,53,102};// testando o tamanho do boneco no mapa (pegando só esse retângulo)
         Rectangle Karolrec = {0,0,55,102}; // Esta ok
@@ -1776,6 +1456,8 @@ void tudoDaKarol(){
         Rectangle memoriasad1 = {810,600,10,3};
         Rectangle memoriasad2 = {850,380,10,3};
         Rectangle memoriasad3 = {115,590,10,3};
+        
+        //colis[0] impar
         Rectangle conflito = {940,330,20,10};
         Rectangle conflito2 = {940,530,20,10};
         Rectangle conflito3 = {240,530,20,10};
@@ -1783,6 +1465,15 @@ void tudoDaKarol(){
         Rectangle conflito5 = {830,625,20,10};
         Rectangle conflito6 = {340,530,20,10};
         Rectangle conflito7 = {640,590,20,10};
+        //colis[0] par
+        Rectangle conflito1par = {990,380,20,10};
+        Rectangle conflito2par = {365,450,20,10};
+        Rectangle conflito3par = {260,410,20,10};
+        Rectangle conflito4par = {1310,560,20,10};
+        Rectangle conflito5par = {950,580,20,10};
+        Rectangle conflito6par = {780,600,20,10};
+        Rectangle conflito7par = {640,590,20,10};        
+        
         Rectangle mesa = {525,405,305,100};
         Rectangle pe1= {570,515,20,15};
         Rectangle pe2= {790,515,20,15};
@@ -1793,12 +1484,13 @@ void tudoDaKarol(){
         Rectangle parede4 = {0,669,190,340};
         Rectangle parede5 = {1166,669,190,340};
         Rectangle falacolisao = {330,695,800,150};
-        Rectangle remedior = {725,400,3,5};
-        Rectangle refletirec = {680,390,20,20};
+        //Rec do conflito do remedio
+        Rectangle remedior = {750,401,5,5};
+        //Rec do conflito do refletir
+        Rectangle refletirec = {639,401,60,15};
          
         Rectangle memoriasrec = {0,0,30,20}; //ok!
         Rectangle memoriassadrec = {30,20,30,20}; //ok!
-        
         
        //posição das memórias:
         Vector2 memoriasp = {288,400}; //ferias com a família
@@ -1811,6 +1503,9 @@ void tudoDaKarol(){
         Vector2 memoriaspsad1 = {800,600}; //perdeu contato com um amigo querido
         Vector2 memoriaspsad2 = {850,380};
         Vector2 memoriaspsad3 = {115,590};
+        Rectangle latInfEsq = {0,672,230,768};
+        Rectangle latInfEsq2 ={0,700,300,768};
+        Rectangle latInfDir ={1060,678,1366,768}; 
        
         
     //variáveis :
@@ -1832,13 +1527,21 @@ void tudoDaKarol(){
     int colis[8] = {1,0,0,0,0,0,0,0};
     int checkpoint = 0;
     checkpoint = qual_level(0);
+    //Musica da fase:
     Music memory = LoadMusicStream("/jogoip/Memory.ogg");
     PlayMusicStream(memory);
+    refletir = 1;
     while (!WindowShouldClose())   
-    { UpdateMusicStream (memory); UpdateMusicStream (memory);
+    { 
+        UpdateMusicStream (memory); 
+        
         if(estabilidade >= 30){
             subiu_de_level();
             menu();
+        }
+        
+        if(estabilidade <= 0){
+            main();
         }
         
          contadordetempo++;
@@ -1884,292 +1587,367 @@ void tudoDaKarol(){
                 }
                 colis[0]= colis[0]+1;
             }
-        }
-        else if(CheckCollisionRecs(Karolr,mesa)==1 ||CheckCollisionRecs(Karolr,pe1)==1|| CheckCollisionRecs(Karolr,pe2)==1)
-        {
-            colisaoK(&Karolr);
-        }
-        else if(CheckCollisionRecs(Karolr,parede1)==1) 
-        {
-            colisaoK(&Karolr);
-            if(diversao==1)
+        }else 
+            if(CheckCollisionRecs(Karolr,mesa)==1 ||CheckCollisionRecs(Karolr,pe1)==1|| CheckCollisionRecs(Karolr,pe2)==1)
             {
+                colisaoK(&Karolr);
                 
-                desenhar=0;
-                stress = stress - 5;
-                diversao=0;
-            }
+            }else
+                if(CheckCollisionRecs(Karolr,latInfEsq)==1 || CheckCollisionRecs(Karolr,latInfEsq2)==1|| CheckCollisionRecs(Karolr,latInfDir)==1)
+                {
+                    colisaoK(&Karolr);
+                }else 
+                    if(CheckCollisionRecs(Karolr,parede1)==1) 
+                    {
+                        colisaoK(&Karolr);
+                        if(diversao==1)
+                        {
+                            
+                            desenhar=0;
+                            stress = stress - 5;
+                            diversao=0;
+                        }
             
-        }
-        else if(CheckCollisionRecs(Karolr,parede2)==1)
+                    }else 
+                        if(CheckCollisionRecs(Karolr,parede2)==1)
+                        {
+                            colisaoK(&Karolr);
+                            if(terapia==1)
+                            {
+                                desenhar=0;
+                                estabilidade = estabilidade + 5;
+                                terapia=0;
+                            }                    
+                        }else 
+                            if(CheckCollisionRecs(Karolr,remedior)==1)
+                            {
+                                colisaoK(&Karolr);
+                                if(remedio==1)
+                                {
+                                    //desenhar=2;
+                                    estabilidade = estabilidade + 5;
+                                    remedio=0;
+                                }
+                                
+                            }else 
+                                if(CheckCollisionRecs(Karolr,parede3))
+                                {
+                                    colisaoK(&Karolr); 
+                                }else 
+                                    if(CheckCollisionRecs(Karolr,parede4) || CheckCollisionRecs(Karolr,parede5))
+                                    {
+                                        colisaoK(&Karolr); 
+                                    }else 
+                                        if(CheckCollisionRecs(Karolr,memoria1)==1)
+                                        {
+                                            if(IsKeyPressed(KEY_ENTER)==1 && memoria==0)
+                                            {
+                                                 desenharmemoria[0]=0;
+                                                 memoria=1;
+                                                 memoria1.x=0;
+                                                 memoria1.y=0;
+                                            }
+                                            
+                                            colisaoK(&Karolr);
+                                        }else
+                                            if(CheckCollisionRecs(Karolr,memoria2)==1)
+                                            {
+                                                if(IsKeyPressed(KEY_ENTER)==1 && memoria==0)
+                                                {
+                                                    desenharmemoria[1]=0;
+                                                    memoria=1;
+                                                    memoria2.x=0;
+                                                    memoria2.y=0;
+                                                }
+                                                    colisaoK(&Karolr);
+                                            }else 
+                                                if(CheckCollisionRecs(Karolr,memoria3))
+                                                {
+                                                    if(IsKeyDown(KEY_ENTER)==1 && memoria==0)
+                                                    {
+                                                         desenharmemoria[2]=0;
+                                                         memoria=1;
+                                                         memoria3.x=0;
+                                                         memoria3.y=0;
+                                                    }
+                                                    colisaoK(&Karolr);
+                                                }else 
+                                                    if(CheckCollisionRecs(Karolr,memoria4))
+                                                    {
+                                                        
+                                                        if(IsKeyDown(KEY_ENTER)==1 && memoria==0)
+                                                        {
+                                                             desenharmemoria[5]=0;
+                                                             memoria=1;
+                                                             memoria4.x=0;
+                                                             memoria4.y=0;
+                                                        }
+                                                        colisaoK(&Karolr);
+                                                    }else 
+                                                        if(CheckCollisionRecs(Karolr,memoria5))
+                                                        {
+                                                            
+                                                            if(IsKeyDown(KEY_ENTER)==1 && memoria==0)
+                                                            {
+                                                                 desenharmemoria[9]=0;
+                                                                 memoria=1;
+                                                                 memoria5.x=0;
+                                                                 memoria5.y=0;
+                                                            }
+                                                            colisaoK(&Karolr);
+                                                        }else 
+                                                            if(CheckCollisionRecs(Karolr,memoria6))
+                                                            {
+                                                                
+                                                                if(IsKeyDown(KEY_ENTER)==1 && memoria==0)
+                                                                {
+                                                                     desenharmemoria[10]=0;
+                                                                     memoria=1;
+                                                                     memoria6.x=0;
+                                                                     memoria6.y=0;
+                                                                }
+                                                                colisaoK(&Karolr);
+                                                            }else 
+                                                                if(CheckCollisionRecs(Karolr,memoria7))
+                                                                {
+                                                                    
+                                                                    if(IsKeyDown(KEY_ENTER)==1 && memoria==0)
+                                                                    {
+                                                                         desenharmemoria[11]=0;
+                                                                         memoria=1;
+                                                                         memoria7.x=0;
+                                                                         memoria7.y=0;
+                                                                    }
+                                                                    colisaoK(&Karolr);
+                                                                }else 
+                                                                    if(CheckCollisionRecs(Karolr,memoriasad1))
+                                                                        {
+                                                                            if(IsKeyDown(KEY_ENTER)==1 && memoria==0)
+                                                                                {
+                                                                                    desenharmemoria[3]=0;
+                                                                                    memoria=1;
+                                                                                    sad=1;
+                                                                                    memoriasad1.x=0;
+                                                                                    memoriasad1.y=0;
+                                                                                }
+                                                                            colisaoK(&Karolr);
+                                                                        }else 
+                                                                            if(CheckCollisionRecs(Karolr,memoriasad2))
+                                                                                {
+                                                                                    if(IsKeyDown(KEY_ENTER)==1 && memoria==0)
+                                                                                       {
+                                                                                            desenharmemoria[6]=0;
+                                                                                            memoria=1;
+                                                                                            sad=1;
+                                                                                            memoriasad2.x=0;
+                                                                                            memoriasad2.y=0;
+                                                                                        }
+                                                                                            colisaoK(&Karolr);
+                                                                                }else 
+                                                                                    if(CheckCollisionRecs(Karolr,memoriasad3))
+                                                                                        {
+                                                                                            if(IsKeyDown(KEY_ENTER)==1 && memoria==0)
+                                                                                                {
+                                                                                                     desenharmemoria[7]=0;
+                                                                                                     memoria=1;
+                                                                                                     sad=1;
+                                                                                                     memoriasad3.x=0;
+                                                                                                     memoriasad3.y=0;
+                                                                                                }
+                                                                                                colisaoK(&Karolr);
+                                                                                        }else 
+                                                                                            if (CheckCollisionRecs(Karolr,lixo))
+                                                                                                {
+                                                                                                    if(IsKeyPressed(KEY_ENTER)==1 && memoria==1)
+                                                                                                        {
+                                                                                                            if(ruim>=3)
+                                                                                                                {
+                                                                                                                    sad=1;
+                                                                                                                }
+                                                                                                            if(sad==1)
+                                                                                                                {
+                                                                                                                    stress=stress - 3;
+                                                                                                                    sad=0;
+                                                                                                                }else
+                                                                                                                    {
+                                                                                                                        stress = stress+3;
+                                                                                                                    }
+                                                                                                            memoria=0;
+                                                                                                            ruim=0;
+                                                                                                        }
+                                                                                                    for(int i=1;i<8;i++)
+                                                                                                        {
+                                                                                                            colis[i]=0;
+                                                                                                        }
+                                                                                                    colis[0]= colis[0]+1;
+                                                                                                    colisaoK(&Karolr); 
+                                                                                                }else 
+                                                                                                    if(CheckCollisionRecs(Karolr,refletirec)==1)
+                                                                                                        {
+                                                                                                            colisaoK(&Karolr); 
+                                                                                                            if(refletir==1)
+                                                                                                                {
+                                                                                                                    if(IsKeyPressed(KEY_ENTER)==1 && memoria==1)
+                                                                                                                        {                
+                                                                                                                            if(sad==1)
+                                                                                                                                {
+                                                                                                                                    stress-=2;
+                                                                                                                                    memoria=0;
+                                                                                                                                    sad=0;
+                                                                                                                                    refletir=0;
+                                                                                                                                }else
+                                                                                                                                    {
+                                                                                                                                        estabilidade+=1;
+                                                                                                                                        memoria=0;
+                                                                                                                                        refletir=0;
+                                                                                                                                    }
+                                                                                                                        }
+                                                                                                                }else 
+                                                                                                                    if(CheckCollisionRecs(Karolr,falacolisao))
+                                                                                                                        {
+                                                                                                                            if(falac==1 && ruim>=1)
+                                                                                                                                {
+                                                                                                                                    colisaoK(&Karolr);  
+                                                                                                                                    falac=0;
+                                                                                                                                }
+                                                                                                                                                                    
+                                                                                                                         }  
+                                                                                                        } 
+
+if(colis[0]==1||colis[0]==3||colis[0]==5||colis[0]==7||colis[0]==9)
+{
+    if(CheckCollisionRecs(Karolr,conflito)==1 && memoria==1 && sad==0)
+    {
+        if(colis[1]==0)
         {
-            colisaoK(&Karolr);
-            if(terapia==1)
+            ruim++;
+        }
+        colis[1]=1;
+        colisaoK(&Karolr);
+    }else
+        if(CheckCollisionRecs(Karolr,conflito2)==1 && memoria==1 && sad==0)
             {
-                desenhar=0;
-                estabilidade = estabilidade + 5;
-                terapia=0;
-            }
-            
-        }
-        else if(CheckCollisionRecs(Karolr,remedior)==1)
+                if(colis[2]==0)
+                    {
+                        ruim++;
+                    }
+                colis[2]=1;
+                colisaoK(&Karolr);
+            }else
+                if(CheckCollisionRecs(Karolr,conflito3)==1 && memoria==1 && sad==0)
+                    {
+                        if(colis[3]==0)
+                            {
+                                ruim++;
+                            }
+                        colis[3]=1;
+                        colisaoK(&Karolr);
+                    }else
+                        if(CheckCollisionRecs(Karolr,conflito4)==1 && memoria==1 && sad==0)
+                            {
+                                if(colis[4]==0)
+                                    {
+                                        ruim++;
+                                    }
+                                colis[4]=1;
+                                colisaoK(&Karolr);
+                            }else 
+                                if(CheckCollisionRecs(Karolr,conflito5)==1 && memoria==1 && sad==0)
+                                    {
+                                        if(colis[5]==0)
+                                            {
+                                                ruim++;
+                                            }
+                                        colis[5]=1;
+                                        colisaoK(&Karolr);
+                                    }else 
+                                        if(CheckCollisionRecs(Karolr,conflito6)==1 && memoria==1 && sad==0)
+                                            {
+                                                if(colis[6]==0)
+                                                    {
+                                                    ruim++;
+                                                    }
+                                                colis[6]=1;
+                                                colisaoK(&Karolr);
+                                            }else
+                                                if(CheckCollisionRecs(Karolr,conflito7)==1 && memoria==1 && sad==0)
+                                                    {
+                                                        if(colis[7]==0)
+                                                            {
+                                                            ruim++;
+                                                            }
+                                                        colis[7]=1; 
+                                                        colisaoK(&Karolr);
+                                                    }
+}
+if(colis[0]==2||colis[0]==4||colis[0]==6||colis[0]==8||colis[0]==10)
+{
+    if(CheckCollisionRecs(Karolr,conflito1par)==1 && memoria==1 && sad==0)
         {
-            colisaoK(&Karolr);
-            if(remedio==1)
+        if(colis[1]==0)
+        {
+        ruim++;
+        }
+    colis[1]=1;
+    colisaoK(&Karolr);
+    }else 
+    if(CheckCollisionRecs(Karolr,conflito2par)==1 && memoria==1 && sad==0)
+    {
+        if(colis[2]==0)
             {
-                //desenhar=2;
-                estabilidade = estabilidade + 5;
-                remedio=0;
+            ruim++;
             }
-            
-        }
-        else if(CheckCollisionRecs(Karolr,parede3))
-        {
-            colisaoK(&Karolr); 
-        }
-        else if(CheckCollisionRecs(Karolr,parede4) || CheckCollisionRecs(Karolr,parede5))
-        {
-            colisaoK(&Karolr); 
-        }
-        else if(CheckCollisionRecs(Karolr,memoria1)==1)
-        {
-            if(IsKeyPressed(KEY_ENTER)==1 && memoria==0)
-            {
-                 desenharmemoria[0]=0;
-                 memoria=1;
-                 memoria1.x=0;
-                 memoria1.y=0;
-            }
-            
-            colisaoK(&Karolr);
-        }
-        else if(CheckCollisionRecs(Karolr,memoria2)==1)
-        {
-            if(IsKeyPressed(KEY_ENTER)==1 && memoria==0)
-            {
-                 desenharmemoria[1]=0;
-                 memoria=1;
-                 memoria2.x=0;
-                 memoria2.y=0;
-            }
-            colisaoK(&Karolr);
-        }
-        else if(CheckCollisionRecs(Karolr,memoria3))
-        {
-            if(IsKeyDown(KEY_ENTER)==1 && memoria==0)
-            {
-                 desenharmemoria[2]=0;
-                 memoria=1;
-                 memoria3.x=0;
-                 memoria3.y=0;
-            }
-            colisaoK(&Karolr);
-        }
-        else if(CheckCollisionRecs(Karolr,memoria4))
-        {
-            
-            if(IsKeyDown(KEY_ENTER)==1 && memoria==0)
-            {
-                 desenharmemoria[5]=0;
-                 memoria=1;
-                 memoria4.x=0;
-                 memoria4.y=0;
-            }
-            colisaoK(&Karolr);
-        }
-              else if(CheckCollisionRecs(Karolr,memoria5))
-        {
-            
-            if(IsKeyDown(KEY_ENTER)==1 && memoria==0)
-            {
-                 desenharmemoria[9]=0;
-                 memoria=1;
-                 memoria5.x=0;
-                 memoria5.y=0;
-            }
-            colisaoK(&Karolr);
-        }
-        else if(CheckCollisionRecs(Karolr,memoria6))
-        {
-            
-            if(IsKeyDown(KEY_ENTER)==1 && memoria==0)
-            {
-                 desenharmemoria[10]=0;
-                 memoria=1;
-                 memoria6.x=0;
-                 memoria6.y=0;
-            }
-            colisaoK(&Karolr);
-        }
-        else if(CheckCollisionRecs(Karolr,memoria7))
-        {
-            
-            if(IsKeyDown(KEY_ENTER)==1 && memoria==0)
-            {
-                 desenharmemoria[11]=0;
-                 memoria=1;
-                 memoria7.x=0;
-                 memoria7.y=0;
-            }
-            colisaoK(&Karolr);
-        }
-        else if(CheckCollisionRecs(Karolr,conflito)==1 && memoria==1 && sad==0)
-        {
-            if(colis[1]==0)
-            {
-                ruim++;
-            }
-            colis[1]=1;
-            colisaoK(&Karolr);
-        }
-        else if(CheckCollisionRecs(Karolr,conflito2)==1 && memoria==1 && sad==0)
-        {
-            if(colis[2]==0)
-            {
-                ruim++;
-            }
-            colis[2]=1;
-            colisaoK(&Karolr);
-        }
-         else if(CheckCollisionRecs(Karolr,conflito3)==1 && memoria==1 && sad==0)
+        colis[2]=1;
+        colisaoK(&Karolr);
+    }else 
+        if(CheckCollisionRecs(Karolr,conflito3par)==1 && memoria==1 && sad==0)
         {
             if(colis[3]==0)
-            {
+                {
                 ruim++;
-            }
+                }
             colis[3]=1;
             colisaoK(&Karolr);
-        }
-         else if(CheckCollisionRecs(Karolr,conflito4)==1 && memoria==1 && sad==0)
-        {
-            if(colis[4]==0)
-            {
-                ruim++;
-            }
-            colis[4]=1;
-            colisaoK(&Karolr);
-        }
-        else if(CheckCollisionRecs(Karolr,conflito5)==1 && memoria==1 && sad==0)
-        {
-            if(colis[5]==0)
-            {
-                ruim++;
-            }
-            colis[5]=1;
-            colisaoK(&Karolr);
-        }
-        else if(CheckCollisionRecs(Karolr,conflito6)==1 && memoria==1 && sad==0)
-        {
-            if(colis[6]==0)
-            {
-                ruim++;
-            }
-            colis[6]=1;
-            colisaoK(&Karolr);
-        }
-        else if(CheckCollisionRecs(Karolr,conflito7)==1 && memoria==1 && sad==0)
-        {
-            if(colis[7]==0)
-            {
-                ruim++;
-            }
-            colis[7]=1; 
-            colisaoK(&Karolr);
-        }
-        else if(CheckCollisionRecs(Karolr,memoriasad1))
-        {
-            if(IsKeyDown(KEY_ENTER)==1 && memoria==0)
-            {
-                 desenharmemoria[3]=0;
-                 memoria=1;
-                 sad=1;
-                 memoriasad1.x=0;
-                 memoriasad1.y=0;
-            }
-            colisaoK(&Karolr);
-        }
-        else if(CheckCollisionRecs(Karolr,memoriasad2))
-        {
-            if(IsKeyDown(KEY_ENTER)==1 && memoria==0)
-            {
-                 desenharmemoria[6]=0;
-                 memoria=1;
-                 sad=1;
-                 memoriasad2.x=0;
-                 memoriasad2.y=0;
-            }
-            colisaoK(&Karolr);
-        }
-        else if(CheckCollisionRecs(Karolr,memoriasad3))
-        {
-            if(IsKeyDown(KEY_ENTER)==1 && memoria==0)
-            {
-                 desenharmemoria[7]=0;
-                 memoria=1;
-                 sad=1;
-                 memoriasad3.x=0;
-                 memoriasad3.y=0;
-            }
-            colisaoK(&Karolr);
-        }
-        else if (CheckCollisionRecs(Karolr,lixo))
-        {
-           if(IsKeyPressed(KEY_ENTER)==1 && memoria==1)
-            {
-                if(ruim>=3)
+        }else
+            if(CheckCollisionRecs(Karolr,conflito4par)==1 && memoria==1 && sad==0)
                 {
-                  sad=1;
-                }
-                if(sad==1)
-                {
-                    stress--;
-                    sad=0;
-                }
-                else
-                {
-                    stress = stress+3;
-                }
-                 memoria=0;
-                 ruim=0;
-            }
-            for(int i=1;i<8;i++)
-            {
-                 colis[i]=0;
-            }
-            colis[0]= colis[0]+1;
-            colisaoK(&Karolr); 
-        }  
-        else if(CheckCollisionRecs(Karolr,refletirec) && refletir==1)
-        {
-            if(IsKeyPressed(KEY_ENTER)==1 && memoria==1)
-            {                
-                if(sad==1)
-                {
-                    stress-=2;
-                    memoria=0;
-                    sad=0;
-                    refletir=0;
-                }
-                else
-                {
-                    estabilidade+=1;
-                    memoria=0;
-                    refletir=0;
-                }
-            }
-        }          
-        else if(CheckCollisionRecs(Karolr,falacolisao))
-        {
-           if(falac==1 && ruim>=1)
-           {
-              colisaoK(&Karolr);  
-              falac=0;
-           }
-            
-        }  
-         
-        if(ruim>=1)
-            
+                if(colis[4]==0)
+                    {
+                    ruim++;
+                    }
+                colis[4]=1;
+                colisaoK(&Karolr);
+                }else 
+                    if(CheckCollisionRecs(Karolr,conflito5par)==1 && memoria==1 && sad==0)
+                        {
+                            if(colis[5]==0)
+                                {
+                                ruim++;
+                                }
+                            colis[5]=1;
+                            colisaoK(&Karolr);
+                        }else
+                            if(CheckCollisionRecs(Karolr,conflito6par)==1 && memoria==1 && sad==0)
+                                {
+                                    if(colis[6]==0)
+                                        {
+                                        ruim++;
+                                        }
+                                    colis[6]=1;
+                                    colisaoK(&Karolr);
+                                }else
+                                    if(CheckCollisionRecs(Karolr,conflito7par)==1 && memoria==1 && sad==0)
+                                        {
+                                            if(colis[7]==0)
+                                                {
+                                                ruim++;
+                                                }
+                                            colis[7]=1; 
+                                            colisaoK(&Karolr);
+                                        }
+}
+
+        if(ruim>=1)   
         {
             contar= contar + 0.017; 
             if(contar>=10)
@@ -2177,8 +1955,6 @@ void tudoDaKarol(){
                 stress++;
                 contar=0;
             }
-            
-        
         }
         
         
@@ -2220,15 +1996,27 @@ void tudoDaKarol(){
            DrawTexture(Quartotx,0,0,RAYWHITE);
            //DrawTexture(circulo1.posicaox,circulo1.posicaoy,RAYWHITE);
            //DrawTextureRec(Texture2D texture, Rectangle sourceRec, Vector2 position, Color tint); 
+           //Memoria e Refletir
+           if(memoria==1 && sad==1){
+                DrawCircle(175,695,12,BLUE);
+           }else
+               if(memoria == 1 && sad == 0){
+                DrawCircle(175,695,12,YELLOW);   
+               }
+           if(refletir==1){
+               DrawCircle(175,728,12,GREEN);
+           }
            DrawText(TextFormat("x: %i y: %i",x,y),605,15,40,RED);
-           DrawText(TextFormat("Memoria: %i",memoria),15,680,35,BLACK);
+           DrawText(TextFormat("Memoria: "),15,680,35,BLACK);
            DrawTexture(estabilidadetx, 35, 8, WHITE);
            DrawTexture(estressetx, 35, estabilidadetx.height + 16, WHITE);
            DrawRectangleGradientH(39, 36,((estabilidade*0.1)/3)*325, 26, SKYBLUE, DARKBLUE);
            DrawRectangleGradientH(39, 104,(stress*0.1)*325, 25, RED, (Color){123, 20, 34, 255});
-           DrawText(TextFormat("Refletir: %i",refletir),15,710,35,BLACK);
+           DrawText(TextFormat("Refletir: "),15,710,35,BLACK);
            DrawText(TextFormat("Fase 2"),629,94,35,BLACK);
            DrawText(TextFormat("Tempo: %0.1f", (float)(contadordetempo/100)),1150,42,30,BLACK);
+           DrawText(TextFormat("T - Tutorial"),1173,720,24,BLACK);
+           DrawText(TextFormat("I - Info"),1173,690,24,BLACK);
            //DrawTextureRec(Karoltx,Karolrec,Karolp,RAYWHITE);
            //DrawTextureRec(Guilhermetx,Guilhermerec,Guilhermep,RAYWHITE);
            
@@ -2274,15 +2062,26 @@ void tudoDaKarol(){
               DrawTextureRec(memoriastx,memoriasrec,memoriasp7,RAYWHITE);
            }
            if(desenharmemoria[4]==1 && memoria==1 && sad==0)
-           {
-              DrawTexture(desafiotx,900,300,RAYWHITE);
-              DrawTexture(desafiotx,900,500,RAYWHITE);
-              DrawTexture(desafiotx,200,500,RAYWHITE);
-              DrawTexture(desafiotx,400,300,RAYWHITE);
-              DrawTexture(desafiotx,790,595,RAYWHITE);
-              DrawTexture(desafiotx,300,500,RAYWHITE);
-              DrawTexture(desafiotx,600,560,RAYWHITE);
-           }
+            {
+               if(colis[0]==1||colis[0]==3||colis[0]==5||colis[0]==7||colis[0]==9){
+                    DrawTexture(desafiotx,900,300,RAYWHITE);
+                    DrawTexture(desafiotx,900,500,RAYWHITE);
+                    DrawTexture(desafiotx,200,500,RAYWHITE);
+                    DrawTexture(desafiotx,400,300,RAYWHITE);
+                    DrawTexture(desafiotx,790,595,RAYWHITE);
+                    DrawTexture(desafiotx,300,500,RAYWHITE);
+                    DrawTexture(desafiotx,600,560,RAYWHITE);
+                }else 
+                    if (colis[0]==2||colis[0]==4||colis[0]==6||colis[0]==8||colis[0]==10){
+                    DrawTexture(desafiotx,950,350,RAYWHITE);
+                    DrawTexture(desafiotx,325,420,RAYWHITE);
+                    DrawTexture(desafiotx,220,380,RAYWHITE);
+                    DrawTexture(desafiotx,1270,530,RAYWHITE);
+                    DrawTexture(desafiotx,910,550,RAYWHITE);
+                    DrawTexture(desafiotx,740,570,RAYWHITE);
+                    DrawTexture(desafiotx,600,560,RAYWHITE);
+                }
+            }
            if(desenharmemoria[5]==1)
            {
               DrawTextureRec(memoriastx,memoriasrec,memoriasp4,RAYWHITE);  
@@ -2328,26 +2127,321 @@ void tudoDaKarol(){
            {
                desenhar=1;
            }
-           DrawTexture(remediotx,725,410,RAYWHITE);
-           if(estabilidade >= 30)
-           {
-               int tantoFaz = subiu_de_level(&checkpoint);
-           }
+           DrawTexture(remediotx,755,410,RAYWHITE);
+           //Condição para ganhar ou perder o jogo
            if(estabilidade >= 30)
            {
                subiu_de_level();
            }
+           if(estabilidade<=0){
+               menu();
+           }
+           //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
            if(desenhar==1)
            {
                DrawTextureRec(Karoltx,Karolrec,Karolp,RAYWHITE);
            }
            
+           if (IsKeyDown(KEY_T)){
+               DrawTexture(tutorialtx,0,0,RAYWHITE);
+           }
+           if(IsKeyDown(KEY_I))
+           {
+               DrawTexture(info2tx,340,256,RAYWHITE); 
+           }
         EndDrawing();
     }
     CloseWindow();
     
 }
- void tudoDoGuilherme() {
+
+//FASE 3
+
+void desenharconflitoG1(Texture2D fala){
+     
+     DrawTexture(fala,237,630,RAYWHITE);
+     DrawText("CONFLITO: Ajude Guilherme a retomar o foco.",450,690,20,WHITE);
+     DrawText("[PRESS A]",450,720,20,WHITE);
+     
+}
+void desenharconflitoG2(Texture2D fala){
+     
+     DrawTexture(fala,237,630,RAYWHITE);
+     DrawText("CONFLITO: Ajude Guilherme a retomar o foco.",450,690,20,WHITE);
+     DrawText("[PRESS T]",450,720,20,WHITE);
+     
+}
+void desenharconflitoG3(Texture2D fala){
+     
+     DrawTexture(fala,237,630,RAYWHITE);
+     DrawText("CONFLITO: Ajude Guilherme a retomar o foco.",450,690,20,WHITE);
+     DrawText("[PRESS E]",450,720,20,WHITE);
+     
+}
+void desenharconflitoG4(Texture2D fala){
+     
+     DrawTexture(fala,237,630,RAYWHITE);
+     DrawText("CONFLITO: Ajude Guilherme a retomar o foco.",450,690,20,WHITE);
+     DrawText("[PRESS N]",450,720,20,WHITE);
+     
+}
+void desenharconflitoG5(Texture2D fala){
+     
+     DrawTexture(fala,237,630,RAYWHITE);
+     DrawText("CONFLITO: Ajude Guilherme a retomar o foco.",450,690,20,WHITE);
+     DrawText("[PRESS C]",450,720,20,WHITE);
+     
+}
+void desenharconflitoG6(Texture2D fala){
+     
+     DrawTexture(fala,237,630,RAYWHITE);
+     DrawText("CONFLITO: Ajude Guilherme a retomar o foco.",450,690,20,WHITE);
+     DrawText("[PRESS A]",450,720,20,WHITE);
+     
+}
+void desenharconflitoG7(Texture2D fala){
+     
+     DrawTexture(fala,237,630,RAYWHITE);
+     DrawText("CONFLITO: Ajude Guilherme a retomar o foco.",450,690,20,WHITE);
+     DrawText("[PRESS O]",450,720,20,WHITE);
+     
+}
+void batalhafuncaoG(int* ruim,int opc, int* batalha){
+   if(opc == 1)
+   {
+       
+       if(GetKeyPressed()<=0)
+       {
+           
+       }
+       else 
+       {
+          if(IsKeyDown('A')) 
+           {
+               (*ruim)--;
+               (*batalha)++;
+           }
+           else 
+           {
+               (*ruim)++;
+               (*batalha)++;
+           } 
+       }
+   }
+   else if(opc == 2)
+   {
+      if(GetKeyPressed()<=0)
+       {
+           
+       }
+       else 
+       {
+          if(IsKeyDown('T')) 
+           {
+               (*ruim)--;
+               (*batalha)++;
+           }
+           else 
+           {
+               (*ruim)++;
+               (*batalha)++;
+           } 
+       }
+       
+   }
+   else if(opc == 3)
+   {
+       if(GetKeyPressed()<=0)
+       {
+           
+       }
+       else 
+       {
+          if(IsKeyDown('E')) 
+           {
+               (*ruim)--;
+               (*batalha)++;
+           }
+           else 
+           {
+               (*ruim)++;
+               (*batalha)++;
+           } 
+       }
+       
+   }
+   else if(opc == 4)
+   {
+     if(GetKeyPressed()<=0)
+       {
+           
+       }
+       else 
+       {
+          if(IsKeyDown('N')) 
+           {
+               (*ruim)--;
+               (*batalha)++;
+           }
+           else 
+           {
+               (*ruim)++;
+               (*batalha)++;
+           } 
+       }
+       
+   }
+   else if(opc == 5)
+   {
+       if(GetKeyPressed()<=0)
+       {
+           
+       }
+       else 
+       {
+          if(IsKeyDown('C')) 
+           {
+               (*ruim)--;
+               (*batalha)++;
+           }
+           else 
+           {
+               (*ruim)++;
+               (*batalha)++;
+           } 
+       }
+       
+   }
+   else if(opc == 6)
+   {
+       if(GetKeyPressed()<=0)
+       {
+           
+       }
+       else 
+       {
+          if(IsKeyDown('A')) 
+           {
+               (*ruim)--;
+               (*batalha)++;
+           }
+           else 
+           {
+               (*ruim)++;
+               (*batalha)++;
+           } 
+       }
+       
+       
+   }
+   else if(opc == 7)
+   {
+       if(GetKeyPressed()<=0)
+       {
+           
+       }
+       else 
+       {
+          if(IsKeyDown('O')) 
+           {
+               (*ruim)--;
+               (*batalha)++;
+           }
+           else 
+           {
+               (*ruim)++;
+               (*batalha)++;
+           } 
+       }
+       
+   }
+}
+void desafiofuncaoG(Texture2D fala,int* ruim, int* batalha,int* falac){
+      (*falac)=1;
+      if((*batalha)==1)
+      {
+          desenharconflitoG2(fala);
+          batalhafuncaoG(&(*ruim),2,&(*batalha)); 
+          
+      }
+      else if((*batalha)==2)
+      {
+          desenharconflitoG1(fala);
+          batalhafuncaoG(&(*ruim),1,&(*batalha));
+          
+      }    
+      else if((*batalha)==3)
+      {
+        desenharconflitoG5(fala);
+        batalhafuncaoG(&(*ruim),5,&(*batalha));
+      } 
+      else if((*batalha)==4)
+      {
+        desenharconflitoG3(fala);
+        batalhafuncaoG(&(*ruim),3,&(*batalha));
+      } 
+      else if((*batalha)==5)
+      {
+        desenharconflitoG7(fala);
+        batalhafuncaoG(&(*ruim),7,&(*batalha));
+      } 
+      else if((*batalha)==6)
+      {
+        desenharconflitoG4(fala);
+        batalhafuncaoG(&(*ruim),4,&(*batalha));
+      } 
+      else if((*batalha)==7)
+      {
+        desenharconflitoG6(fala);
+        batalhafuncaoG(&(*ruim),6,&(*batalha));
+      } 
+      else if((*batalha)==8)
+      {
+        (*batalha)=0;
+      }              
+        
+}
+void diversaoavisoG(Texture2D fala,int* falac, Rectangle* Guilhermer, Rectangle falacolisao){
+     (*falac)=1;
+     DrawTexture(fala,237,650,RAYWHITE);
+     if((Guilhermer->x >= falacolisao.x) && (Guilhermer->y >= falacolisao.y))
+     {
+         Guilhermer->y = 525;
+     }
+     DrawText("Está na hora de Guilherme se divertir",450,720,20,WHITE);  
+     
+}
+void terapiaavisoG(Texture2D fala,int* falac, Rectangle* Guilhermer, Rectangle falacolisao){
+     (*falac)=1;
+     DrawTexture(fala,237,650,RAYWHITE);
+     if((Guilhermer->x >= falacolisao.x) && (Guilhermer->y >= falacolisao.y))
+     {
+         Guilhermer->y = 525;
+     }
+     DrawText("Está na hora de Guilherme ir para a terapia",450,720,20,WHITE);  
+     
+}
+void remedioavisoG(Texture2D fala,int* falac, Rectangle* Guilhermer, Rectangle falacolisao){
+     (*falac)=1;
+     DrawTexture(fala,237,650,RAYWHITE);
+     if((Guilhermer->x >= falacolisao.x) && (Guilhermer->y >= falacolisao.y))
+     {
+         Guilhermer->y = 525;
+     }
+     DrawText("Está na hora de Guilherme tomar seu remedio",450,720,20,WHITE);  
+     
+}
+void perdeumemoria(Texture2D fala,int* falac, Rectangle* Guilhermer, Rectangle falacolisao){
+     (*falac)=1;
+     DrawTexture(fala,237,650,RAYWHITE);
+     if((Guilhermer->x >= falacolisao.x) && (Guilhermer->y >= falacolisao.y))
+     {
+         Guilhermer->y = 525;
+     }
+     DrawText("Guilherme se esqueceu da memória que tentava guardar",450,720,20,WHITE);  
+     
+}
+void tudoDoGuilherme() {
     int screenWidth = 1366; //dimenssão da minha tela
     int screenHeight = 768;
     
@@ -2740,6 +2834,7 @@ void tudoDaKarol(){
            //DrawTextureRec(Texture2D texture, Rectangle sourceRec, Vector2 position, Color tint); 
            DrawText(TextFormat("x: %i y: %i",x,y),605,15,40,RED);
            DrawText(TextFormat("Memoria: %i",memoria),15,680,35,BLACK);
+           DrawText(TextFormat("Ruim: %i",ruim),15,700,35,BLACK);
            DrawTexture(estabilidadetx, 35, 8, WHITE);
            DrawTexture(estressetx, 35, estabilidadetx.height + 16, WHITE);
            DrawRectangleGradientH(39, 36,((estabilidade*0.1)/3)*325, 26, SKYBLUE, DARKBLUE);
@@ -2803,12 +2898,12 @@ void tudoDaKarol(){
                    desafio=0;
                }
            }
-           if(batalha==0 && memoria==1 && (ruim==-3 || ruim==-7 || ruim==-5) && ruim!=0)
+           if(batalha==0 && memoria==1 && ruim<=-3 && ruim!=0)
            {
                 //deu bom               
                    
            }
-           else if(batalha==0 && memoria==1 && (ruim!=-3 && ruim!=-7 && ruim!=-5) && ruim!=0)
+           else if(batalha==0 && memoria==1 && ruim>-3 && ruim!=0)
            {
                
                if(memoria==1)
@@ -2866,16 +2961,31 @@ void tudoDaKarol(){
     CloseWindow();
     }//SXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
-void menu()
-{
+void move_circ(int* posic){
+    if(IsKeyPressed(KEY_UP))
+    {
+        if((*posic) > 470)
+        {
+            (*posic) -= 50;
+        }
+    }
+    if(IsKeyPressed(KEY_DOWN))
+    {
+        if((*posic) < 600)
+        {
+            (*posic) += 50;
+        }
+    }
+}
+void menu(){
         
         int posic_circ = 470;
         Image Menu = LoadImage("/jogoip/menu.png");
         ImageResize (&Menu,1366,788);
         Texture2D Menutx = LoadTextureFromImage(Menu);
         
-     Music maya = LoadMusicStream("/jogoip/Maya.ogg");
-                PlayMusicStream(maya);
+        Music maya = LoadMusicStream("/jogoip/Maya.ogg");
+        PlayMusicStream(maya);
 while(!WindowShouldClose()){
         UpdateMusicStream(maya);
         
@@ -2895,6 +3005,8 @@ while(!WindowShouldClose()){
         int opcMenu = 0;
         
         int checkpoint = qual_level(0);
+        
+        
         
         if (posic_circ == 470 && IsKeyPressed(KEY_ENTER)){
             opcMenu = 1;
@@ -2926,7 +3038,6 @@ while(!WindowShouldClose()){
         }//end switch
     }//end window should close
 }// end função menu 
-
 int qual_level(int checkpoint){
      //PARA O ARMAZENAMENTO (LER)
     FILE *level;
@@ -2950,8 +3061,6 @@ int qual_level(int checkpoint){
     }
     return 1;
 }// end of non-void function
-
-
 void subiu_de_level (){
     //ESCREVENDO NO ARQUIVO (checkpoint.txt)
     FILE *level;
@@ -2969,12 +3078,8 @@ void subiu_de_level (){
         fprintf(level , "%i %i %i", a, b, c);
     }
     fclose(level);
-}//end subiu
-
-
-           
-int main(void)
-{
+}//end subiu     
+int main(void){
     const int screenWidth = 1366; 
     const int screenHeight = 768;
      

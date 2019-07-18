@@ -2563,8 +2563,19 @@ void tudoDoGuilherme() {
     checkpoint = qual_level(0);
     int colis[10]={1,0,0,0,0,0,0,0,0,0};
     int desenharmemoria[15] = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
+    
+    //Trilha Sonora:
     Music space = LoadMusicStream("/jogoip/Space.ogg");
     PlayMusicStream(space);
+    //Tutorial:
+    Image tutorialim = LoadImage("/jogoip/tutorial.png");
+    ImageResize (&tutorialim,1366,788);
+    Texture2D tutorialtx = LoadTextureFromImage(tutorialim);
+    //Informarções:
+    Image info3 = LoadImage("/jogoip/TDA.png");
+    Texture2D info3tx = LoadTextureFromImage(info3);
+        
+        
     while (!WindowShouldClose())
     {
             UpdateMusicStream (space);
@@ -2833,7 +2844,16 @@ void tudoDoGuilherme() {
            //DrawTexture(circulo1.posicaox,circulo1.posicaoy,RAYWHITE);
            //DrawTextureRec(Texture2D texture, Rectangle sourceRec, Vector2 position, Color tint); 
            DrawText(TextFormat("x: %i y: %i",x,y),605,15,40,RED);
-           DrawText(TextFormat("Memoria: %i",memoria),15,680,35,BLACK);
+           DrawText(TextFormat("Memoria: "),15,680,35,BLACK);
+           if(memoria==1 && sad==1){
+                DrawCircle(175,695,12,BLUE);
+           }else
+               if(memoria == 1 && sad == 0){
+                DrawCircle(175,695,12,YELLOW);   
+               }
+           if(refletir==1){
+               DrawCircle(175,728,12,GREEN);
+           }
            DrawTexture(estabilidadetx, 35, 8, WHITE);
            DrawTexture(estressetx, 35, estabilidadetx.height + 16, WHITE);
            DrawRectangleGradientH(39, 36,((estabilidade*0.1)/3)*325, 26, SKYBLUE, DARKBLUE);
@@ -2841,6 +2861,8 @@ void tudoDoGuilherme() {
            //DrawText(TextFormat("Refletir: %i",refletir),15,710,35,BLACK); 
            DrawText(TextFormat("Fase 3"),629,94,35,BLACK);
            DrawText(TextFormat("Tempo: %0.1f", (float)(contadordetempo/100)),1150,42,30,BLACK);
+           DrawText(TextFormat("T - Tutorial"),1173,720,24,BLACK);
+           DrawText(TextFormat("I - Info"),1173,690,24,BLACK);
            //DrawTextureRec(Karoltx,Karolrec,Karolp,RAYWHITE);
            //DrawTextureRec(Guilhermetx,Guilhermerec,Guilhermep,RAYWHITE);
            
@@ -2944,15 +2966,21 @@ void tudoDoGuilherme() {
            
            if(estabilidade >= 30)
            {
-               int tantoFaz = subiu_de_level(&checkpoint);
-           }
-           if(estabilidade >= 30)
-           {
                subiu_de_level();
            }
            if(desenhar==1)
            {
                DrawTextureRec(Guilhermetx,Guilhermerec,Guilhermep,RAYWHITE);
+           }
+           
+           //Tutorial:
+           if (IsKeyDown(KEY_T)){
+               DrawTexture(tutorialtx,0,0,RAYWHITE);
+           }
+           //Informações:
+           if(IsKeyDown(KEY_I))
+           {
+               DrawTexture(info3tx,340,256,RAYWHITE); 
            }
            
         EndDrawing();

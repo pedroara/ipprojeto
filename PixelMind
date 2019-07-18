@@ -1175,22 +1175,30 @@ void move_circ(int* posic){
         }
     }
 }
-void movimentacaoK(Rectangle* Karolr){
+void movimentacaoK(Rectangle* Karolr, rectangle* Karolrec){
         if (IsKeyDown(KEY_DOWN))
         {
             (Karolr->y)+= 4; //y cresce para baixo.
+			(Karolrec->width) = 55;
+            (Karolrec->x) = 0;
         }
         else if(IsKeyDown(KEY_UP))
         {
             (Karolr->y) -= 4;
+			(Karolrec->width) = 60;
+            (Karolrec->x) = 139;
         }
         else if(IsKeyDown(KEY_RIGHT))
         {
             (Karolr->x) +=4;
+			(Karolrec->width) = 53;
+            (Karolrec->x) = 91;
         }
         else if(IsKeyDown(KEY_LEFT))
         {
             (Karolr->x) -=4;
+			(Karolrec->width) = 50;
+            (Karolrec->x) = 201;
         }
             
     
@@ -1431,12 +1439,12 @@ void tudoDaKarol(){
         Image Jorgeim = LoadImage("/jogoip/Jorge01.png");
         Image memoriasim = LoadImage("/jogoip/memorias.png");
         Image fala = LoadImage("/jogoip/fala.png");
-        Image Karolim = LoadImage("/jogoip/Karol01.png");
+        Image Karolim = LoadImage("/jogoip/Karol02.png");
         Image desafioim = LoadImage("/jogoip/aviao.png");
 
      //Image Resize:
         //ImageResize (&Jorgeim,144,104); //144,104,(108,78) - Aumentando a imagem original
-        ImageResize (&Karolim,144,104);
+        ImageResize (&Karolim,251,104);
         ImageResize (&Quarto,1366,788); //passar o endereço pq ele modifica a imagem original.
         ImageResize (&fala,900,200);
         ImageResize (&desafioim,96,102);
@@ -1565,7 +1573,7 @@ void tudoDaKarol(){
          int y = GetMouseY();
         
         //função de movimentação do jorge:
-         movimentacaoK(&Karolr);
+         movimentacaoK(&Karolr, &Karolrec);
         //Checando se saiu do mapa:
         tamanhotelaK(&Karolr,screenHeight,screenWidth);
         //atualizando estabilidade:
@@ -2187,6 +2195,34 @@ void tudoDaKarol(){
     CloseWindow();
     
 }
+void movimentacaoG(Rectangle* Guilhermer, rectangle* Guilhermerec){
+        if (IsKeyDown(KEY_DOWN))
+        {
+            (Guilhermer->y)+= 4; //y cresce para baixo.
+			(Guilhermerec->width) = 55;
+            (Guilhermerec->x) = 0;
+        }
+        else if(IsKeyDown(KEY_UP))
+        {
+            (Guilhermer->y) -= 4;
+			(Guilhermerec->width) = 48;
+            (Guilhermerec->x) = 149;
+        }
+        else if(IsKeyDown(KEY_RIGHT))
+        {
+            (Guilhermer->x) +=4;
+			(Guilhermerec->width) = 48;
+            (Guilhermerec->x) = 101;
+        }
+        else if(IsKeyDown(KEY_LEFT))
+        {
+            (Guilhermer->x) -=4;
+			(Guilhermerec->width) = 36;
+            (Guilhermerec->x) = 151;
+        }
+            
+    
+}
  void tudoDoGuilherme() {
     int screenWidth = 1366; //dimenssão da minha tela
     int screenHeight = 768;
@@ -2196,12 +2232,12 @@ void tudoDaKarol(){
     //Carregando imagem e transformando em textura:
     //Image:
         Image Quarto = LoadImage("/jogoip/Quarto002.png"); //diretorio apartir do C: com as \ invertidas (/);
-        Image Guilhermeim = LoadImage("/jogoip/Guilherme01.png");
+        Image Guilhermeim = LoadImage("/jogoip/Guilherme02.png");
         Image memoriasim = LoadImage("/jogoip/memorias.png");
         Image fala = LoadImage("/jogoip/fala.png");
         Image desafioim = LoadImage("/jogoip/aviao.png");
      //Image Resize:
-        ImageResize (&Guilhermeim,144,104); //144,104,(108,78) - Aumentando a imagem original
+        ImageResize (&Guilhermeim,187,104); //144,104,(108,78) - Aumentando a imagem original
         ImageResize (&Quarto,1366,788); //passar o endereço pq ele modifica a imagem original.
         ImageResize (&fala,1366,300);
         ImageResize (&desafioim,96,102);
@@ -2309,7 +2345,7 @@ void tudoDaKarol(){
          int y = GetMouseY();
         
         //função de movimentação do jorge:
-         movimentacaoK(&Guilhermer);
+         movimentacaoG(&Guilhermer, &Guilhermerec);
         //Checando se saiu do mapa:
         tamanhotelaK(&Guilhermer,screenHeight,screenWidth);
         //atualizando estabilidade:

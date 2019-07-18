@@ -2216,7 +2216,7 @@ void batalhafuncaoG(int* ruim,int opc, int* batalha){
        }
        else 
        {
-          if(IsKeyPressed("A")) 
+          if(IsKeyDown('A')) 
            {
                (*ruim)--;
                (*batalha)++;
@@ -2236,7 +2236,7 @@ void batalhafuncaoG(int* ruim,int opc, int* batalha){
        }
        else 
        {
-          if(IsKeyPressed("T")) 
+          if(IsKeyDown('T')) 
            {
                (*ruim)--;
                (*batalha)++;
@@ -2257,7 +2257,7 @@ void batalhafuncaoG(int* ruim,int opc, int* batalha){
        }
        else 
        {
-          if(IsKeyPressed("E")) 
+          if(IsKeyDown('E')) 
            {
                (*ruim)--;
                (*batalha)++;
@@ -2278,7 +2278,7 @@ void batalhafuncaoG(int* ruim,int opc, int* batalha){
        }
        else 
        {
-          if(IsKeyPressed("N")) 
+          if(IsKeyDown('N')) 
            {
                (*ruim)--;
                (*batalha)++;
@@ -2299,7 +2299,7 @@ void batalhafuncaoG(int* ruim,int opc, int* batalha){
        }
        else 
        {
-          if(IsKeyPressed("C")) 
+          if(IsKeyDown('C')) 
            {
                (*ruim)--;
                (*batalha)++;
@@ -2320,7 +2320,7 @@ void batalhafuncaoG(int* ruim,int opc, int* batalha){
        }
        else 
        {
-          if(IsKeyPressed("A")) 
+          if(IsKeyDown('A')) 
            {
                (*ruim)--;
                (*batalha)++;
@@ -2342,7 +2342,7 @@ void batalhafuncaoG(int* ruim,int opc, int* batalha){
        }
        else 
        {
-          if(IsKeyPressed("O")) 
+          if(IsKeyDown('O')) 
            {
                (*ruim)--;
                (*batalha)++;
@@ -2919,12 +2919,12 @@ void tudoDoGuilherme() {
                    desafio=0;
                }
            }
-           if(batalha==0 && memoria==1 && (ruim==-3 || ruim==-7 || ruim==-5) && ruim!=0)
+           if(batalha==0 && memoria==1 && ruim<=-3 && ruim!=0)
            {
                 //deu bom               
                    
            }
-           else if(batalha==0 && memoria==1 && (ruim!=-3 && ruim!=-7 && ruim!=-5) && ruim!=0)
+           else if(batalha==0 && memoria==1 && ruim>-3 && ruim!=0)
            {
                
                if(memoria==1)
@@ -2941,7 +2941,7 @@ void tudoDoGuilherme() {
                  ruim=0;
                
                
-           }             
+           }        
            int espera = 1000; //modificar essa variável para reduzir o tempo de espera
           if(contadordetempo>=(2*minutos)+espera && contadordetempo<(4*minutos)) 
            {

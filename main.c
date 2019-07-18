@@ -334,6 +334,7 @@ void tudoDoJorge(){
         Image monstro = LoadImage("/jogoip/monstro2.png");
         Image fala = LoadImage("/jogoip/fala.png");
         Image tutorialim = LoadImage("/jogoip/tutorial.png");
+        Image info1 = LoadImage("/jogoip/panico.png");
      //Image Resize:
         ImageResize (&Jorgeim,144,104); //144,104,(108,78) - Aumentando a imagem original
         ImageResize (&Quarto,1366,788); //passar o endereço pq ele modifica a imagem original.
@@ -349,6 +350,7 @@ void tudoDoJorge(){
         Texture2D estabilidadetx = LoadTexture("/jogoip/estabilidade.png");
         Texture2D estressetx = LoadTexture("/jogoip/estresse.png");
         Texture2D tutorialtx = LoadTextureFromImage(tutorialim);
+        Texture2D info1tx = LoadTextureFromImage(info1);
      //Rectengles:
         Rectangle Jorgerec = {0,0,53,102};// testando o tamanho do boneco no mapa (pegando só esse retângulo)
         //Rectangle Karolrec = {0,0,55,102}; // Esta ok
@@ -924,6 +926,7 @@ void tudoDoJorge(){
            DrawText(TextFormat("Fase 1"),629,94,35,BLACK);
            DrawText(TextFormat("Tempo: %0.1f", (float)(contadordetempo/100)),1150,42,30,BLACK);
            DrawText(TextFormat("T - Tutorial"),1173,720,24,BLACK);
+           DrawText(TextFormat("I - Info"),1173,690,24,BLACK);
            
            //DrawTextureRec(Karoltx,Karolrec,Karolp,RAYWHITE);
            //DrawTextureRec(Guilhermetx,Guilhermerec,Guilhermep,RAYWHITE);
@@ -1145,6 +1148,10 @@ void tudoDoJorge(){
                DrawTexture(tutorialtx,0,0,RAYWHITE);
            }
            
+           if(IsKeyDown(KEY_I))
+           {
+               DrawTexture(info1tx,340,256,RAYWHITE); 
+           }
         EndDrawing();
     }
     CloseWindow();
@@ -1424,6 +1431,7 @@ void tudoDaKarol(){
         Image fala = LoadImage("/jogoip/fala.png");
         Image Karolim = LoadImage("/jogoip/Karol01.png");
         Image desafioim = LoadImage("/jogoip/aviao.png");
+        Image info2 = LoadImage("/jogoip/ansiedade.png");
 
      //Image Resize:
         //ImageResize (&Jorgeim,144,104); //144,104,(108,78) - Aumentando a imagem original
@@ -1443,6 +1451,7 @@ void tudoDaKarol(){
         Texture2D estressetx = LoadTexture("/jogoip/estresse.png");
         Image Remedio = LoadImage("/jogoip/Remedio.png");
         Texture2D remediotx = LoadTextureFromImage(Remedio);
+        Texture2D info2tx = LoadTextureFromImage(info2);
         //Tutorial:
         Image tutorialim = LoadImage("/jogoip/tutorial.png");
         ImageResize (&tutorialim,1366,788);
@@ -2026,6 +2035,7 @@ void tudoDaKarol(){
            DrawText(TextFormat("Fase 2"),629,94,35,BLACK);
            DrawText(TextFormat("Tempo: %0.1f", (float)(contadordetempo/100)),1150,42,30,BLACK);
            DrawText(TextFormat("T - Tutorial"),1173,720,24,BLACK);
+           DrawText(TextFormat("I - Info"),1173,690,24,BLACK);
            //DrawTextureRec(Karoltx,Karolrec,Karolp,RAYWHITE);
            //DrawTextureRec(Guilhermetx,Guilhermerec,Guilhermep,RAYWHITE);
            
@@ -2152,6 +2162,10 @@ void tudoDaKarol(){
            
            if (IsKeyDown(KEY_T)){
                DrawTexture(tutorialtx,0,0,RAYWHITE);
+           }
+           if(IsKeyDown(KEY_I))
+           {
+               DrawTexture(info2tx,340,256,RAYWHITE); 
            }
         EndDrawing();
     }
@@ -2411,6 +2425,7 @@ void tudoDoGuilherme() {
         Image capim = LoadImage("/jogoip/filme2.png");
         Image loveim = LoadImage("/jogoip/crush.png");
         Image jogoim = LoadImage("/jogoip/jogo.png");
+        Image info3 = LoadImage("/jogoip/TDA.png")
      //Image Resize:
         ImageResize (&Guilhermeim,144,104); //144,104,(108,78) - Aumentando a imagem original
         ImageResize (&Quarto,1366,788); //passar o endereço pq ele modifica a imagem original.
@@ -2432,6 +2447,7 @@ void tudoDoGuilherme() {
         Texture2D lovetx = LoadTextureFromImage(loveim);
         Texture2D estabilidadetx = LoadTexture("/jogoip/estabilidade.png");
         Texture2D estressetx = LoadTexture("/jogoip/estresse.png");
+        Texture2D info3tx = LoadTextureFromImage(info3);
      //Rectengles:
         Rectangle Guilhermerec = {0,0,55,102};// testando o tamanho do boneco no mapa (pegando só esse retângulo)
         //Rectangle Karolrec = {0,0,55,102}; // Esta ok
@@ -2788,6 +2804,7 @@ void tudoDoGuilherme() {
            //DrawText(TextFormat("Refletir: %i",refletir),15,710,35,BLACK); 
            DrawText(TextFormat("Fase 3"),629,94,35,BLACK);
            DrawText(TextFormat("Tempo: %0.1f", (float)(contadordetempo/100)),1150,42,30,BLACK);
+           DrawText(TextFormat("I - Info"),1173,690,24,BLACK);
            //DrawTextureRec(Karoltx,Karolrec,Karolp,RAYWHITE);
            //DrawTextureRec(Guilhermetx,Guilhermerec,Guilhermep,RAYWHITE);
            
@@ -2897,7 +2914,10 @@ void tudoDoGuilherme() {
            {
                DrawTextureRec(Guilhermetx,Guilhermerec,Guilhermep,RAYWHITE);
            }
-           
+           if(IsKeyDown(KEY_I))
+           {
+               DrawTexture(info13tx,340,256,RAYWHITE); 
+           }
         EndDrawing();
     }
     CloseWindow();

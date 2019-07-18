@@ -43,22 +43,31 @@ typedef struct {
    int raio;
    int x,y;      
 }circulo;
-void movimentacao(Rectangle* Jorger){
+void movimentacao(Rectangle* Jorger,  Rectangle* Jorgerec){
         if (IsKeyDown(KEY_DOWN))
         {
             (Jorger->y)+= 4; //y cresce para baixo.
+            (Jorgerec->width) = 53;
+            (Jorgerec->x) = 0;
+            
         }
         else if(IsKeyDown(KEY_UP))
         {
             (Jorger->y) -= 4;
+            (Jorgerec->width) = 53;
+            (Jorgerec->x) = 90;
         }
         else if(IsKeyDown(KEY_RIGHT))
         {
             (Jorger->x) +=4;
+            (Jorgerec->width) = 40;
+            (Jorgerec->x) = 50;
         }
         else if(IsKeyDown(KEY_LEFT))
         {
             (Jorger->x) -=4;
+            (Jorgerec->width) = 40;
+            (Jorgerec->x) = 145;
         }
 }
 void colisao(Rectangle* Jorger){ 
@@ -488,7 +497,7 @@ void tudoDoJorge(){
         //função de movimentação do jorge:
         if(desafio==0)
         {
-            movimentacao(&Jorger);
+            movimentacao(&Jorger, &Jorgerec);
         }
          
         //Checando se saiu do mapa:

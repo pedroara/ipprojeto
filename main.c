@@ -6,15 +6,16 @@ void sobrenos(){
     Music nos = LoadMusicStream("/jogoip/Warriors.ogg");
     PlayMusicStream(nos);
     SetMusicVolume(nos, 0.2);
+    Image Sobre = LoadImage("/jogoip/Sobre.png")
+    ImageResize(&Sobre,1005,700)
+    Texture2D sobretx = LoadTextureFromImage(Sobre);
     
    while(!WindowShouldClose())
    { 
         //Pra musica tocar:
           UpdateMusicStream(nos);
         //Carregando e redimensionando a imagem:
-          Image Sobre = LoadImage("/jogoip/Sobre.png");
-          ImageResize(&Sobre,1005,700);
-          Texture2D sobretx = LoadTextureFromImage(Sobre);
+
       
        BeginDrawing();
        

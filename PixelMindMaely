@@ -2414,6 +2414,7 @@ void tudoDaKarol(){
     int falac=0;
     int checkpoint = 0;
     int refletir=0;
+    int contador=0;
     checkpoint = qual_level(0);
     int colis[10]={1,0,0,0,0,0,0,0,0,0};
     int desenharmemoria[15] = {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
@@ -2724,7 +2725,7 @@ void tudoDaKarol(){
                
                if(batalha>=1)
                {
-                     desafiofuncaoG(falatx,&ruim,&batalha,&falac);
+                    desafiofuncaoG(falatx,&ruim,&batalha,&falac);
                    
                }
                if(batalha==0)
@@ -2732,20 +2733,24 @@ void tudoDaKarol(){
                    desafio=0;
                }
            }
-           if(batalha==0 && memoria==1 && ruim<=-5)
+           if(batalha==0 && memoria==1 && ruim<=-5 && ruim!=0)
            {
-                estabilidade++;                
+                stress-=4;                
                    
            }
-           if(batalha==0 && ruim>-5)
+           if(batalha==0 && ruim>-5 && ruim!=0)
            {
-               estabilidade-=2;
+               stress++;
+               contador = contador +0.17;
                if(memoria==1)
                {
                    perdeumemoria(falatx, &falac, &Guilhermer, falacolisao);
-                   //memoria=0; 
+                   memoria=0; 
                                      
                }
+               
+                 ruim=0;
+               
                
            }             
            //diversao e terapia:

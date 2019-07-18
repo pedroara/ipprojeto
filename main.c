@@ -1123,12 +1123,7 @@ void tudoDoJorge(){
            if(desenhar==1)
            {
                DrawTextureRec(Jorgetx,Jorgerec,Jorgep,RAYWHITE);
-           }
-           if(estabilidade >= 30)
-           {
-               subiu_de_level();
-           }
-
+           }           
            if (IsKeyDown(KEY_T)){
                DrawTexture(tutorialtx,0,0,RAYWHITE);
            }
@@ -1538,12 +1533,6 @@ void tudoDaKarol(){
     while (!WindowShouldClose())   
     { 
         UpdateMusicStream (memory); 
-        
-        if(estabilidade >= 30){
-            subiu_de_level();
-            menu();
-        }
-        
          contadordetempo++;
          //Vector2 Jorgep = {Jorger.x,Jorger.y-51}; //posição do Jorge (menos 51 para a colisão ficar no pé)
          Vector2 Karolp = {Karolr.x,Karolr.y-51};
@@ -1802,17 +1791,17 @@ void tudoDaKarol(){
                                                                                                                                         refletir=0;
                                                                                                                                     }
                                                                                                                         }
-                                                                                                                }else 
-                                                                                                                    if(CheckCollisionRecs(Karolr,falacolisao))
-                                                                                                                        {
+                                                                                                                }
+                                                                                                        } 
+                                                                                                         else if(CheckCollisionRecs(Karolr,falacolisao))
+                                                                                                         {
                                                                                                                             if(falac==1 && ruim>=1)
                                                                                                                                 {
                                                                                                                                     colisaoK(&Karolr);  
                                                                                                                                     falac=0;
                                                                                                                                 }
                                                                                                                                                                     
-                                                                                                                         }  
-                                                                                                        } 
+                                                                                                         }  
 
 if(colis[0]==1||colis[0]==3||colis[0]==5||colis[0]==7||colis[0]==9)
 {
@@ -2086,13 +2075,7 @@ if(colis[0]==2||colis[0]==4||colis[0]==6||colis[0]==8||colis[0]==10)
            {
               DrawTextureRec(memoriastx,memoriasrec,memoriasp4,RAYWHITE);  
            }
-           //desenhando desafio:
-           if(memoria==1)
-           {
-               
-                desafiofuncaoK(falatx,&ruim,&falac,colis[0]);
-
-           }
+           
            //diversao e terapia:
            if(diversao==1)
            {
@@ -2105,6 +2088,13 @@ if(colis[0]==2||colis[0]==4||colis[0]==6||colis[0]==8||colis[0]==10)
            if(remedio==1)
            {
                remedioavisoK(falatx, &falac, &Karolr, falacolisao);
+           }
+           //desenhando desafio:
+           if(memoria==1)
+           {
+               
+                desafiofuncaoK(falatx,&ruim,&falac,colis[0]);
+
            }
            int espera = 1000; //modificar essa variável para reduzir o tempo de espera
            if(contadordetempo>=(2*minutos)+espera && contadordetempo<(4*minutos)) 
@@ -2132,8 +2122,6 @@ if(colis[0]==2||colis[0]==4||colis[0]==6||colis[0]==8||colis[0]==10)
            if(estabilidade >= 30)
            {
                subiu_de_level();
-           }
-           if(estabilidade<=0){
                menu();
            }
            //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
@@ -2527,6 +2515,11 @@ void tudoDoGuilherme() {
         Rectangle parede3 = {221,304,55,20};
         Rectangle parede4 = {0,669,190,340};
         Rectangle parede5 = {1166,669,190,340};
+        Rectangle latInfEsq = {0,672,230,768};
+        Rectangle latInfEsq2 ={0,700,300,768};
+        Rectangle latInfDir ={1060,678,1366,768}; 
+        
+        
         //Rectangle p1 = {};
         //Rectangle p2 = {};
         //Rectangle p3 = {};
@@ -2691,6 +2684,10 @@ void tudoDoGuilherme() {
                 diversao=0;
             }
             
+        }
+        else if(CheckCollisionRecs(Guilhermer,latInfEsq)==1 || CheckCollisionRecs(Guilhermer,latInfEsq2)==1|| CheckCollisionRecs(Guilhermer,latInfDir)==1)
+        {
+                    colisaoK(&Guilhermer);
         }
         else if(CheckCollisionRecs(Guilhermer,parede2)==1)
         {

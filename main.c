@@ -37,22 +37,31 @@ typedef struct {
    int raio;
    int x,y;      
 }circulo;
-void movimentacao(Rectangle* Jorger){
+void movimentacao(Rectangle* Jorger,  Rectangle* Jorgerec){
         if (IsKeyDown(KEY_DOWN))
         {
             (Jorger->y)+= 4; //y cresce para baixo.
+            (Jorgerec->width) = 53;
+            (Jorgerec->x) = 0;
+            
         }
         else if(IsKeyDown(KEY_UP))
         {
             (Jorger->y) -= 4;
+            (Jorgerec->width) = 53;
+            (Jorgerec->x) = 90;
         }
         else if(IsKeyDown(KEY_RIGHT))
         {
             (Jorger->x) +=4;
+            (Jorgerec->width) = 40;
+            (Jorgerec->x) = 50;
         }
         else if(IsKeyDown(KEY_LEFT))
         {
             (Jorger->x) -=4;
+            (Jorgerec->width) = 40;
+            (Jorgerec->x) = 145;
         }
 }
 void colisao(Rectangle* Jorger){ 
@@ -331,7 +340,7 @@ void tudoDoJorge(){
         Image tutorialim = LoadImage("/jogoip/tutorial.png");
         Image info1 = LoadImage("/jogoip/panico.png");
      //Image Resize:
-        ImageResize (&Jorgeim,144,104); //144,104,(108,78) - Aumentando a imagem original
+        ImageResize (&Jorgeim,185,104); //144,104,(108,78) - Aumentando a imagem original
         ImageResize (&Quarto,1366,788); //passar o endereço pq ele modifica a imagem original.
         ImageResize (&fala,1366,300);
         ImageResize (&tutorialim,1366,788);
@@ -475,7 +484,7 @@ void tudoDoJorge(){
         //função de movimentação do jorge:
         if(desafio==0)
         {
-            movimentacao(&Jorger);
+            movimentacao(&Jorger, &Jorgerec);
         }
          
         //Checando se saiu do mapa:
@@ -1182,24 +1191,31 @@ void tudoDoJorge(){
 
 //FASE 2
 
-void movimentacaoK(Rectangle* Karolr){
+void movimentacaoK(Rectangle* Karolr, Rectangle* Karolrec){
         if (IsKeyDown(KEY_DOWN))
         {
             (Karolr->y)+= 4; //y cresce para baixo.
+			(Karolrec->width) = 55;
+            (Karolrec->x) = 0;
         }
         else if(IsKeyDown(KEY_UP))
         {
             (Karolr->y) -= 4;
+			(Karolrec->width) = 60;
+            (Karolrec->x) = 139;
         }
         else if(IsKeyDown(KEY_RIGHT))
         {
             (Karolr->x) +=4;
+			(Karolrec->width) = 55;
+            (Karolrec->x) = 70;
         }
         else if(IsKeyDown(KEY_LEFT))
         {
             (Karolr->x) -=4;
-        }
-            
+			(Karolrec->width) = 54;
+            (Karolrec->x) = 197;
+        }   
     
 }
 void colisaoK(Rectangle* Karolr){ 
@@ -1444,7 +1460,7 @@ void tudoDaKarol(){
 
      //Image Resize:
         //ImageResize (&Jorgeim,144,104); //144,104,(108,78) - Aumentando a imagem original
-        ImageResize (&Karolim,144,104);
+        ImageResize (&Karolim,251,104);
         ImageResize (&Quarto,1366,788); //passar o endereço pq ele modifica a imagem original.
         ImageResize (&fala,900,200);
         ImageResize (&desafioim,96,102);
@@ -1569,7 +1585,7 @@ void tudoDaKarol(){
          int y = GetMouseY();
         
         //função de movimentação do jorge:
-         movimentacaoK(&Karolr);
+         movimentacaoK(&Karolr, &Karolrec);
         //Checando se saiu do mapa:
         tamanhotelaK(&Karolr,screenHeight,screenWidth);
         //atualizando estabilidade:
@@ -2149,7 +2165,7 @@ if(colis[0]==2||colis[0]==4||colis[0]==6||colis[0]==8||colis[0]==10)
            //Condição para ganhar ou perder o jogo
            if(estabilidade >= 30)
            {
-               subiu_de_level();
+               tudoDoGuilherme();
                menu();
            }
            //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
@@ -2500,6 +2516,34 @@ void perdeumemoria(Texture2D fala,int* falac, Rectangle* Guilhermer, Rectangle f
      DrawText("Guilherme se esqueceu da memória que tentava guardar",450,720,20,WHITE);  
      
 }
+void movimentacaoG(Rectangle* Guilhermer, Rectangle* Guilhermerec){
+        if (IsKeyDown(KEY_DOWN))
+        {
+            (Guilhermer->y)+= 4; //y cresce para baixo.
+			(Guilhermerec->width) = 55;
+            (Guilhermerec->x) = 0;
+        }
+        else if(IsKeyDown(KEY_UP))
+        {
+            (Guilhermer->y) -= 4;
+			(Guilhermerec->width) = 55;
+            (Guilhermerec->x) = 100;
+        }
+        else if(IsKeyDown(KEY_RIGHT))
+        {
+            (Guilhermer->x) +=4;
+			(Guilhermerec->width) = 55;
+            (Guilhermerec->x) = 49;
+        }
+        else if(IsKeyDown(KEY_LEFT))
+        {
+            (Guilhermer->x) -=4;
+			(Guilhermerec->width) = 31;
+            (Guilhermerec->x) = 156;
+        }
+            
+    
+}
 void tudoDoGuilherme() {
     int screenWidth = 1366; //dimenssão da minha tela
     int screenHeight = 768;
@@ -2520,7 +2564,7 @@ void tudoDoGuilherme() {
         Image jogoim = LoadImage("/jogoip/jogo.png");
         Image Remedio = LoadImage("/jogoip/Remedio.png");
      //Image Resize:
-        ImageResize (&Guilhermeim,144,104); //144,104,(108,78) - Aumentando a imagem original
+        ImageResize (&Guilhermeim,187,104); //144,104,(108,78) - Aumentando a imagem original
         ImageResize (&Quarto,1366,788); //passar o endereço pq ele modifica a imagem original.
         ImageResize (&fala,900,200);
         ImageResize (&bolaim,96,52);
@@ -2647,7 +2691,6 @@ void tudoDoGuilherme() {
         UpdateMusicStream (space);
         if(estabilidade >= 30)
            {
-            subiu_de_level();
             menu();
            }
  
@@ -2661,7 +2704,7 @@ void tudoDoGuilherme() {
         //função de movimentação do jorge:
         if(desafio==0)
         {
-           movimentacaoK(&Guilhermer); 
+           movimentacaoG(&Guilhermer, &Guilhermerec); 
         }
          
         //Checando se saiu do mapa:
@@ -3222,7 +3265,7 @@ void move_circ(int* posic){
 void menu(){
         
         int posic_circ = 470;
-        Image Menu = LoadImage("/jogoip/menu.png");
+        Image Menu = LoadImage("/jogoip/menuLogo.png");
         ImageResize (&Menu,1366,788);
         Texture2D Menutx = LoadTextureFromImage(Menu);
         

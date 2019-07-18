@@ -1,6 +1,7 @@
 #include <raylib.h>
 #include <stdio.h>
 #include <math.h>
+
 void sobrenos(){
     //Musica:
     Music nos = LoadMusicStream("/jogoip/Warriors.ogg");
@@ -28,6 +29,7 @@ void sobrenos(){
    }
     CloseWindow();
 }
+
 typedef struct {
    int raio;
    int x,y;      
@@ -310,15 +312,6 @@ void terapiaaviso(Texture2D fala,int* falac, Rectangle* Jorger, Rectangle falaco
      DrawText("Está na hora de Jorge ir à terapia",210,660,20,WHITE);
      
 }
-/*
-Coisas dos outros personagens
-//Image Karolim = LoadImage("/jogoip/Karol01.png");
-//Image Guilhermeim = LoadImage("/jogoip/Guilherme01.png");
-//ImageResize (&Karolim,144,104);
-//ImageResize (&Guilhermeim,144,104);
-//Texture2D Karoltx = LoadTextureFromImage(Karolim);
-//Texture2D Guilhermetx = LoadTextureFromImage(Guilhermeim);
-*/
 void tudoDoJorge(){
     
     int screenWidth = 1366; //dimensão da minha tela
@@ -1156,22 +1149,9 @@ void tudoDoJorge(){
     }
     CloseWindow();
 }
-void move_circ(int* posic){
-    if(IsKeyPressed(KEY_UP))
-    {
-        if((*posic) > 470)
-        {
-            (*posic) -= 50;
-        }
-    }
-    if(IsKeyPressed(KEY_DOWN))
-    {
-        if((*posic) < 600)
-        {
-            (*posic) += 50;
-        }
-    }
-}
+
+//FASE 2
+
 void movimentacaoK(Rectangle* Karolr){
         if (IsKeyDown(KEY_DOWN))
         {
@@ -2174,6 +2154,208 @@ if(colis[0]==2||colis[0]==4||colis[0]==6||colis[0]==8||colis[0]==10)
     CloseWindow();
     
 }
+
+//FASE 3
+
+void desenharconflitoG1(Texture2D fala){
+     
+     DrawTexture(fala,237,630,RAYWHITE);
+     DrawText("CONFLITO: Ajude Guilherme a retomar o foco.",450,690,20,WHITE);
+     DrawText("[PRESS A]",450,720,20,WHITE);
+     
+}
+void desenharconflitoG2(Texture2D fala){
+     
+     DrawTexture(fala,237,630,RAYWHITE);
+     DrawText("CONFLITO: Ajude Guilherme a retomar o foco.",450,690,20,WHITE);
+     DrawText("[PRESS T]",450,720,20,WHITE);
+     
+}
+void desenharconflitoG3(Texture2D fala){
+     
+     DrawTexture(fala,237,630,RAYWHITE);
+     DrawText("CONFLITO: Ajude Guilherme a retomar o foco.",450,690,20,WHITE);
+     DrawText("[PRESS E]",450,720,20,WHITE);
+     
+}
+void desenharconflitoG4(Texture2D fala){
+     
+     DrawTexture(fala,237,630,RAYWHITE);
+     DrawText("CONFLITO: Ajude Guilherme a retomar o foco.",450,690,20,WHITE);
+     DrawText("[PRESS N]",450,720,20,WHITE);
+     
+}
+void desenharconflitoG5(Texture2D fala){
+     
+     DrawTexture(fala,237,630,RAYWHITE);
+     DrawText("CONFLITO: Ajude Guilherme a retomar o foco.",450,690,20,WHITE);
+     DrawText("[PRESS C]",450,720,20,WHITE);
+     
+}
+void desenharconflitoG6(Texture2D fala){
+     
+     DrawTexture(fala,237,630,RAYWHITE);
+     DrawText("CONFLITO: Ajude Guilherme a retomar o foco.",450,690,20,WHITE);
+     DrawText("[PRESS A]",450,720,20,WHITE);
+     
+}
+void desenharconflitoG7(Texture2D fala){
+     
+     DrawTexture(fala,237,630,RAYWHITE);
+     DrawText("CONFLITO: Ajude Guilherme a retomar o foco.",450,690,20,WHITE);
+     DrawText("[PRESS O]",450,720,20,WHITE);
+     
+}
+void batalhafuncaoG(int* ruim,int opc, int* batalha){
+   if(opc == 1)
+   {
+       
+       if(GetKeyPressed()<=0)
+       {
+           
+       }
+       else 
+       {
+          if(IsKeyPressed("A")) 
+           {
+               (*ruim)--;
+               (*batalha)++;
+           }
+           else 
+           {
+               (*ruim)++;
+               (*batalha)++;
+           } 
+       }
+   }
+   else if(opc == 2)
+   {
+      if(GetKeyPressed()<=0)
+       {
+           
+       }
+       else 
+       {
+          if(IsKeyPressed("T")) 
+           {
+               (*ruim)--;
+               (*batalha)++;
+           }
+           else 
+           {
+               (*ruim)++;
+               (*batalha)++;
+           } 
+       }
+       
+   }
+   else if(opc == 3)
+   {
+       if(GetKeyPressed()<=0)
+       {
+           
+       }
+       else 
+       {
+          if(IsKeyPressed("E")) 
+           {
+               (*ruim)--;
+               (*batalha)++;
+           }
+           else 
+           {
+               (*ruim)++;
+               (*batalha)++;
+           } 
+       }
+       
+   }
+   else if(opc == 4)
+   {
+     if(GetKeyPressed()<=0)
+       {
+           
+       }
+       else 
+       {
+          if(IsKeyPressed("N")) 
+           {
+               (*ruim)--;
+               (*batalha)++;
+           }
+           else 
+           {
+               (*ruim)++;
+               (*batalha)++;
+           } 
+       }
+       
+   }
+   else if(opc == 5)
+   {
+       if(GetKeyPressed()<=0)
+       {
+           
+       }
+       else 
+       {
+          if(IsKeyPressed("C")) 
+           {
+               (*ruim)--;
+               (*batalha)++;
+           }
+           else 
+           {
+               (*ruim)++;
+               (*batalha)++;
+           } 
+       }
+       
+   }
+   else if(opc == 6)
+   {
+       if(GetKeyPressed()<=0)
+       {
+           
+       }
+       else 
+       {
+          if(IsKeyPressed("A")) 
+           {
+               (*ruim)--;
+               (*batalha)++;
+           }
+           else 
+           {
+               (*ruim)++;
+               (*batalha)++;
+           } 
+       }
+       
+       
+   }
+   else if(opc == 7)
+   {
+       if(GetKeyPressed()<=0)
+       {
+           
+       }
+       else 
+       {
+          if(IsKeyPressed("O")) 
+           {
+               (*ruim)--;
+               (*batalha)++;
+           }
+           else 
+           {
+               (*ruim)++;
+               (*batalha)++;
+           } 
+       }
+       
+   }
+}
 void desafiofuncaoG(Texture2D fala,int* ruim, int* batalha,int* falac){
       (*falac)=1;
       if((*batalha)==1)
@@ -2219,24 +2401,14 @@ void desafiofuncaoG(Texture2D fala,int* ruim, int* batalha,int* falac){
       }              
         
 }
-void perdeumemoria(Texture2D fala,int* falac, Rectangle* Guilhermer, Rectangle falacolisao){
+void diversaoavisoG(Texture2D fala,int* falac, Rectangle* Guilhermer, Rectangle falacolisao){
      (*falac)=1;
      DrawTexture(fala,237,650,RAYWHITE);
      if((Guilhermer->x >= falacolisao.x) && (Guilhermer->y >= falacolisao.y))
      {
          Guilhermer->y = 525;
      }
-     DrawText("Guilherme se esqueceu da memória que tentava guardar",450,720,20,WHITE);  
-     
-}
-void remedioavisoG(Texture2D fala,int* falac, Rectangle* Guilhermer, Rectangle falacolisao){
-     (*falac)=1;
-     DrawTexture(fala,237,650,RAYWHITE);
-     if((Guilhermer->x >= falacolisao.x) && (Guilhermer->y >= falacolisao.y))
-     {
-         Guilhermer->y = 525;
-     }
-     DrawText("Está na hora de Guilherme tomar seu remedio",450,720,20,WHITE);  
+     DrawText("Está na hora de Guilherme se divertir",450,720,20,WHITE);  
      
 }
 void terapiaavisoG(Texture2D fala,int* falac, Rectangle* Guilhermer, Rectangle falacolisao){
@@ -2249,164 +2421,26 @@ void terapiaavisoG(Texture2D fala,int* falac, Rectangle* Guilhermer, Rectangle f
      DrawText("Está na hora de Guilherme ir para a terapia",450,720,20,WHITE);  
      
 }
-void diversaoavisoG(Texture2D fala,int* falac, Rectangle* Guilhermer, Rectangle falacolisao){
+void remedioavisoG(Texture2D fala,int* falac, Rectangle* Guilhermer, Rectangle falacolisao){
      (*falac)=1;
      DrawTexture(fala,237,650,RAYWHITE);
      if((Guilhermer->x >= falacolisao.x) && (Guilhermer->y >= falacolisao.y))
      {
          Guilhermer->y = 525;
      }
-     DrawText("Está na hora de Guilherme se divertir",450,720,20,WHITE);  
+     DrawText("Está na hora de Guilherme tomar seu remedio",450,720,20,WHITE);  
      
 }
-void batalhafuncaoG(int* ruim,int opc, int* batalha){
-   if(opc == 1)
-   {
-       if(IsKeyPressed(KEY_A)) 
-       {
-           (*ruim)--;
-           (*batalha)++;
-       }
-       else 
-       {
-           (*ruim)++;
-           (*batalha)++;
-       }
-   }
-   else if(opc == 2)
-   {
-       if(IsKeyPressed(KEY_T)) 
-       {
-           (*ruim)--;
-           (*batalha)++;
-       }
-       else 
-       {
-           (*ruim)++;
-           (*batalha)++;
-       }
-       
-   }
-   else if(opc == 3)
-   {
-       if(IsKeyPressed(KEY_E)) 
-       {
-           (*ruim)--;
-           (*batalha)++;
-       }
-       else 
-       {
-           (*ruim)++;
-           (*batalha)++;
-       }
-       
-   }
-   else if(opc == 4)
-   {
-       if(IsKeyPressed(KEY_N)) 
-       {
-           (*ruim)--;
-           (*batalha)++;
-       }
-       else 
-       {
-           (*ruim)++;
-           (*batalha)++;
-       }
-       
-   }
-   else if(opc == 5)
-   {
-       if(IsKeyPressed(KEY_C)) 
-       {
-           (*ruim)--;
-           (*batalha)++;
-       }
-       else 
-       {
-           (*ruim)++;
-           (*batalha)++;
-       }
-       
-   }
-   else if(opc == 6)
-   {
-       if(IsKeyPressed(KEY_A)) 
-       {
-           (*ruim)--;
-           (*batalha)++;
-       }
-       else 
-       {
-           (*ruim)++;
-           (*batalha)++;
-       }
-       
-   }
-   else if(opc == 7)
-   {
-       if(IsKeyPressed(KEY_O)) 
-       {
-           (*ruim)--;
-           (*batalha)++;
-       }
-       else 
-       {
-           (*ruim)++;
-           (*batalha)++;
-       }
-       
-   }
-}
-void desenharconflitoG1(Texture2D fala){
-     
-     DrawTexture(fala,0,570,RAYWHITE);
-     DrawText("CONFLITO: Ajude Guilherme a retomar o foco.",220,630,20,WHITE);
-     DrawText("[PRESS A]",275,680,20,WHITE);
+void perdeumemoria(Texture2D fala,int* falac, Rectangle* Guilhermer, Rectangle falacolisao){
+     (*falac)=1;
+     DrawTexture(fala,237,650,RAYWHITE);
+     if((Guilhermer->x >= falacolisao.x) && (Guilhermer->y >= falacolisao.y))
+     {
+         Guilhermer->y = 525;
+     }
+     DrawText("Guilherme se esqueceu da memória que tentava guardar",450,720,20,WHITE);  
      
 }
-void desenharconflitoG2(Texture2D fala){
-     
-     DrawTexture(fala,0,570,RAYWHITE);
-     DrawText("CONFLITO: Ajude Guilherme a retomar o foco.",220,630,20,WHITE);
-     DrawText("[PRESS T]",275,680,20,WHITE);
-     
-}
-void desenharconflitoG3(Texture2D fala){
-     
-     DrawTexture(fala,0,570,RAYWHITE);
-     DrawText("CONFLITO: Ajude Guilherme a retomar o foco.",220,630,20,WHITE);
-     DrawText("[PRESS E]",275,680,20,WHITE);
-     
-}
-void desenharconflitoG4(Texture2D fala){
-     
-     DrawTexture(fala,0,570,RAYWHITE);
-     DrawText("CONFLITO: Ajude Guilherme a retomar o foco.",220,630,20,WHITE);
-     DrawText("[PRESS N]",275,680,20,WHITE);
-     
-}
-void desenharconflitoG5(Texture2D fala){
-     
-     DrawTexture(fala,0,570,RAYWHITE);
-     DrawText("CONFLITO: Ajude Guilherme a retomar o foco.",220,630,20,WHITE);
-     DrawText("[PRESS Ç]",275,680,20,WHITE);
-     
-}
-void desenharconflitoG6(Texture2D fala){
-     
-     DrawTexture(fala,0,570,RAYWHITE);
-     DrawText("CONFLITO: Ajude Guilherme a retomar o foco.",220,630,20,WHITE);
-     DrawText("[PRESS A]",275,680,20,WHITE);
-     
-}
-void desenharconflitoG7(Texture2D fala){
-     
-     DrawTexture(fala,0,570,RAYWHITE);
-     DrawText("CONFLITO: Ajude Guilherme a retomar o foco.",220,630,20,WHITE);
-     DrawText("[PRESS O]",275,680,20,WHITE);
-     
-} 
 void tudoDoGuilherme() {
     int screenWidth = 1366; //dimenssão da minha tela
     int screenHeight = 768;
@@ -2425,7 +2459,6 @@ void tudoDoGuilherme() {
         Image capim = LoadImage("/jogoip/filme2.png");
         Image loveim = LoadImage("/jogoip/crush.png");
         Image jogoim = LoadImage("/jogoip/jogo.png");
-        Image info3 = LoadImage("/jogoip/TDA.png");
      //Image Resize:
         ImageResize (&Guilhermeim,144,104); //144,104,(108,78) - Aumentando a imagem original
         ImageResize (&Quarto,1366,788); //passar o endereço pq ele modifica a imagem original.
@@ -2447,7 +2480,6 @@ void tudoDoGuilherme() {
         Texture2D lovetx = LoadTextureFromImage(loveim);
         Texture2D estabilidadetx = LoadTexture("/jogoip/estabilidade.png");
         Texture2D estressetx = LoadTexture("/jogoip/estresse.png");
-        Texture2D info3tx = LoadTextureFromImage(info3);
      //Rectengles:
         Rectangle Guilhermerec = {0,0,55,102};// testando o tamanho do boneco no mapa (pegando só esse retângulo)
         //Rectangle Karolrec = {0,0,55,102}; // Esta ok
@@ -2663,9 +2695,10 @@ void tudoDoGuilherme() {
             {
                 stress = stress +2;
                 colis[1]=1;
+                desafio=1; 
+                batalha=1;
             }
-            desafio=1; 
-            batalha=1;
+            
             colisaoK(&Guilhermer);
         }
         else if(CheckCollisionRecs(Guilhermer,conflito2)==1 && memoria==1)
@@ -2674,9 +2707,10 @@ void tudoDoGuilherme() {
             {
                 stress = stress +2;
                 colis[2]=1;
+                desafio=1; 
+                batalha=1;
             }
-            desafio=1; 
-            batalha=1;
+            
             colisaoK(&Guilhermer);
         }
         else if(CheckCollisionRecs(Guilhermer,conflito3)==1 && memoria==1)
@@ -2685,9 +2719,10 @@ void tudoDoGuilherme() {
             {
                 stress = stress +2;
                 colis[3]=1;
+                desafio=1; 
+                batalha=1;
             }
-            desafio=1; 
-            batalha=1;
+            
             colisaoK(&Guilhermer);
         }
         else if(CheckCollisionRecs(Guilhermer,conflito4)==1 && memoria==1)
@@ -2696,9 +2731,10 @@ void tudoDoGuilherme() {
             {
                 stress = stress +2;
                 colis[4]=1;
+                desafio=1; 
+                batalha=1;
             }
-            desafio=1; 
-            batalha=1;
+            
             colisaoK(&Guilhermer);
         }
         else if(CheckCollisionRecs(Guilhermer,conflito5)==1 && memoria==1)
@@ -2707,9 +2743,10 @@ void tudoDoGuilherme() {
             {
                 stress = stress +2;
                 colis[5]=1;
+                desafio=1; 
+                batalha=1;
             }
-            desafio=1; 
-            batalha=1;
+           
             colisaoK(&Guilhermer);
         }
         else if(CheckCollisionRecs(Guilhermer,memoriasad1))
@@ -2804,7 +2841,6 @@ void tudoDoGuilherme() {
            //DrawText(TextFormat("Refletir: %i",refletir),15,710,35,BLACK); 
            DrawText(TextFormat("Fase 3"),629,94,35,BLACK);
            DrawText(TextFormat("Tempo: %0.1f", (float)(contadordetempo/100)),1150,42,30,BLACK);
-           DrawText(TextFormat("I - Info"),1173,690,24,BLACK);
            //DrawTextureRec(Karoltx,Karolrec,Karolp,RAYWHITE);
            //DrawTextureRec(Guilhermetx,Guilhermerec,Guilhermep,RAYWHITE);
            
@@ -2834,7 +2870,21 @@ void tudoDoGuilherme() {
               DrawTexture(bolatx,790,666,RAYWHITE);
            }
            //desenhando desafio:
-           if(desafio==1)
+          
+           //diversao e terapia:
+           if(diversao==1)
+           {
+               diversaoavisoG(falatx, &falac, &Guilhermer, falacolisao);
+           }
+           if(terapia==1)
+           {
+               terapiaavisoG(falatx, &falac, &Guilhermer, falacolisao);
+           }
+           if(remedio==1)
+           {
+               //remedioavisoG(falatx, &falac, &Guilhermer, falacolisao);
+           }
+            if(desafio==1)
            {
                
                if(batalha>=1)
@@ -2847,39 +2897,29 @@ void tudoDoGuilherme() {
                    desafio=0;
                }
            }
-           if(batalha==0 && memoria==1 && ruim<=-5 && ruim!=0)
+           if(batalha==0 && memoria==1 && (ruim==-3 || ruim==-7 || ruim==-5) && ruim!=0)
            {
-                stress-=4;                
+                //deu bom               
                    
            }
-           if(batalha==0 && ruim>-5 && ruim!=0)
+           else if(batalha==0 && memoria==1 && (ruim!=-3 && ruim!=-7 && ruim!=-5) && ruim!=0)
            {
-               stress++;
-               contador = contador +0.17;
+               
                if(memoria==1)
                {
                    perdeumemoria(falatx, &falac, &Guilhermer, falacolisao);
                    memoria=0; 
                                      
                }
-               
+                 for(int i=1;i<8;i++)
+                {
+                    colis[i]=0;
+                }
+                colis[0]= colis[0]+1;
                  ruim=0;
                
                
            }             
-           //diversao e terapia:
-           if(diversao==1)
-           {
-               diversaoavisoG(falatx, &falac, &Guilhermer, falacolisao);
-           }
-           if(terapia==1)
-           {
-               terapiaavisoG(falatx, &falac, &Guilhermer, falacolisao);
-           }
-           if(remedio==1)
-           {
-               remedioavisoG(falatx, &falac, &Guilhermer, falacolisao);
-           }
            int espera = 1000; //modificar essa variável para reduzir o tempo de espera
           if(contadordetempo>=(2*minutos)+espera && contadordetempo<(4*minutos)) 
            {
@@ -2915,14 +2955,27 @@ void tudoDoGuilherme() {
                DrawTextureRec(Guilhermetx,Guilhermerec,Guilhermep,RAYWHITE);
            }
            
-           if(IsKeyDown(KEY_I))
-           {
-               DrawTexture(info3tx,340,256,RAYWHITE); 
-           }
         EndDrawing();
     }
     CloseWindow();
     }//SXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+void move_circ(int* posic){
+    if(IsKeyPressed(KEY_UP))
+    {
+        if((*posic) > 470)
+        {
+            (*posic) -= 50;
+        }
+    }
+    if(IsKeyPressed(KEY_DOWN))
+    {
+        if((*posic) < 600)
+        {
+            (*posic) += 50;
+        }
+    }
+}
 void menu(){
         
         int posic_circ = 470;
@@ -2930,8 +2983,8 @@ void menu(){
         ImageResize (&Menu,1366,788);
         Texture2D Menutx = LoadTextureFromImage(Menu);
         
-     Music maya = LoadMusicStream("/jogoip/Maya.ogg");
-                PlayMusicStream(maya);
+        Music maya = LoadMusicStream("/jogoip/Maya.ogg");
+        PlayMusicStream(maya);
 while(!WindowShouldClose()){
         UpdateMusicStream(maya);
         
@@ -2951,6 +3004,8 @@ while(!WindowShouldClose()){
         int opcMenu = 0;
         
         int checkpoint = qual_level(0);
+        
+        
         
         if (posic_circ == 470 && IsKeyPressed(KEY_ENTER)){
             opcMenu = 1;
